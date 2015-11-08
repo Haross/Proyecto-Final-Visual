@@ -8,9 +8,12 @@ package proyectofinal;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
@@ -27,25 +30,43 @@ public class FXMLExplorerController implements Initializable {
     private TreeView tvArbol;
     @FXML
     private AnchorPane control;
+ 
     TreeItem<String> folder;
     GestorArchivos Archivos;
 
     @FXML private void abrir(ActionEvent e){
        //Archivos.openFile();
     }
+    @FXML private void get(){
+        System.out.println(tvArbol.getSelectionModel());
+    }
+    
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+  
         Archivos = new GestorArchivos("1");
-   
         folder = new TreeItem<>("Este equipo",icono("folder.png"));
         tvArbol.setRoot(folder);
-        //Archivos.contenidoC(new File(Archivos.getDirectorio()), "1");
         setDirectorio(folder,Archivos.getDirectorio(),"");
-
         
-    }   
+        tvArbol.getSelectionModel().selectedItemProperty().addListener( new ChangeListener() {
+
+            @Override
+            public void changed(ObservableValue observable, Object oldValue,Object newValue) {
+
+                TreeItem<String> selectedItem = (TreeItem<String>) newValue;
+                System.out.println("Selected Text : " + selectedItem.getValue());
+                System.out.println(selectedItem.getChildren()); 
+            }
+
+        });
+    }
+    
+    private void setIconos(){
+        
+    }
     
     private void setDirectorio(TreeItem<String> folder, String raiz,String subRaiz){
         String a = raiz +"\\"+subRaiz;

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="499.0" prefWidth="639.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLExplorerController">
+<AnchorPane id="AnchorPane" prefHeight="546.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLExplorerController">
     <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="639.0" AnchorPane.bottomAnchor="474.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -18,7 +18,12 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TreeView fx:id="tvArbol" layoutY="24.0" prefHeight="475.0" prefWidth="154.0" AnchorPane.topAnchor="24.0" />
-      <AnchorPane fx:id="control" layoutX="155.0" layoutY="23.0" prefHeight="475.0" prefWidth="484.0" />
+      <SplitPane fx:id="splitPane" dividerPositions="0.29797979797979796" layoutY="150.0" prefHeight="314.0" prefWidth="524.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+        <items>
+            <TreeView fx:id="tvArbol" prefHeight="472.0" prefWidth="242.0" />
+          <AnchorPane fx:id="control" minHeight="0.0" minWidth="0.0" prefHeight="267.0" prefWidth="435.0">
+          </AnchorPane>
+        </items>
+      </SplitPane>
     </children>
 </AnchorPane>

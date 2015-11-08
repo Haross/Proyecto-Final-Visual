@@ -74,28 +74,5 @@ public class GestorArchivos {
         
         return null;
     }
-    
-    public void contenidoC(File directorio, String separador){
-            try{
-               File[] ficheros = directorio.listFiles();
-                for (int x=0;x<ficheros.length;x++){
-                    
-                  System.out.println(ficheros[x].getName());
-                  if (ficheros[x].isDirectory()){
-                            String nuevo_separador;
-                            nuevo_separador = separador + " ";
-                            contenidoC(ficheros[x],nuevo_separador);
-                    }
-                }
-                    
-            }catch(Exception e){
-                System.out.println("Ruta no válida");
-            }
-        
-    }
-    
-   
-    
-    
 
 }
