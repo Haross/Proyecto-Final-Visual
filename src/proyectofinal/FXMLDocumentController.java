@@ -28,14 +28,7 @@ public class FXMLDocumentController implements Initializable {
     private TreeView tvArbol;
     TreeItem<String> txt,mult,folder,fold;
     GestorArchivos Archivos;
-    @FXML
-    public void agregar_arbol(ActionEvent event){
-        String ruta = "";
-        
-        final Node icon = new ImageView(new Image(getClass().getResourceAsStream(ruta)));
-        TreeItem<String> selectedItem = (TreeItem<String>) tvArbol.getSelectionModel().selectedItemProperty().getValue();
-    }
-    
+
     @FXML private void abrir(ActionEvent e){
        Archivos.openFile();
     }
