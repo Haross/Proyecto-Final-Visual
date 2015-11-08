@@ -19,6 +19,6 @@
         </menus>
       </MenuBar>
       <TreeView fx:id="tvArbol" layoutY="24.0" prefHeight="475.0" prefWidth="154.0" AnchorPane.topAnchor="24.0" />
-      <AnchorPane fx:id="PaneFiles" layoutX="155.0" layoutY="23.0" prefHeight="475.0" prefWidth="484.0" />
+      <AnchorPane fx:id="control" layoutX="155.0" layoutY="23.0" prefHeight="475.0" prefWidth="484.0" />
     </children>
 </AnchorPane>

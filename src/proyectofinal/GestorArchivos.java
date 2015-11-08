@@ -17,7 +17,6 @@ public class GestorArchivos {
     //Variable que establece la ruta donde se guardarán los archivos
     private final String directorio = "..\\datos";  //Se pone \\ porque es el comodin de \
     private File fDirectorio = new File(directorio);  //fDirectorio = folder directorio
-
     public GestorArchivos(){           
         if(!fDirectorio.exists()){
             try{
@@ -61,11 +60,41 @@ public class GestorArchivos {
     
     public String[] contenido(String PATH){
         File f = new File(PATH);
-        String[] ficheros = f.list();
-        for(int i = 0; i<ficheros.length;i++)
-            System.out.println(ficheros[i]);
-        return ficheros;
+     
+            try{
+                String[] ficheros = f.list();
+                for(int i = 0; i<ficheros.length;i++){
+                    System.out.println(ficheros[i]);
+                }
+                System.out.println(PATH);
+                return ficheros;
+            }catch(Exception e){
+                System.out.println("Ruta no válida");
+            }
+        
+        return null;
     }
+    
+    public void contenidoC(File directorio, String separador){
+            try{
+               File[] ficheros = directorio.listFiles();
+                for (int x=0;x<ficheros.length;x++){
+                    
+                  System.out.println(ficheros[x].getName());
+                  if (ficheros[x].isDirectory()){
+                            String nuevo_separador;
+                            nuevo_separador = separador + " ";
+                            contenidoC(ficheros[x],nuevo_separador);
+                    }
+                }
+                    
+            }catch(Exception e){
+                System.out.println("Ruta no válida");
+            }
+        
+    }
+    
+   
     
     
 
