@@ -14,91 +14,59 @@ import javafx.stage.Stage;
  */
 //ea_2305@hotmai.com
 public class GestorArchivos {
-    private final FileChooser fileDialog;
-    private File file;
-    private File myPath;
-    
-    public GestorArchivos(){
-        this.fileDialog = new FileChooser();
-        this.myPath = null;
-        this.file = null;
-    }
-    
-    public GestorArchivos(String PATH){
-        this.fileDialog = new FileChooser();
-        this.myPath = new File(PATH);
-        this.file = null;
-    }
-    
-    public boolean checkDirectory(){
-        if (this.myPath.exists()) {
-            System.out.println("El directorio existe");
-            return true;
-        }else{
-            System.out.println("Fichero no existe");
-            try {
-                this.myPath.mkdir();
-            } catch (Exception e) {
-                System.out.println("El fichero no pudo ser creado");
-                return false;
-            } 
-        }
-        return false;
-    }
-    
-    public String openFile(){
-        fileDialog.setTitle("Apertura");
-        fileDialog.setInitialDirectory(this.myPath);
-        
-        file = fileDialog.showOpenDialog(new Stage());
-        
-        if (file == null) {
-            return "";
-        }else{
+    //Variable que establece la ruta donde se guardarán los archivos
+    private final String directorio = "..\\datos";  //Se pone \\ porque es el comodin de \
+    private File fDirectorio = new File(directorio);  //fDirectorio = folder directorio
+
+    public GestorArchivos(){           
+        if(!fDirectorio.exists()){
             try{
-                String texto = "";
-                List<String> ls = Files.readAllLines(this.file.toPath());
-                for (int i = 0; i < ls.size(); i++) {
-                    texto += ls.get(i) + "\n";
-                }
-                return texto;
-            }catch(IOException e){
-                e.printStackTrace();
-                return "";
+                fDirectorio.mkdir();
+            }catch(Exception e){
+                System.out.println("El fichero raiz no pudo ser creado");
+            }
+        }
+        
+    }
+    
+    public GestorArchivos(String ID){       
+        if(!fDirectorio.exists()){
+            fDirectorio.mkdir(); 
+            System.out.println("directorio creado");
+        }
+        checkDirectorio(directorio+"\\"+ID);
+    }
+    
+    public boolean setUsuario(String ID){
+        return checkDirectorio(directorio+"\\"+ID);
+    }
+    public String getDirectorio(){
+        return fDirectorio.getPath();
+    }
+    
+    private boolean checkDirectorio(String PATH){
+        fDirectorio = new File(PATH);
+        if(fDirectorio.exists())
+            return true;
+        else{
+            try{
+                fDirectorio.mkdir();
+                System.out.println("carpeta de usuario creada");
+                return true;
+            }catch(SecurityException e){
+                return false;
             }
         }
     }
     
-    public void saveFile(String texto){
-        fileDialog.setTitle("Apertura");
-        fileDialog.setInitialDirectory(this.myPath);
-        
-        
-        if (file == null)
-            file = fileDialog.showSaveDialog(new Stage());
-            if(file == null)
-                return;
-        try {
-            Files.write(file.toPath(), texto.getBytes());
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        
+    public String[] contenido(String PATH){
+        File f = new File(PATH);
+        String[] ficheros = f.list();
+        for(int i = 0; i<ficheros.length;i++)
+            System.out.println(ficheros[i]);
+        return ficheros;
     }
     
-    public void saveFileAs(String texto){
-        fileDialog.setTitle("Guardar");
-        fileDialog.setInitialDirectory(this.myPath);
-        
-        file = fileDialog.showSaveDialog(new Stage());
-        
-        if (file == null) 
-            return;
-        try {
-            Files.write(file.toPath(), texto.getBytes());
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        
-    }
+    
+
 }
