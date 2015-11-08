@@ -41,36 +41,20 @@ public class FXMLExplorerController implements Initializable {
         
         Archivos = new GestorArchivos("1");
         String[] subDirectorio = Archivos.contenido(Archivos.getDirectorio());
-        
-        Image imageFolder = new Image(getClass().getResourceAsStream("folder.png"));
-        ImageView iF = new ImageView(imageFolder);
-        iF.setFitWidth(25);
-        iF.setFitHeight(25);
-        
-        Image imagMult = new Image(getClass().getResourceAsStream("mult.png"));
-        ImageView iM = new ImageView(imagMult);
-        iM.setFitWidth(25);
-        iM.setFitHeight(25);
-        
-        Image imageTxt = new Image(getClass().getResourceAsStream("txt.png"));
-        ImageView iT = new ImageView(imageTxt);
-        iT.setFitWidth(25);
-        iT.setFitHeight(25); 
-        
-        
-        folder = new TreeItem<>("Este equipo",iF);
+
+        folder = new TreeItem<>("Este equipo",icono("folder.png"));
         tvArbol.setRoot(folder);
 
         Pattern pattern = Pattern.compile(".*\\..*");
         for(int i =0; i<subDirectorio.length;i++){
             Matcher matcher = pattern.matcher(subDirectorio[i]);
             if(matcher.matches()){
-                 
-                 TreeItem<String> txt = new TreeItem<> (subDirectorio[i],iT);
+                 TreeItem<String> txt = new TreeItem<> (subDirectorio[i],icono("txt.png"));
                  folder.getChildren().add(txt);
                  System.out.println("Matches archivo");
             }else{
-                TreeItem<String> fold = new TreeItem<>(subDirectorio[i],iF);
+                
+                TreeItem<String> fold = new TreeItem<>(subDirectorio[i],icono("folder.png"));
                 folder.getChildren().add(fold);
                 System.out.println("Matches carpeta");
             }
@@ -78,5 +62,14 @@ public class FXMLExplorerController implements Initializable {
         
         
     }    
+    
+    public ImageView icono(String imagen){
+        Image imageFolder = new Image(getClass().getResourceAsStream(imagen));
+        ImageView iF = new ImageView(imageFolder);
+        iF.setFitWidth(25);
+        iF.setFitHeight(25);
+        return iF;
+    }
+    
     
 }
