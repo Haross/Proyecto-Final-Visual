@@ -4,7 +4,9 @@ package proyectofinal;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -68,7 +70,7 @@ public class GestorArchivos {
                 }
                 System.out.println(PATH);
                 return ficheros;
-            }catch(Exception e){
+            }catch(InputMismatchException e){
                 System.out.println("Ruta no válida");
             }
         
