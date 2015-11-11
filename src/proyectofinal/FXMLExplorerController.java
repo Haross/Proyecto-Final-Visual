@@ -47,7 +47,9 @@ public class FXMLExplorerController implements Initializable {
     private TreeView tvArbol;
     @FXML
     private TilePane control;
-
+    
+    TreeItem<String> auxiliar;
+    TreeItem<String> seleccionado;
     TreeItem<String> folder;
     private GestorArchivos Archivos;
     String ruta; //ruta del elemento del treeview seleccionado
@@ -76,7 +78,7 @@ public class FXMLExplorerController implements Initializable {
         if (result.isPresent()){
             nombreC = result.get();
             String Path = "..\\datos\\" + ruta + "\\"+nombreC;
-            if(Archivos.checkDirectorio(Path)){
+            if(!Archivos.checkDirectorio(Path)){
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Look, an Error Dialog");
@@ -84,6 +86,9 @@ public class FXMLExplorerController implements Initializable {
 
                 alert.showAndWait();
                 nuevaVentana(e);
+            }else{
+                setItem(seleccionado,nombreC);
+                
             }
         }
     }
@@ -100,8 +105,10 @@ public class FXMLExplorerController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             fDirectorio.delete();
+             seleccionado.getParent().getChildren().remove(seleccionado);
         } else {
-            
+           // TreeItem<String> aux = seleccionado.getParent();
+           
         }
     }
     public String getRuta() {
@@ -125,7 +132,7 @@ public class FXMLExplorerController implements Initializable {
 
                 TreeItem<String> selectedItem = (TreeItem<String>) newValue;
                 TreeItem<String> padre = selectedItem.getParent();
-                //System.out.println("Selected Text : " + selectedItem.getValue());
+                seleccionado = selectedItem;
 
                 ruta = selectedItem.getValue();
                 while (padre != null) {
@@ -167,20 +174,33 @@ public class FXMLExplorerController implements Initializable {
         String subDirectorio[] = Archivos.contenido(a);
         if (subDirectorio != null) {
             for (int i = 0; i < subDirectorio.length; i++) {
-                if (subDirectorio[i].matches(".*\\..*")) {
-                    TreeItem<String> txt = new TreeItem<>(subDirectorio[i], icono("txt.png", 20, 20));
-                    folder.getChildren().add(txt);
-                    System.out.println("Matches archivo");
-                } else {
-                    TreeItem<String> fold = new TreeItem<>(subDirectorio[i], icono("folder.png", 20, 20));
-                    folder.getChildren().add(fold);
+                if (setItem(folder,subDirectorio[i]).equals("carpeta")) {
                     String nuevaRaiz = a + "";
-                    setDirectorio(fold, a, subDirectorio[i]);
-                    System.out.println("Matches carpeta");
+                    setDirectorio(getAuxItem(), a, subDirectorio[i]);
                 }
             }
         }
     }
+    
+    public String setItem(TreeItem<String> folder, String subDirectorio){
+        if (subDirectorio.matches(".*\\..*")) {
+                    TreeItem<String> txt = new TreeItem<>(subDirectorio, icono("txt.png", 20, 20));
+                    folder.getChildren().add(txt);
+                    System.out.println("Matches archivo");
+                    return "texto";
+            } else {
+                    TreeItem<String> fold = new TreeItem<>(subDirectorio, icono("folder.png", 20, 20));
+                    folder.getChildren().add(fold);
+                    auxiliar = fold;
+                    System.out.println("Matches carpeta");
+                    return "carpeta";
+        }
+    }
+    public TreeItem<String> getAuxItem(){
+        return auxiliar;
+    }
+    
+    
 
     public ImageView icono(String imagen, double width, double height) {
         Image imageFolder = new Image(getClass().getResourceAsStream(imagen));
