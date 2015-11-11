@@ -27,6 +27,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -40,21 +41,25 @@ public class FXMLExplorerController implements Initializable {
     @FXML
     private TreeView tvArbol;
     @FXML
-    private FlowPane control;
- 
+    private TilePane control;
+
     TreeItem<String> folder;
     GestorArchivos Archivos;
     String ruta; //ruta del elemento del treeview seleccionado
     String auxruta;
-    @FXML private void abrir(ActionEvent e){
-       //Archivos.openFile();
+
+    @FXML
+    private void abrir(ActionEvent e) {
+        //Archivos.openFile();
     }
-    @FXML private void get(){
+
+    @FXML
+    private void get() {
         System.out.println(tvArbol.getSelectionModel());
     }
-    
+
     @FXML
-    private void nuevaVentana(ActionEvent e) throws IOException{
+    private void nuevaVentana(ActionEvent e) throws IOException {
         Stage ventana = new Stage();
         FXMLLoader loader = new FXMLLoader(ProyectoFinal.class.getResource("NuevaCarpeta.fxml"));
         ventana.setTitle("Nueva Carpeta");
@@ -63,91 +68,91 @@ public class FXMLExplorerController implements Initializable {
         NuevaCarpetaController controller = loader.getController();
         ventana.show();
     }
-    
-    public void setRuta(String ruta){
-         auxruta = ruta;
+
+    public String getRuta() {
+        return ruta;
     }
-    
-    public String getRuta(){
-         return auxruta;
-    }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-  
+
         Archivos = new GestorArchivos("1");
-        folder = new TreeItem<>("Este equipo",icono("folder.png",20,20));
+        folder = new TreeItem<>("Este equipo", icono("folder.png", 20, 20));
         tvArbol.setRoot(folder);
-        setDirectorio(folder,Archivos.getDirectorio(),"");
-        control.setPadding(new Insets(10,10,10,10));
+        setDirectorio(folder, Archivos.getDirectorio(), "");
+        control.setPadding(new Insets(10, 10, 10, 10));
         control.setVgap(5);
         control.setHgap(5);
-        tvArbol.getSelectionModel().selectedItemProperty().addListener( new ChangeListener() {
+        tvArbol.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
 
             @Override
-            public void changed(ObservableValue observable, Object oldValue,Object newValue) {
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
 
                 TreeItem<String> selectedItem = (TreeItem<String>) newValue;
                 TreeItem<String> padre = selectedItem.getParent();
                 //System.out.println("Selected Text : " + selectedItem.getValue());
-                control.getChildren().clear();
+
                 ruta = selectedItem.getValue();
-                while(padre != null ) {
-                    ruta = "\\" + padre.getValue() + "\\" +ruta;
+                while (padre != null) {
+                    ruta = "\\" + padre.getValue() + "\\" + ruta;
                     padre = padre.getParent();
-                    
+
                 }
-                System.out.println("prueba"+ruta);
-                   
+
+                System.out.println("prueba" + ruta);
+
                 //setRuta(ruta);         
-                ObservableList<TreeItem<String>> aux = selectedItem.getChildren(); 
-                for(int i=0; i< aux.size();i++){
-                   Button b = new Button();
-                   b.setGraphic(icono("txt.png",40,40));
-                   b.setText(aux.get(i).getValue());
-                   b.setTextAlignment(TextAlignment.CENTER);
-                   control.getChildren().addAll(b);
-                }
-                
-             
-              
+                setIconFiles(selectedItem.getChildren());
+
             }
 
         });
     }
-    
-    private void getPath(){
-        
-        
+
+    /*
+     * método que pone los iconos en el controler
+     */
+    private void setIconFiles(ObservableList<TreeItem<String>> aux) {
+        control.getChildren().clear();
+        for (int i = 0; i < aux.size(); i++) {
+            Button b = new Button();
+            b.setId(ruta);
+            b.setGraphic(icono("txt.png", 40, 40));
+            b.setText(aux.get(i).getValue());
+            b.setTextAlignment(TextAlignment.CENTER);
+            b.setOnAction((e) -> {
+                
+            });
+            control.getChildren().addAll(b);
+        }
     }
-    
-    private void setDirectorio(TreeItem<String> folder, String raiz,String subRaiz){
-        String a = raiz +"\\"+subRaiz;
+
+    private void setDirectorio(TreeItem<String> folder, String raiz, String subRaiz) {
+        String a = raiz + "\\" + subRaiz;
         String subDirectorio[] = Archivos.contenido(a);
-        if(subDirectorio != null)
-            for(int i =0; i<subDirectorio.length;i++){
-                if(subDirectorio[i].matches(".*\\..*")){
-                     TreeItem<String> txt = new TreeItem<> (subDirectorio[i],icono("txt.png",20,20));
-                     folder.getChildren().add(txt);
-                     System.out.println("Matches archivo");
-                }else{
-                    TreeItem<String> fold = new TreeItem<>(subDirectorio[i],icono("folder.png",20,20));
+        if (subDirectorio != null) {
+            for (int i = 0; i < subDirectorio.length; i++) {
+                if (subDirectorio[i].matches(".*\\..*")) {
+                    TreeItem<String> txt = new TreeItem<>(subDirectorio[i], icono("txt.png", 20, 20));
+                    folder.getChildren().add(txt);
+                    System.out.println("Matches archivo");
+                } else {
+                    TreeItem<String> fold = new TreeItem<>(subDirectorio[i], icono("folder.png", 20, 20));
                     folder.getChildren().add(fold);
                     String nuevaRaiz = a + "";
-                    setDirectorio(fold,a,subDirectorio[i]);
+                    setDirectorio(fold, a, subDirectorio[i]);
                     System.out.println("Matches carpeta");
                 }
             }
+        }
     }
-    
-    
-    public ImageView icono(String imagen,double width, double height){
+
+    public ImageView icono(String imagen, double width, double height) {
         Image imageFolder = new Image(getClass().getResourceAsStream(imagen));
         ImageView iF = new ImageView(imageFolder);
         iF.setFitWidth(width);
         iF.setFitHeight(height);
         return iF;
     }
-    
-    
+
 }

@@ -29,7 +29,7 @@
                     </items>
                   </ContextMenu>
                </contextMenu></TreeView>
-            <FlowPane fx:id="control" prefHeight="519.0" prefWidth="414.0" />
+            <TilePane fx:id="control" prefHeight="519.0" prefWidth="414.0" />
         </items>
       </SplitPane>
     </children>
