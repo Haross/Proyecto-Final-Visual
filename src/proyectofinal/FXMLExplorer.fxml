@@ -25,7 +25,7 @@
                   <ContextMenu>
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#nuevaVentana" text="Nueva Carpeta" />
-                        <MenuItem mnemonicParsing="false" text="Elimnar Carpeta" />
+                        <MenuItem onAction="#eliminarVentana"  mnemonicParsing="false" text="Elimnar Carpeta" />
                     </items>
                   </ContextMenu>
                </contextMenu></TreeView>

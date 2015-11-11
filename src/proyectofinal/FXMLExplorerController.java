@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.TreeItem;
@@ -84,11 +85,25 @@ public class FXMLExplorerController implements Initializable {
                 alert.showAndWait();
                 nuevaVentana(e);
             }
-
-           
         }
     }
-
+    
+    @FXML
+    private void eliminarVentana(ActionEvent e) throws IOException {
+        File fDirectorio;
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar Carpeta");
+        alert.setHeaderText("Si desea eliminar la carpeta seleccion Aceptar");
+        //alert.setContentText("");
+        String PATH = "..\\datos\\" + ruta;
+        fDirectorio = new File(PATH);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            fDirectorio.delete();
+        } else {
+            
+        }
+    }
     public String getRuta() {
         return ruta;
     }
