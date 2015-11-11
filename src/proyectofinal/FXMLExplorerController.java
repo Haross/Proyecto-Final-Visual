@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,6 +22,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
@@ -46,7 +48,8 @@ public class FXMLExplorerController implements Initializable {
     TreeItem<String> folder;
     GestorArchivos Archivos;
     String ruta; //ruta del elemento del treeview seleccionado
-    String auxruta;
+    String nombreC;
+    File fDirectorio;
 
     @FXML
     private void abrir(ActionEvent e) {
@@ -60,13 +63,20 @@ public class FXMLExplorerController implements Initializable {
 
     @FXML
     private void nuevaVentana(ActionEvent e) throws IOException {
-        Stage ventana = new Stage();
-        FXMLLoader loader = new FXMLLoader(ProyectoFinal.class.getResource("NuevaCarpeta.fxml"));
-        ventana.setTitle("Nueva Carpeta");
-        Scene scene = new Scene(loader.load());
-        ventana.setScene(scene);
-        NuevaCarpetaController controller = loader.getController();
-        ventana.show();
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Carpeta");
+        dialog.setHeaderText("Crear nueva carpeta");
+        dialog.setContentText("Nombre de la carpeta");
+
+        // Traditional way to get the response value.
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            nombreC = result.get();
+            String Path = "\\" + ruta + "\\"+nombreC;
+            fDirectorio = new File(Path);
+            System.out.println(Path);
+            fDirectorio.mkdir();
+        }
     }
 
     public String getRuta() {
