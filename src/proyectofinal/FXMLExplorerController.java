@@ -20,6 +20,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputDialog;
@@ -46,10 +48,10 @@ public class FXMLExplorerController implements Initializable {
     private TilePane control;
 
     TreeItem<String> folder;
-    GestorArchivos Archivos;
+    private GestorArchivos Archivos;
     String ruta; //ruta del elemento del treeview seleccionado
     String nombreC;
-    File fDirectorio;
+
 
     @FXML
     private void abrir(ActionEvent e) {
@@ -72,10 +74,18 @@ public class FXMLExplorerController implements Initializable {
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
             nombreC = result.get();
-            String Path = "\\" + ruta + "\\"+nombreC;
-            fDirectorio = new File(Path);
-            System.out.println(Path);
-            fDirectorio.mkdir();
+            String Path = "..\\datos\\" + ruta + "\\"+nombreC;
+            if(Archivos.checkDirectorio(Path)){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Look, an Error Dialog");
+                alert.setContentText("El archivo ya existe, ingrese otro nombre");
+
+                alert.showAndWait();
+                nuevaVentana(e);
+            }
+
+           
         }
     }
 
@@ -87,7 +97,7 @@ public class FXMLExplorerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         Archivos = new GestorArchivos("1");
-        folder = new TreeItem<>("Este equipo", icono("folder.png", 20, 20));
+        folder = new TreeItem<>("1", icono("folder.png", 20, 20));
         tvArbol.setRoot(folder);
         setDirectorio(folder, Archivos.getDirectorio(), "");
         control.setPadding(new Insets(10, 10, 10, 10));

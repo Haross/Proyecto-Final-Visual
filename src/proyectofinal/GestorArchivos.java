@@ -45,7 +45,7 @@ public class GestorArchivos {
         return fDirectorio.getPath();
     }
     
-    private boolean checkDirectorio(String PATH){
+    public boolean checkDirectorio(String PATH){
         fDirectorio = new File(PATH);
         if(fDirectorio.exists())
             return true;
