@@ -6,6 +6,7 @@
 package proyectofinal;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -14,8 +15,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeItem;
@@ -26,6 +29,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 
 /**
  *
@@ -41,7 +45,7 @@ public class FXMLExplorerController implements Initializable {
     TreeItem<String> folder;
     GestorArchivos Archivos;
     String ruta; //ruta del elemento del treeview seleccionado
-    
+    String auxruta;
     @FXML private void abrir(ActionEvent e){
        //Archivos.openFile();
     }
@@ -49,7 +53,24 @@ public class FXMLExplorerController implements Initializable {
         System.out.println(tvArbol.getSelectionModel());
     }
     
-
+    @FXML
+    private void nuevaVentana(ActionEvent e) throws IOException{
+        Stage ventana = new Stage();
+        FXMLLoader loader = new FXMLLoader(ProyectoFinal.class.getResource("NuevaCarpeta.fxml"));
+        ventana.setTitle("Nueva Carpeta");
+        Scene scene = new Scene(loader.load());
+        ventana.setScene(scene);
+        NuevaCarpetaController controller = loader.getController();
+        ventana.show();
+    }
+    
+    public void setRuta(String ruta){
+         auxruta = ruta;
+    }
+    
+    public String getRuta(){
+         return auxruta;
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -71,14 +92,13 @@ public class FXMLExplorerController implements Initializable {
                 System.out.println("Selected Text : " + selectedItem.getValue());
                 control.getChildren().clear();
                 ruta = selectedItem.getValue();
-                
-             
-             /*   while(padre.getParent() != null){
-                    ruta = padre.getParent().getValue() + "\\" +ruta;
+                if (padre.getParent() != null ) {
+                    ruta = "\\" + padre.getParent().getValue() + "\\" +ruta;
                     padre = selectedItem.getParent();
+                    System.out.println("prueba"+ruta);
                 }
-                System.out.println("El PATH es: "+ruta);*/
-                
+                   
+                setRuta(ruta);         
                 ObservableList<TreeItem<String>> aux = selectedItem.getChildren(); 
                 for(int i=0; i< aux.size();i++){
                    Button b = new Button();

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="546.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLExplorerController">
+<AnchorPane id="AnchorPane" prefHeight="546.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLExplorerController">
     <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="639.0" AnchorPane.bottomAnchor="474.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -20,7 +20,15 @@
       </MenuBar>
       <SplitPane fx:id="splitPane" dividerPositions="0.21368715083798884" layoutY="150.0" prefHeight="314.0" prefWidth="524.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <items>
-            <TreeView fx:id="tvArbol" prefHeight="472.0" prefWidth="242.0" />
+            <TreeView fx:id="tvArbol" prefHeight="472.0" prefWidth="242.0">
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#nuevaVentana" text="Nueva Carpeta" />
+                        <MenuItem mnemonicParsing="false" text="Elimnar Carpeta" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu></TreeView>
             <FlowPane fx:id="control" prefHeight="519.0" prefWidth="414.0" />
         </items>
       </SplitPane>
