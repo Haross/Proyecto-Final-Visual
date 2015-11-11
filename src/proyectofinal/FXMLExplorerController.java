@@ -88,17 +88,18 @@ public class FXMLExplorerController implements Initializable {
             public void changed(ObservableValue observable, Object oldValue,Object newValue) {
 
                 TreeItem<String> selectedItem = (TreeItem<String>) newValue;
-                TreeItem<String> padre = selectedItem;
-                System.out.println("Selected Text : " + selectedItem.getValue());
+                TreeItem<String> padre = selectedItem.getParent();
+                //System.out.println("Selected Text : " + selectedItem.getValue());
                 control.getChildren().clear();
                 ruta = selectedItem.getValue();
-                if (padre.getParent() != null ) {
-                    ruta = "\\" + padre.getParent().getValue() + "\\" +ruta;
-                    padre = selectedItem.getParent();
-                    System.out.println("prueba"+ruta);
+                while(padre != null ) {
+                    ruta = "\\" + padre.getValue() + "\\" +ruta;
+                    padre = padre.getParent();
+                    
                 }
+                System.out.println("prueba"+ruta);
                    
-                setRuta(ruta);         
+                //setRuta(ruta);         
                 ObservableList<TreeItem<String>> aux = selectedItem.getChildren(); 
                 for(int i=0; i< aux.size();i++){
                    Button b = new Button();
