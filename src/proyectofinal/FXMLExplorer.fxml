@@ -9,9 +9,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="546.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLExplorerController">
     <children>
-      <AnchorPane fx:id="AnchoPaneExp" prefHeight="556.0" prefWidth="728.0" visible="false">
+      <AnchorPane fx:id="AnchoPaneExp" prefHeight="556.0" prefWidth="736.0" visible="false">
          <children>
-            <SplitPane fx:id="splitPane" dividerPositions="0.31955922865013775" prefHeight="556.0" prefWidth="728.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <SplitPane fx:id="splitPane" dividerPositions="0.28337874659400547" prefHeight="556.0" prefWidth="728.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
                   <TreeView fx:id="tvArbol" prefHeight="554.0" prefWidth="256.0">
                      <contextMenu>
@@ -23,14 +23,14 @@
                         </ContextMenu>
                      </contextMenu>
                   </TreeView>
-                  <TilePane fx:id="control" prefHeight="519.0" prefWidth="414.0" />
+                  <TilePane fx:id="control1" prefHeight="519.0" prefWidth="414.0" />
               </items>
             </SplitPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchoPaneAbrir" layoutX="-2.0" layoutY="1.0" prefHeight="556.0" prefWidth="728.0">
+      <AnchorPane fx:id="AnchoPaneAbrir" layoutX="-2.0" layoutY="1.0" prefHeight="556.0" prefWidth="736.0">
          <children>
-            <SplitPane fx:id="splitPane" dividerPositions="0.273841961852861" prefHeight="556.0" prefWidth="736.0">
+            <SplitPane fx:id="splitPane" dividerPositions="0.273841961852861" layoutX="2.0" prefHeight="510.0" prefWidth="736.0" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="-2.0">
                <items>
                   <TreeView fx:id="tvArbol" prefHeight="554.0" prefWidth="256.0">
                      <contextMenu>
@@ -42,15 +42,19 @@
                         </ContextMenu>
                      </contextMenu>
                   </TreeView>
-                  <TilePane fx:id="control" prefHeight="554.0" prefWidth="401.0" />
+                  <TilePane fx:id="control" orientation="VERTICAL" prefHeight="554.0" prefWidth="401.0" tileAlignment="TOP_LEFT" />
                </items>
             </SplitPane>
-            <Button fx:id="btnAbrir" layoutX="626.0" layoutY="500.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" text="Abrir">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <TextField fx:id="txtNombreA" layoutX="249.0" layoutY="503.0" prefHeight="25.0" prefWidth="346.0" promptText="Escriba el nombre del archivo que desea abrir..." />
+            <Pane layoutY="499.0" prefHeight="57.0" prefWidth="736.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="499.0">
+               <children>
+                  <Button fx:id="btnAbrir" layoutX="638.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" text="Abrir">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="txtNombreA" layoutX="210.0" layoutY="19.0" prefHeight="25.0" prefWidth="346.0" promptText="Escriba el nombre del archivo que desea abrir..." />
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="AnchoPaneGuardar" prefHeight="556.0" prefWidth="736.0" visible="false">
@@ -67,7 +71,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </TreeView>
-                  <TilePane fx:id="control11" prefHeight="563.0" prefWidth="726.0" />
+                  <TilePane fx:id="control2" prefHeight="563.0" prefWidth="726.0" />
                </items>
             </SplitPane>
             <Button fx:id="btnAbrir1" layoutX="626.0" layoutY="500.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" text="Guardar">
