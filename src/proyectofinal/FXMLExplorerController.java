@@ -25,6 +25,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -47,14 +48,15 @@ public class FXMLExplorerController implements Initializable {
     private TreeView tvArbol;
     @FXML
     private TilePane control;
-    
+    @FXML private AnchorPane AnchoPaneAbrir,AnchoPaneGuardar,AnchoPaneExp;
+    @FXML private TextField txtNombreA;
     TreeItem<String> auxiliar;
     TreeItem<String> seleccionado;
     TreeItem<String> folder;
     private GestorArchivos Archivos;
     String ruta; //ruta del elemento del treeview seleccionado
     String nombreC;
-
+    String[] extension = new String[2];
 
     @FXML
     private void abrir(ActionEvent e) {
@@ -65,6 +67,33 @@ public class FXMLExplorerController implements Initializable {
     private void get() {
         System.out.println(tvArbol.getSelectionModel());
     }
+    
+    private void viewAbrir(){
+        AnchoPaneAbrir.setVisible(true);
+        AnchoPaneExp.setVisible(false);
+        AnchoPaneGuardar.setVisible(false);
+    }
+    
+    private void viewGuardar(){
+        AnchoPaneGuardar.setVisible(true);
+        AnchoPaneAbrir.setVisible(false);
+        AnchoPaneExp.setVisible(false);
+    }
+    
+    private void viewExplorer(){
+        AnchoPaneExp.setVisible(true);
+        AnchoPaneGuardar.setVisible(false);
+        AnchoPaneAbrir.setVisible(false);
+    }
+    
+    private void buscar(String nombre){
+        
+    }
+    
+    @FXML private void abrir(){
+        String nombreA = txtNombreA.getText();
+        
+    }
 
     @FXML
     private void nuevaVentana(ActionEvent e) throws IOException {
@@ -72,8 +101,6 @@ public class FXMLExplorerController implements Initializable {
         dialog.setTitle("Carpeta");
         dialog.setHeaderText("Crear nueva carpeta");
         dialog.setContentText("Nombre de la carpeta");
-
-        // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
             nombreC = result.get();
@@ -99,7 +126,6 @@ public class FXMLExplorerController implements Initializable {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Eliminar Carpeta");
         alert.setHeaderText("Si desea eliminar la carpeta seleccion Aceptar");
-        //alert.setContentText("");
         String PATH = "..\\datos\\" + ruta;
         fDirectorio = new File(PATH);
         Optional<ButtonType> result = alert.showAndWait();
@@ -184,18 +210,29 @@ public class FXMLExplorerController implements Initializable {
     
     public String setItem(TreeItem<String> folder, String subDirectorio){
         if (subDirectorio.matches(".*\\..*")) {
-                    TreeItem<String> txt = new TreeItem<>(subDirectorio, icono("txt.png", 20, 20));
-                    folder.getChildren().add(txt);
-                    System.out.println("Matches archivo");
-                    return "texto";
-            } else {
-                    TreeItem<String> fold = new TreeItem<>(subDirectorio, icono("folder.png", 20, 20));
-                    folder.getChildren().add(fold);
-                    auxiliar = fold;
-                    System.out.println("Matches carpeta");
-                    return "carpeta";
+            extension = subDirectorio.split("\\.");
+            if (extension[1].equals("txt")) {
+                TreeItem<String> txt = new TreeItem<>(subDirectorio, icono("txt.png", 20, 20));
+                folder.getChildren().add(txt);
+                System.out.println("Matches archivo");
+                return "texto";
+            }
+            if (extension[1].equals("jpg") || extension.equals("bmp")|| extension.equals("jpeg") || extension.equals("jpe") || extension.equals("jfif") || extension.equals("gif") || extension.equals("tif") || extension.equals("tiff") || extension.equals("png") ) {
+                TreeItem<String> txt = new TreeItem<>(subDirectorio, icono("mult.png", 20, 20));
+                folder.getChildren().add(txt);
+                System.out.println("Matches archivo");
+                return "texto";
+            }
+            return "texto";
+        } else {
+            TreeItem<String> fold = new TreeItem<>(subDirectorio, icono("folder.png", 20, 20));
+            folder.getChildren().add(fold);
+            auxiliar = fold;
+            System.out.println("Matches carpeta");
+            return "carpeta";
         }
     }
+    
     public TreeItem<String> getAuxItem(){
         return auxiliar;
     }
