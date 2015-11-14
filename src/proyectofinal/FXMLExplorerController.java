@@ -57,7 +57,7 @@ public class FXMLExplorerController implements Initializable {
     String ruta; //ruta del elemento del treeview seleccionado
     String nombreC;
     String[] extension = new String[2];
-
+String rutaArchivo = null;
     @FXML
     private void abrir(ActionEvent e) {
         //Archivos.openFile();
@@ -86,8 +86,19 @@ public class FXMLExplorerController implements Initializable {
         AnchoPaneAbrir.setVisible(false);
     }
     
-    private void buscar(String nombre){
-        
+    private String buscar(ObservableList<TreeItem<String>> nodos,String nombre, String rutaArchivo){
+        for(int i=0;i<nodos.size();i++){
+            if(nodos.get(i).getValue().equals(nombre)){
+               this.rutaArchivo = rutaArchivo+"\\"+nombre;
+            }else{
+                if(!nodos.get(i).getValue().matches(".*\\..*")){
+                    buscar(nodos.get(i).getChildren(),nombre, rutaArchivo+"\\"+nodos.get(i).getValue());
+                }
+               
+
+            }
+        }
+        return null;
     }
     
     @FXML private void abrir(){
@@ -175,6 +186,9 @@ public class FXMLExplorerController implements Initializable {
             }
 
         });
+        buscar(tvArbol.getRoot().getChildren(),"jeje.txt",Archivos.getDirectorio());
+        System.out.println("hola"+rutaArchivo);
+
     }
 
     /*
@@ -237,7 +251,7 @@ public class FXMLExplorerController implements Initializable {
         return auxiliar;
     }
     
-    
+   
 
     public ImageView icono(String imagen, double width, double height) {
         Image imageFolder = new Image(getClass().getResourceAsStream(imagen));
