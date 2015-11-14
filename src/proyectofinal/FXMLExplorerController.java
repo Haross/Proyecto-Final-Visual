@@ -84,22 +84,42 @@ public class FXMLExplorerController implements Initializable {
     }
 
     @FXML private void guardar(ActionEvent e){
-        String nombreA = txtNombreBG.getText();
+        String nombreA = txtNombreBG.getText();//nombre del archivo
         buscar(tvArbol.getRoot().getChildren(),nombreA,Archivos.getDirectorio());
-        Alert alert = new Alert(AlertType.INFORMATION);
-        Alert alertC = new Alert(AlertType.CONFIRMATION);
+        String comparar = rutaArchivo;
+        System.out.println("Comparar: "+ comparar);
         System.out.println("Prueba de buscar guardar: "+rutaArchivo);
-        if (rutaArchivo == null) {
-            alert.setTitle("Archivo gurdado");
-            alert.setHeaderText("Se ha guardado con exito");
-            alert.showAndWait();
+        if (comparar == null) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("No existe el Archivo");
+            alert.setHeaderText("¿Desea guardarlo?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                TextInputDialog dialog = new TextInputDialog();
+                dialog.setTitle("Nuevo archivo");
+                dialog.setContentText("Esriba el nombre la carpeta: ");
+                Optional<String> resultG = dialog.showAndWait();
+                 String ncarpeta = resultG.get();
+                 try {
+                    if (resultG.isPresent()){
+                        buscar(tvArbol.getRoot().getChildren(), ncarpeta, Archivos.getDirectorio());
+                        String nuevo = rutaArchivo;//ruta de la carpeta
+                        //guardar archivo
+                    }
+                } catch (Exception ex) {
+                    
+                }
+               
+            }
+            
         }
-        if (rutaArchivo != null) {
-            alertC.setTitle("Archivo Existente");
-            alertC.setHeaderText("¿Desea sobrescribilo?");
-            Optional<ButtonType> result = alertC.showAndWait();
+        if (comparar != null) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Archivo existente");
+            alert.setHeaderText("¿Desea sobrescribirlo?");
+            Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
-                //Sobreescrbir el archivo
+                //Sobrescrbir
             }
             rutaArchivo=null;
         }
@@ -396,10 +416,19 @@ public class FXMLExplorerController implements Initializable {
         controlGuardar.setPrefColumns(3);
         controlGuardar.setPrefRows(3);
         for (int i = 0; i < aux.size(); i++) {
-
+            extension =  aux.get(i).getValue().split("\\.");
             Button b = new Button();
             b.setId(ruta);
-            b.setGraphic(icono("mult.png", 40, 40));
+            /*if (extension[0].equals("txt")) {
+                b.setGraphic(icono("txt.png", 40, 40));
+            }else{
+                b.setGraphic(icono("folder.png", 40, 40));
+            }
+            if(extension[0].equals("jpg") || extension.equals("bmp")|| extension.equals("jpeg") || extension.equals("jpe") || extension.equals("jfif") || extension.equals("gif") || extension.equals("tif") || extension.equals("tiff") || extension.equals("png") ){
+                b.setGraphic(icono("mult.png", 40, 40));
+            }else{
+                 b.setGraphic(icono("folder.png", 40, 40));
+            }*/
             b.setText(aux.get(i).getValue());
             b.setTextAlignment(TextAlignment.CENTER);
             b.setOnAction((e) -> {
