@@ -220,21 +220,22 @@ public class FXMLExplorerController implements Initializable {
         control.getChildren().clear();
         control.setPrefColumns(3);
         control.setPrefRows(3);
-                String[] nextension = new String[2];
-         for (int i = 0; i < aux.size(); i++) {
-             Button b = new Button();
-             b.setId(ruta);
-             nextension = aux.get(i).getValue().split("\\.");
-             try {
-                 b.setGraphic(icono("folder.png", 40, 40));
-                 if (nextension[1].equals("txt")) {
-                     b.setGraphic(icono("txt.png", 40, 40));
-                 }
-                 if (nextension[1].equals("jpg") || nextension[1].equals("bmp") || nextension[1].equals("jpeg") || nextension[1].equals("jpe") || nextension[1].equals("jfif") || nextension[1].equals("gif") || nextension[1].equals("tif") || nextension[1].equals("tiff") || nextension[1].equals("png")) {
-                     b.setGraphic(icono("mult.png", 40, 40));
-                 }
-             } catch (Exception ex) {
-             }
+        String[] nextension = new String[2];
+        for (int i = 0; i < aux.size(); i++) {
+            Button b = new Button();
+            b.setId(ruta);
+            nextension = aux.get(i).getValue().split("\\.");
+            try {
+                b.setGraphic(icono("folder.png", 40, 40));
+                if (nextension[1].equals("txt")) {
+                    b.setGraphic(icono("txt.png", 40, 40));
+                }
+                if (nextension[1].equals("jpg") || nextension[1].equals("bmp") || nextension[1].equals("jpeg") || nextension[1].equals("jpe") || nextension[1].equals("jfif") || nextension[1].equals("gif") || nextension[1].equals("tif") || nextension[1].equals("tiff") || nextension[1].equals("png")) {
+                    b.setGraphic(icono("mult.png", 40, 40));
+                }
+            } catch (Exception ex) {
+            }
+
             b.setText(aux.get(i).getValue());
             b.setTextAlignment(TextAlignment.CENTER);
             b.setOnAction((e) -> {
@@ -374,20 +375,21 @@ public class FXMLExplorerController implements Initializable {
         controlAbrir.setPrefColumns(3);
         controlAbrir.setPrefRows(3);
         String[] nextension = new String[2];
-         for (int i = 0; i < aux.size(); i++) {
-             Button b = new Button();
-             b.setId(ruta);
-             nextension = aux.get(i).getValue().split("\\.");
-             try {
-                 b.setGraphic(icono("folder.png", 40, 40));
-                 if (nextension[1].equals("txt")) {
-                     b.setGraphic(icono("txt.png", 40, 40));
-                 }
-                 if (nextension[1].equals("jpg") || nextension[1].equals("bmp") || nextension[1].equals("jpeg") || nextension[1].equals("jpe") || nextension[1].equals("jfif") || nextension[1].equals("gif") || nextension[1].equals("tif") || nextension[1].equals("tiff") || nextension[1].equals("png")) {
-                     b.setGraphic(icono("mult.png", 40, 40));
-                 }
-             } catch (Exception ex) {
-             }
+        for (int i = 0; i < aux.size(); i++) {
+            Button b = new Button();
+            b.setId(ruta);
+            nextension =  aux.get(i).getValue().split("\\.");
+            try {
+                b.setGraphic(icono("folder.png", 40, 40));
+                if (nextension[1].equals("txt")) {
+                    b.setGraphic(icono("txt.png", 40, 40));
+                }
+                if (nextension[1].equals("jpg") || nextension[1].equals("bmp") || nextension[1].equals("jpeg") || nextension[1].equals("jpe") || nextension[1].equals("jfif") || nextension[1].equals("gif") || nextension[1].equals("tif") || nextension[1].equals("tiff") || nextension[1].equals("png")) {
+                    b.setGraphic(icono("mult.png", 40, 40));
+                }
+            } catch (Exception ex) {
+            }
+            
             b.setText(aux.get(i).getValue());
             b.setTextAlignment(TextAlignment.CENTER);
             b.setOnAction((e) -> {
