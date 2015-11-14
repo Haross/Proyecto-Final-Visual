@@ -47,11 +47,11 @@ import javafx.stage.Stage;
 public class FXMLExplorerController implements Initializable {
 
     @FXML
-    private TreeView tvArbol;
+    private TreeView tvArbol,tvArbolAbrir,tvArbolGuardar;
     @FXML
-    private TilePane control;
+    private TilePane control,controlAbrir,controlGuardar;
     @FXML private AnchorPane AnchoPaneAbrir,AnchoPaneGuardar,AnchoPaneExp;
-    @FXML private TextField txtNombreA,txtNombreG;
+    @FXML private TextField txtNombreBA,txtNombreBG;
     TreeItem<String> auxiliar;
     TreeItem<String> seleccionado;
     TreeItem<String> folder;
@@ -60,15 +60,34 @@ public class FXMLExplorerController implements Initializable {
     String nombreC;
     String[] extension = new String[2];
     String rutaArchivo = null;
-    @FXML
-    private void abrir(ActionEvent e) {
-        //Archivos.openFile();
+    
+    
+    @FXML private void abrir(ActionEvent e) {
+        String nombreA = txtNombreBA.getText();
+        buscar(tvArbol.getRoot().getChildren(),nombreA,Archivos.getDirectorio());
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        Alert alertN = new Alert(AlertType.ERROR);
+        if (rutaArchivo == null) {
+            alertN.setTitle("Archivo no encontrado");
+            alertN.setHeaderText("No se ha encontrado el archivo");
+            alertN.showAndWait();
+        }
+        if (rutaArchivo != null) {
+            alert.setTitle("Archivo Encotrado");
+            alert.setHeaderText("¿Desea abrirlo?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                //Abrir la aplicacion
+            }
+            rutaArchivo=null;
+        }
     }
 
     @FXML private void guardar(ActionEvent e){
-        String nombreA = txtNombreG.getText();
-        /*buscar(tvArbol.getRoot().getChildren(),nombreA,Archivos.getDirectorio());
+        String nombreA = txtNombreBG.getText();
+        buscar(tvArbol.getRoot().getChildren(),nombreA,Archivos.getDirectorio());
         Alert alert = new Alert(AlertType.INFORMATION);
+        Alert alertC = new Alert(AlertType.CONFIRMATION);
         System.out.println("Prueba de buscar guardar: "+rutaArchivo);
         if (rutaArchivo == null) {
             alert.setTitle("Archivo gurdado");
@@ -76,11 +95,14 @@ public class FXMLExplorerController implements Initializable {
             alert.showAndWait();
         }
         if (rutaArchivo != null) {
-            alert.setTitle("Archivo Existente");
-            alert.setHeaderText("Existe un archivo igual");
-            alert.showAndWait();
+            alertC.setTitle("Archivo Existente");
+            alertC.setHeaderText("¿Desea sobrescribilo?");
+            Optional<ButtonType> result = alertC.showAndWait();
+            if (result.get() == ButtonType.OK){
+                //Sobreescrbir el archivo
+            }
             rutaArchivo=null;
-        }*/
+        }
     }
     
     private String buscar(ObservableList<TreeItem<String>> nodos,String nombre, String rutaArchivo){
@@ -97,13 +119,7 @@ public class FXMLExplorerController implements Initializable {
         }
         return null;
     }
-    
 
-    @FXML private void abrirA(ActionEvent e){
-
-        String nombreA = txtNombreA.getText();
-    }
-    
     @FXML
     private void nuevaVentana(ActionEvent e) throws IOException {
         TextInputDialog dialog = new TextInputDialog();
@@ -172,26 +188,97 @@ public class FXMLExplorerController implements Initializable {
         AnchoPaneAbrir.setVisible(false);
     }
     
-    private void buscar(String nombre){
-        
-    }
-    
-    private void abrir(){
-        String nombreA = txtNombreA.getText();
-        
-    }
-
-    
     public String getRuta() {
         return ruta;
+    }
+    
+    /*
+     * método que pone los iconos en el controler
+     */
+    private void setIconFiles(ObservableList<TreeItem<String>> aux) {
+        
+        control.getChildren().clear();
+        control.setPrefColumns(3);
+        control.setPrefRows(3);
+        for (int i = 0; i < aux.size(); i++) {
+
+            Button b = new Button();
+            b.setId(ruta);
+            b.setGraphic(icono("mult.png", 40, 40));
+            b.setText(aux.get(i).getValue());
+            b.setTextAlignment(TextAlignment.CENTER);
+            b.setOnAction((e) -> {
+
+            });
+            control.setOrientation(Orientation.HORIZONTAL);
+            control.getChildren().addAll(b);
+        }
+    }
+    //
+    private void setDirectorio(TreeItem<String> folder, String raiz, String subRaiz) {
+        String a = raiz + "\\" + subRaiz;
+        String subDirectorio[] = Archivos.contenido(a);
+        if (subDirectorio != null) {
+            for (int i = 0; i < subDirectorio.length; i++) {
+                if (setItem(folder,subDirectorio[i]).equals("carpeta")) {
+                    String nuevaRaiz = a + "";
+                    setDirectorio(getAuxItem(), a, subDirectorio[i]);
+                }
+            }
+        }
+    }
+    //
+    public String setItem(TreeItem<String> folder, String subDirectorio){
+        if (subDirectorio.matches(".*\\..*")) {
+            extension = subDirectorio.split("\\.");
+            if (extension[1].equals("txt")) {
+                TreeItem<String> txt = new TreeItem<>(subDirectorio, icono("txt.png", 20, 20));
+                folder.getChildren().add(txt);
+                //System.out.println("Matches archivo");
+                //return "texto";
+            }
+            if (extension[1].equals("jpg") || extension.equals("bmp")|| extension.equals("jpeg") || extension.equals("jpe") || extension.equals("jfif") || extension.equals("gif") || extension.equals("tif") || extension.equals("tiff") || extension.equals("png") ) {
+                TreeItem<String> txt = new TreeItem<>(subDirectorio, icono("mult.png", 20, 20));
+                folder.getChildren().add(txt);
+                //System.out.println("Matches archivo");
+                //return "texto";
+            }
+            return "texto";
+        } else {
+            TreeItem<String> fold = new TreeItem<>(subDirectorio, icono("folder.png", 20, 20));
+            folder.getChildren().add(fold);
+            auxiliar = fold;
+            //System.out.println("Matches carpeta");
+            return "carpeta";
+        }
+    }
+    
+    public TreeItem<String> getAuxItem(){
+        return auxiliar;
+    }
+    //
+    public ImageView icono(String imagen, double width, double height) {
+        Image imageFolder = new Image(getClass().getResourceAsStream(imagen));
+        ImageView iF = new ImageView(imageFolder);
+        iF.setFitWidth(width);
+        iF.setFitHeight(height);
+        return iF;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        explorador();
+        exploradorA();
+        exploradorG();
+    }
+    
+   
+    
+    private void explorador(){
         Archivos = new GestorArchivos("1");
         folder = new TreeItem<>("1", icono("folder.png", 20, 20));
         tvArbol.setRoot(folder);
-        System.out.println("Obtener root del arbol "+tvArbol.getRoot());
+        //System.out.println("Obtener root del arbol "+tvArbol.getRoot());
         setDirectorio(folder, Archivos.getDirectorio(), "");
         control.setPadding(new Insets(10, 10, 10, 10));
         control.setVgap(5);
@@ -216,19 +303,46 @@ public class FXMLExplorerController implements Initializable {
             }
 
         });
-        buscar(tvArbol.getRoot().getChildren(),"jeje.txt",Archivos.getDirectorio());
-        System.out.println("hola"+rutaArchivo);
-
+          //buscar(tvArbol.getRoot().getChildren(),"jeje.txt",Archivos.getDirectorio());
+        //System.out.println("hola"+rutaArchivo);
     }
+///////////////////////////////////////////////Abrir///////////////////////////////    
+     private void exploradorA(){
+        Archivos = new GestorArchivos("1");
+        folder = new TreeItem<>("1", icono("folder.png", 20, 20));
+        tvArbolAbrir.setRoot(folder);
+        //System.out.println("Obtener root del arbol "+tvArbolAbrir.getRoot());
+        setDirectorio(folder, Archivos.getDirectorio(), "");
+        controlAbrir.setPadding(new Insets(10, 10, 10, 10));
+        controlAbrir.setVgap(5);
+        controlAbrir.setHgap(5);
+        tvArbolAbrir.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
 
-    /*
-     * método que pone los iconos en el controler
-     */
-    private void setIconFiles(ObservableList<TreeItem<String>> aux) {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+
+                TreeItem<String> selectedItem = (TreeItem<String>) newValue;
+                TreeItem<String> padre = selectedItem.getParent();
+                seleccionado = selectedItem;
+                ruta = selectedItem.getValue();
+                while (padre != null) {
+                    ruta = "\\" + padre.getValue() + "\\" + ruta;
+                    padre = padre.getParent();
+
+                }
+                //setRuta(ruta);         
+                setIconFilesOpen(selectedItem.getChildren());
+
+            }
+
+        });
+    }
+     
+     private void setIconFilesOpen(ObservableList<TreeItem<String>> aux) {
         
-        control.getChildren().clear();
-        control.setPrefColumns(3);
-        control.setPrefRows(3);
+        controlAbrir.getChildren().clear();
+        controlAbrir.setPrefColumns(3);
+        controlAbrir.setPrefRows(3);
         for (int i = 0; i < aux.size(); i++) {
 
             Button b = new Button();
@@ -239,61 +353,60 @@ public class FXMLExplorerController implements Initializable {
             b.setOnAction((e) -> {
 
             });
-            control.setOrientation(Orientation.HORIZONTAL);
-            control.getChildren().addAll(b);
+            controlAbrir.setOrientation(Orientation.HORIZONTAL);
+            controlAbrir.getChildren().addAll(b);
         }
     }
+     
+    ///////////////////////////////////////////////Guardar///////////////////////////////    
+     private void exploradorG(){
+        Archivos = new GestorArchivos("1");
+        folder = new TreeItem<>("1", icono("folder.png", 20, 20));
+        tvArbolGuardar.setRoot(folder);
+        //System.out.println("Obtener root del arbol "+tvArbolGuardar.getRoot());
+        setDirectorio(folder, Archivos.getDirectorio(), "");
+        controlGuardar.setPadding(new Insets(10, 10, 10, 10));
+        controlGuardar.setVgap(5);
+        controlGuardar.setHgap(5);
+        tvArbolGuardar.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
 
-    private void setDirectorio(TreeItem<String> folder, String raiz, String subRaiz) {
-        String a = raiz + "\\" + subRaiz;
-        String subDirectorio[] = Archivos.contenido(a);
-        if (subDirectorio != null) {
-            for (int i = 0; i < subDirectorio.length; i++) {
-                if (setItem(folder,subDirectorio[i]).equals("carpeta")) {
-                    String nuevaRaiz = a + "";
-                    setDirectorio(getAuxItem(), a, subDirectorio[i]);
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+
+                TreeItem<String> selectedItem = (TreeItem<String>) newValue;
+                TreeItem<String> padre = selectedItem.getParent();
+                seleccionado = selectedItem;
+                ruta = selectedItem.getValue();
+                while (padre != null) {
+                    ruta = "\\" + padre.getValue() + "\\" + ruta;
+                    padre = padre.getParent();
+
                 }
+                //setRuta(ruta);         
+                setIconFilesSave(selectedItem.getChildren());
+
             }
+
+        });
+    }
+     
+     private void setIconFilesSave(ObservableList<TreeItem<String>> aux) {
+        
+        controlGuardar.getChildren().clear();
+        controlGuardar.setPrefColumns(3);
+        controlGuardar.setPrefRows(3);
+        for (int i = 0; i < aux.size(); i++) {
+
+            Button b = new Button();
+            b.setId(ruta);
+            b.setGraphic(icono("mult.png", 40, 40));
+            b.setText(aux.get(i).getValue());
+            b.setTextAlignment(TextAlignment.CENTER);
+            b.setOnAction((e) -> {
+
+            });
+            controlGuardar.setOrientation(Orientation.HORIZONTAL);
+            controlGuardar.getChildren().addAll(b);
         }
     }
-    
-    public String setItem(TreeItem<String> folder, String subDirectorio){
-        if (subDirectorio.matches(".*\\..*")) {
-            extension = subDirectorio.split("\\.");
-            if (extension[1].equals("txt")) {
-                TreeItem<String> txt = new TreeItem<>(subDirectorio, icono("txt.png", 20, 20));
-                folder.getChildren().add(txt);
-                System.out.println("Matches archivo");
-                //return "texto";
-            }
-            if (extension[1].equals("jpg") || extension.equals("bmp")|| extension.equals("jpeg") || extension.equals("jpe") || extension.equals("jfif") || extension.equals("gif") || extension.equals("tif") || extension.equals("tiff") || extension.equals("png") ) {
-                TreeItem<String> txt = new TreeItem<>(subDirectorio, icono("mult.png", 20, 20));
-                folder.getChildren().add(txt);
-                System.out.println("Matches archivo");
-                //return "texto";
-            }
-            return "texto";
-        } else {
-            TreeItem<String> fold = new TreeItem<>(subDirectorio, icono("folder.png", 20, 20));
-            folder.getChildren().add(fold);
-            auxiliar = fold;
-            System.out.println("Matches carpeta");
-            return "carpeta";
-        }
-    }
-    
-    public TreeItem<String> getAuxItem(){
-        return auxiliar;
-    }
-    
-   
-
-    public ImageView icono(String imagen, double width, double height) {
-        Image imageFolder = new Image(getClass().getResourceAsStream(imagen));
-        ImageView iF = new ImageView(imageFolder);
-        iF.setFitWidth(width);
-        iF.setFitHeight(height);
-        return iF;
-    }
-
 }

@@ -11,7 +11,7 @@
     <children>
       <AnchorPane fx:id="AnchoPaneExp" prefHeight="556.0" prefWidth="736.0" visible="false">
          <children>
-            <SplitPane fx:id="splitPane" dividerPositions="0.28337874659400547" prefHeight="556.0" prefWidth="728.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <SplitPane dividerPositions="0.28337874659400547" prefHeight="556.0" prefWidth="728.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
                   <TreeView fx:id="tvArbol" prefHeight="554.0" prefWidth="256.0">
                      <contextMenu>
@@ -23,45 +23,16 @@
                         </ContextMenu>
                      </contextMenu>
                   </TreeView>
-                  <TilePane fx:id="control1" prefHeight="519.0" prefWidth="414.0" />
+                  <TilePane fx:id="control" prefHeight="519.0" prefWidth="414.0" />
               </items>
             </SplitPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchoPaneAbrir" layoutX="-2.0" layoutY="1.0" prefHeight="556.0" prefWidth="736.0">
+      <AnchorPane fx:id="AnchoPaneAbrir" layoutX="-2.0" layoutY="1.0" prefHeight="556.0" prefWidth="736.0" visible="false">
          <children>
-            <SplitPane fx:id="splitPane" dividerPositions="0.273841961852861" layoutX="2.0" prefHeight="510.0" prefWidth="736.0" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="-2.0">
+            <SplitPane dividerPositions="0.273841961852861" layoutX="2.0" prefHeight="510.0" prefWidth="736.0" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="-2.0">
                <items>
-                  <TreeView fx:id="tvArbol" prefHeight="554.0" prefWidth="256.0">
-                     <contextMenu>
-                        <ContextMenu>
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Nueva Carpeta" />
-                              <MenuItem mnemonicParsing="false" text="Elimnar Carpeta" />
-                           </items>
-                        </ContextMenu>
-                     </contextMenu>
-                  </TreeView>
-                  <TilePane fx:id="control" orientation="VERTICAL" prefHeight="554.0" prefWidth="401.0" tileAlignment="TOP_LEFT" />
-               </items>
-            </SplitPane>
-            <Pane layoutY="510.0" prefHeight="46.0" prefWidth="736.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="510.0">
-               <children>
-                  <Button fx:id="btnAbrir" layoutX="638.0" layoutY="9.0" mnemonicParsing="false" onAction="#abrirA" prefHeight="30.0" prefWidth="76.0" text="Abrir">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <TextField fx:id="txtNombreA" layoutX="215.0" layoutY="11.0" prefHeight="25.0" prefWidth="346.0" promptText="Escriba el nombre del archivo que desea abrir..." />
-               </children>
-            </Pane>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="AnchoPaneGuardar" prefHeight="556.0" prefWidth="736.0" visible="false">
-         <children>
-            <SplitPane fx:id="splitPane" dividerPositions="0.2956403269754768" prefHeight="508.0" prefWidth="736.0">
-               <items>
-                  <TreeView fx:id="tvArbol" prefHeight="554.0" prefWidth="262.0">
+                  <TreeView fx:id="tvArbolAbrir" prefHeight="554.0" prefWidth="256.0">
                      <contextMenu>
                         <ContextMenu>
                            <items>
@@ -71,17 +42,46 @@
                         </ContextMenu>
                      </contextMenu>
                   </TreeView>
-                  <TilePane fx:id="control" prefHeight="563.0" prefWidth="726.0" />
+                  <TilePane fx:id="controlAbrir" orientation="VERTICAL" prefHeight="554.0" prefWidth="401.0" tileAlignment="TOP_LEFT" />
                </items>
             </SplitPane>
             <Pane layoutY="510.0" prefHeight="46.0" prefWidth="736.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="510.0">
                <children>
-                  <Button fx:id="btnGuardar" layoutX="627.0" layoutY="11.0" mnemonicParsing="false" onAction="#guardar" prefHeight="30.0" prefWidth="76.0" text="Guardar">
+                  <Button fx:id="btnAbrir" layoutX="638.0" layoutY="9.0" mnemonicParsing="false" onAction="#abrir" prefHeight="30.0" prefWidth="76.0" text="Buscar">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="txtNombreG" layoutX="221.0" layoutY="13.0" prefHeight="25.0" prefWidth="346.0" promptText="Escriba el nombre del archivo que desea abrir..." />
+                  <TextField fx:id="txtNombreBA" layoutX="215.0" layoutY="11.0" prefHeight="25.0" prefWidth="406.0" promptText="Escriba el nombre del archivo que quiera buscar con la extesion" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="AnchoPaneGuardar" prefHeight="556.0" prefWidth="736.0">
+         <children>
+            <SplitPane dividerPositions="0.2956403269754768" prefHeight="508.0" prefWidth="736.0">
+               <items>
+                  <TreeView fx:id="tvArbolGuardar" prefHeight="554.0" prefWidth="262.0">
+                     <contextMenu>
+                        <ContextMenu>
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#nuevaVentana" text="Nueva Carpeta" />
+                              <MenuItem mnemonicParsing="false" onAction="#eliminarVentana" text="Elimnar Carpeta" />
+                           </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TreeView>
+                  <TilePane fx:id="controlGuardar" prefHeight="563.0" prefWidth="726.0" />
+               </items>
+            </SplitPane>
+            <Pane layoutY="510.0" prefHeight="46.0" prefWidth="736.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="510.0">
+               <children>
+                  <Button fx:id="btnGuardar" layoutX="627.0" layoutY="11.0" mnemonicParsing="false" onAction="#guardar" prefHeight="30.0" prefWidth="76.0" text="Buscar">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="txtNombreBG" layoutX="221.0" layoutY="13.0" prefHeight="25.0" prefWidth="396.0" promptText="Escriba el nombre del archivo que quiera buscar con la extesion" />
                </children>
             </Pane>
          </children>
