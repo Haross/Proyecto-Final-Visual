@@ -51,7 +51,7 @@ public class FXMLExplorerController implements Initializable {
     @FXML
     private TilePane control;
     @FXML private AnchorPane AnchoPaneAbrir,AnchoPaneGuardar,AnchoPaneExp;
-    @FXML private TextField txtNombreA;
+    @FXML private TextField txtNombreA,txtNombreG;
     TreeItem<String> auxiliar;
     TreeItem<String> seleccionado;
     TreeItem<String> folder;
@@ -59,6 +59,30 @@ public class FXMLExplorerController implements Initializable {
     String ruta; //ruta del elemento del treeview seleccionado
     String nombreC;
     String[] extension = new String[2];
+    
+    @FXML private void guardar(ActionEvent e){
+        String nombreA = txtNombreG.getText();
+        /*buscar(tvArbol.getRoot().getChildren(),nombreA,Archivos.getDirectorio());
+        Alert alert = new Alert(AlertType.INFORMATION);
+        System.out.println("Prueba de buscar guardar: "+rutaArchivo);
+        if (rutaArchivo == null) {
+            alert.setTitle("Archivo gurdado");
+            alert.setHeaderText("Se ha guardado con exito");
+            alert.showAndWait();
+        }
+        if (rutaArchivo != null) {
+            alert.setTitle("Archivo Existente");
+            alert.setHeaderText("Existe un archivo igual");
+            alert.showAndWait();
+            rutaArchivo=null;
+        }*/
+    }
+    
+    @FXML private void abrirA(ActionEvent e){
+        String nombreA = txtNombreA.getText();
+        //buscar(tvArbol.getRoot().getChildren(),nombreA,Archivos.getDirectorio());
+        //System.out.println("Prueba de buscar: "+rutaArchivo);
+    }
     
     @FXML
     private void nuevaVentana(ActionEvent e) throws IOException {
