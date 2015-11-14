@@ -127,12 +127,12 @@ public class FXMLExplorerController implements Initializable {
     
     private String buscar(ObservableList<TreeItem<String>> nodos,String nombre, String rutaArchivo){
         for(int i=0;i<nodos.size();i++){
-            if(nodos.get(i).getValue().equals(nombre)){
+            if(nodos.get(i).getValue().equals(nombre) && nodos.get(i).getValue().matches(".*\\..*")){
                this.rutaArchivo = rutaArchivo+"\\"+nombre;
             }else{
-                if(!nodos.get(i).getValue().matches(".*\\..*")){
+               
                     buscar(nodos.get(i).getChildren(),nombre, rutaArchivo+"\\"+nodos.get(i).getValue());
-                }
+                
                
 
             }
