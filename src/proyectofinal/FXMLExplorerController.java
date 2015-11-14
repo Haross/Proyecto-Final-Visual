@@ -19,6 +19,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -49,7 +51,7 @@ public class FXMLExplorerController implements Initializable {
     @FXML
     private TilePane control;
     @FXML private AnchorPane AnchoPaneAbrir,AnchoPaneGuardar,AnchoPaneExp;
-    @FXML private TextField txtNombreA;
+    @FXML private TextField txtNombreA,txtNombreG;
     TreeItem<String> auxiliar;
     TreeItem<String> seleccionado;
     TreeItem<String> folder;
@@ -57,33 +59,28 @@ public class FXMLExplorerController implements Initializable {
     String ruta; //ruta del elemento del treeview seleccionado
     String nombreC;
     String[] extension = new String[2];
-String rutaArchivo = null;
+    String rutaArchivo = null;
     @FXML
     private void abrir(ActionEvent e) {
         //Archivos.openFile();
     }
 
-    @FXML
-    private void get() {
-        System.out.println(tvArbol.getSelectionModel());
-    }
-    
-    private void viewAbrir(){
-        AnchoPaneAbrir.setVisible(true);
-        AnchoPaneExp.setVisible(false);
-        AnchoPaneGuardar.setVisible(false);
-    }
-    
-    private void viewGuardar(){
-        AnchoPaneGuardar.setVisible(true);
-        AnchoPaneAbrir.setVisible(false);
-        AnchoPaneExp.setVisible(false);
-    }
-    
-    private void viewExplorer(){
-        AnchoPaneExp.setVisible(true);
-        AnchoPaneGuardar.setVisible(false);
-        AnchoPaneAbrir.setVisible(false);
+    @FXML private void guardar(ActionEvent e){
+        String nombreA = txtNombreG.getText();
+        /*buscar(tvArbol.getRoot().getChildren(),nombreA,Archivos.getDirectorio());
+        Alert alert = new Alert(AlertType.INFORMATION);
+        System.out.println("Prueba de buscar guardar: "+rutaArchivo);
+        if (rutaArchivo == null) {
+            alert.setTitle("Archivo gurdado");
+            alert.setHeaderText("Se ha guardado con exito");
+            alert.showAndWait();
+        }
+        if (rutaArchivo != null) {
+            alert.setTitle("Archivo Existente");
+            alert.setHeaderText("Existe un archivo igual");
+            alert.showAndWait();
+            rutaArchivo=null;
+        }*/
     }
     
     private String buscar(ObservableList<TreeItem<String>> nodos,String nombre, String rutaArchivo){
@@ -101,11 +98,12 @@ String rutaArchivo = null;
         return null;
     }
     
-    @FXML private void abrir(){
-        String nombreA = txtNombreA.getText();
-        
-    }
 
+    @FXML private void abrirA(ActionEvent e){
+
+        String nombreA = txtNombreA.getText();
+    }
+    
     @FXML
     private void nuevaVentana(ActionEvent e) throws IOException {
         TextInputDialog dialog = new TextInputDialog();
@@ -148,16 +146,52 @@ String rutaArchivo = null;
            
         }
     }
+    
+    
+
+    @FXML
+    private void get() {
+        System.out.println(tvArbol.getSelectionModel());
+    }
+    
+    private void viewAbrir(){
+        AnchoPaneAbrir.setVisible(true);
+        AnchoPaneExp.setVisible(false);
+        AnchoPaneGuardar.setVisible(false);
+    }
+    
+    private void viewGuardar(){
+        AnchoPaneGuardar.setVisible(true);
+        AnchoPaneAbrir.setVisible(false);
+        AnchoPaneExp.setVisible(false);
+    }
+    
+    private void viewExplorer(){
+        AnchoPaneExp.setVisible(true);
+        AnchoPaneGuardar.setVisible(false);
+        AnchoPaneAbrir.setVisible(false);
+    }
+    
+    private void buscar(String nombre){
+        
+    }
+    
+    private void abrir(){
+        String nombreA = txtNombreA.getText();
+        
+    }
+
+    
     public String getRuta() {
         return ruta;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         Archivos = new GestorArchivos("1");
         folder = new TreeItem<>("1", icono("folder.png", 20, 20));
         tvArbol.setRoot(folder);
+        System.out.println("Obtener root del arbol "+tvArbol.getRoot());
         setDirectorio(folder, Archivos.getDirectorio(), "");
         control.setPadding(new Insets(10, 10, 10, 10));
         control.setVgap(5);
@@ -170,16 +204,12 @@ String rutaArchivo = null;
                 TreeItem<String> selectedItem = (TreeItem<String>) newValue;
                 TreeItem<String> padre = selectedItem.getParent();
                 seleccionado = selectedItem;
-
                 ruta = selectedItem.getValue();
                 while (padre != null) {
                     ruta = "\\" + padre.getValue() + "\\" + ruta;
                     padre = padre.getParent();
 
                 }
-
-                System.out.println("prueba" + ruta);
-
                 //setRuta(ruta);         
                 setIconFiles(selectedItem.getChildren());
 
@@ -195,16 +225,21 @@ String rutaArchivo = null;
      * método que pone los iconos en el controler
      */
     private void setIconFiles(ObservableList<TreeItem<String>> aux) {
+        
         control.getChildren().clear();
+        control.setPrefColumns(3);
+        control.setPrefRows(3);
         for (int i = 0; i < aux.size(); i++) {
+
             Button b = new Button();
             b.setId(ruta);
-            b.setGraphic(icono("txt.png", 40, 40));
+            b.setGraphic(icono("mult.png", 40, 40));
             b.setText(aux.get(i).getValue());
             b.setTextAlignment(TextAlignment.CENTER);
             b.setOnAction((e) -> {
-                
+
             });
+            control.setOrientation(Orientation.HORIZONTAL);
             control.getChildren().addAll(b);
         }
     }
@@ -229,13 +264,13 @@ String rutaArchivo = null;
                 TreeItem<String> txt = new TreeItem<>(subDirectorio, icono("txt.png", 20, 20));
                 folder.getChildren().add(txt);
                 System.out.println("Matches archivo");
-                return "texto";
+                //return "texto";
             }
             if (extension[1].equals("jpg") || extension.equals("bmp")|| extension.equals("jpeg") || extension.equals("jpe") || extension.equals("jfif") || extension.equals("gif") || extension.equals("tif") || extension.equals("tiff") || extension.equals("png") ) {
                 TreeItem<String> txt = new TreeItem<>(subDirectorio, icono("mult.png", 20, 20));
                 folder.getChildren().add(txt);
                 System.out.println("Matches archivo");
-                return "texto";
+                //return "texto";
             }
             return "texto";
         } else {
