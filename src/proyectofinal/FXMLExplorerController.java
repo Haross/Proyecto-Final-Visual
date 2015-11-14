@@ -190,19 +190,19 @@ public class FXMLExplorerController implements Initializable {
         System.out.println(tvArbol.getSelectionModel());
     }
     
-    private void viewAbrir(){
+    @FXML private void viewAbrir(ActionEvent e){
         AnchoPaneAbrir.setVisible(true);
         AnchoPaneExp.setVisible(false);
         AnchoPaneGuardar.setVisible(false);
     }
     
-    private void viewGuardar(){
+    @FXML private void viewGuardar(ActionEvent e){
         AnchoPaneGuardar.setVisible(true);
         AnchoPaneAbrir.setVisible(false);
         AnchoPaneExp.setVisible(false);
     }
     
-    private void viewExplorer(){
+    @FXML private void viewExplorer(ActionEvent e){
         AnchoPaneExp.setVisible(true);
         AnchoPaneGuardar.setVisible(false);
         AnchoPaneAbrir.setVisible(false);
@@ -415,20 +415,21 @@ public class FXMLExplorerController implements Initializable {
         controlGuardar.getChildren().clear();
         controlGuardar.setPrefColumns(3);
         controlGuardar.setPrefRows(3);
+        String[] nextension = new String[2];
         for (int i = 0; i < aux.size(); i++) {
-            extension =  aux.get(i).getValue().split("\\.");
             Button b = new Button();
             b.setId(ruta);
-            /*if (extension[0].equals("txt")) {
+            nextension =  aux.get(i).getValue().split("\\.");
+            if (nextension[1].equals("txt")) {
                 b.setGraphic(icono("txt.png", 40, 40));
             }else{
                 b.setGraphic(icono("folder.png", 40, 40));
             }
-            if(extension[0].equals("jpg") || extension.equals("bmp")|| extension.equals("jpeg") || extension.equals("jpe") || extension.equals("jfif") || extension.equals("gif") || extension.equals("tif") || extension.equals("tiff") || extension.equals("png") ){
+            if(nextension[1].equals("jpg") || extension.equals("bmp")|| extension.equals("jpeg") || extension.equals("jpe") || extension.equals("jfif") || extension.equals("gif") || extension.equals("tif") || extension.equals("tiff") || extension.equals("png") ){
                 b.setGraphic(icono("mult.png", 40, 40));
             }else{
                  b.setGraphic(icono("folder.png", 40, 40));
-            }*/
+            }
             b.setText(aux.get(i).getValue());
             b.setTextAlignment(TextAlignment.CENTER);
             b.setOnAction((e) -> {

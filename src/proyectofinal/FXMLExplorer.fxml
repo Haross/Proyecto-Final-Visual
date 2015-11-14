@@ -11,7 +11,7 @@
     <children>
       <AnchorPane fx:id="AnchoPaneExp" prefHeight="556.0" prefWidth="736.0" visible="false">
          <children>
-            <SplitPane dividerPositions="0.28337874659400547" prefHeight="556.0" prefWidth="728.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <SplitPane dividerPositions="0.28337874659400547" layoutY="24.0" prefHeight="532.0" prefWidth="736.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
               <items>
                   <TreeView fx:id="tvArbol" prefHeight="554.0" prefWidth="256.0">
                      <contextMenu>
@@ -26,11 +26,22 @@
                   <TilePane fx:id="control" prefHeight="519.0" prefWidth="414.0" />
               </items>
             </SplitPane>
+            <MenuBar prefHeight="25.0" prefWidth="736.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Cambiar">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#viewExplorer" text="Explorer" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewAbrir" text="Abrir" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewGuardar" text="Guardar" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="AnchoPaneAbrir" layoutX="-2.0" layoutY="1.0" prefHeight="556.0" prefWidth="736.0" visible="false">
          <children>
-            <SplitPane dividerPositions="0.273841961852861" layoutX="2.0" prefHeight="510.0" prefWidth="736.0" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="-2.0">
+            <SplitPane dividerPositions="0.273841961852861" layoutX="2.0" prefHeight="486.0" prefWidth="736.0" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="-2.0">
                <items>
                   <TreeView fx:id="tvArbolAbrir" prefHeight="554.0" prefWidth="256.0">
                      <contextMenu>
@@ -55,11 +66,22 @@
                   <TextField fx:id="txtNombreBA" layoutX="215.0" layoutY="11.0" prefHeight="25.0" prefWidth="406.0" promptText="Escriba el nombre del archivo que quiera buscar con la extesion" />
                </children>
             </Pane>
+            <MenuBar prefHeight="25.0" prefWidth="736.0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Cambiar">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#viewExplorer" text="Explorer" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewAbrir" text="Abrir" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewGuardar" text="Guardar" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="AnchoPaneGuardar" prefHeight="556.0" prefWidth="736.0">
          <children>
-            <SplitPane dividerPositions="0.2956403269754768" prefHeight="508.0" prefWidth="736.0">
+            <SplitPane dividerPositions="0.2956403269754768" layoutY="24.0" prefHeight="484.0" prefWidth="736.0">
                <items>
                   <TreeView fx:id="tvArbolGuardar" prefHeight="554.0" prefWidth="262.0">
                      <contextMenu>
@@ -84,6 +106,17 @@
                   <TextField fx:id="txtNombreBG" layoutX="221.0" layoutY="13.0" prefHeight="25.0" prefWidth="396.0" promptText="Escriba el nombre del archivo que quiera buscar con la extesion" />
                </children>
             </Pane>
+            <MenuBar prefHeight="25.0" prefWidth="736.0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Cambiar">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#viewExplorer" text="Explorer" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewAbrir" text="Abrir" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewGuardar" text="Guardar" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
          </children>
       </AnchorPane>
     </children>
