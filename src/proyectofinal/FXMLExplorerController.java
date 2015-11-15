@@ -216,7 +216,6 @@ public class FXMLExplorerController implements Initializable {
      * método que pone los iconos en el controler
      */
     private void setIconFiles(ObservableList<TreeItem<String>> aux) {
-        
         control.getChildren().clear();
         control.setPrefColumns(3);
         control.setPrefRows(3);
@@ -306,7 +305,9 @@ public class FXMLExplorerController implements Initializable {
    
     
     private void explorador(){
+        //Mandar el nombre de usuario en el 1
         Archivos = new GestorArchivos("1");
+        //Mandar nombre de usuario en el "1"
         folder = new TreeItem<>("1", icono("folder.png", 20, 20));
         tvArbol.setRoot(folder);
         //System.out.println("Obtener root del arbol "+tvArbol.getRoot());
