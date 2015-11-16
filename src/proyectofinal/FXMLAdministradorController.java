@@ -34,14 +34,17 @@ import static proyectofinal.FXMLLoginController.resultUser;
  * @author Javier
  */
 public class FXMLAdministradorController implements Initializable {
+    @FXML //PaneAddUser
+    TextField txtUsuario, txtContrasena, txtNombre, txtApellido, txtEdad, 
+            txtCorreo, txtDomicilio, txtTelefono, txtEstado, txtCiudad;
     @FXML
-    TextField txtUsuario, txtContrasena, txtNombre, txtApellido, txtEdad, txtCorreo, txtDomicilio, txtTelefono, txtEstado, txtCiudad;
+    TextField txtUsuarioP, txtContrasenaP, txtPerfilP, txtNombreP, txtApellidoP,
+              txtEdadP, txtCorreoP, txtDomicilioP, txtTelefonoP;
     @FXML
-    TextField txtUsuarioP, txtContrasenaP, txtPerfilP, txtNombreP, txtApellidoP, txtEdadP, txtCorreoP, txtDomicilioP, txtTelefonoP, txtEstadoP, txtCiudadP;
+    TextField txtUsuario2, txtContrasena2, txtPerfil2, txtNombre2, txtApellido2,
+              txtEdad2, txtCorreo2, txtDomicilio2, txtTelefono2;
     @FXML
-    TextField txtusuario, txtcontrasena, txtperfil, txtnombre, txtapellido, txtedad, txtcorreo, txtdomicilio, txttelefono, txtestado, txtciudad;
-    @FXML
-    AnchorPane paneIngresar, principal, consultas, panePerfil;
+    AnchorPane paneAddUser, principal, paneConsultar, panePerfil;
     @FXML
     ChoiceBox choiceB;
     @FXML
@@ -70,7 +73,7 @@ public class FXMLAdministradorController implements Initializable {
     @FXML
     private void ingresar() {
         principal.setVisible(false);
-        paneIngresar.setVisible(true);
+        paneAddUser.setVisible(true);
     }
 
     private void insertarDatosPuro() {
@@ -82,7 +85,7 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/pfinal", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -121,16 +124,16 @@ public class FXMLAdministradorController implements Initializable {
     private void submitData2(ActionEvent event) {
         System.out.println("HO: "+ us);
         principal.setVisible(false);
-        paneIngresar.setVisible(false);
-        consultas.setVisible(true);
+        paneAddUser.setVisible(false);
+        paneConsultar.setVisible(true);
         consultarDatosPrimitive();
     }
 
     @FXML
     public void Perfil() {
         principal.setVisible(false);
-        paneIngresar.setVisible(false);
-        consultas.setVisible(false);
+        paneAddUser.setVisible(false);
+        paneConsultar.setVisible(false);
         panePerfil.setVisible(true);
         
         try {
@@ -139,7 +142,7 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conecc = DriverManager.getConnection("jdbc:mysql://localhost/pfinal", "root", "");
+            conecc = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -173,8 +176,6 @@ public class FXMLAdministradorController implements Initializable {
                     txtCorreoP.setText(rs.getString("correo"));
                     txtDomicilioP.setText(rs.getString("domicilio"));
                     txtTelefonoP.setText(rs.getString("telefono"));
-                    txtEstadoP.setText(rs.getString("estado"));
-                    txtCiudadP.setText(rs.getString("ciudad"));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
@@ -188,9 +189,9 @@ public class FXMLAdministradorController implements Initializable {
     @FXML
     private void Cancel(ActionEvent event) {
         principal.setVisible(true);
-        consultas.setVisible(false);
+        paneConsultar.setVisible(false);
         panePerfil.setVisible(false);
-        paneIngresar.setVisible(false);
+        paneAddUser.setVisible(false);
 
     }
     
@@ -249,17 +250,15 @@ public class FXMLAdministradorController implements Initializable {
             if (rs.next()) {
                 x = false;
                 cont = 0;
-                txtcontrasena.setText(rs.getString("contraseña"));
-                txtusuario.setText(rs.getString("usuario"));
-                txtperfil.setText(rs.getString("perfil"));
-                txtnombre.setText(rs.getString("nombre"));
-                txtapellido.setText(rs.getString("apellido"));
-                txtedad.setText(rs.getString("edad"));
-                txtcorreo.setText(rs.getString("correo"));
-                txtdomicilio.setText(rs.getString("domicilio"));
-                txttelefono.setText(rs.getString("telefono"));
-                txtestado.setText(rs.getString("estado"));
-                txtciudad.setText(rs.getString("ciudad"));
+                txtContrasena2.setText(rs.getString("contraseña"));
+                txtUsuario2.setText(rs.getString("usuario"));
+                txtPerfil2.setText(rs.getString("perfil"));
+                txtNombre2.setText(rs.getString("nombre"));
+                txtApellido2.setText(rs.getString("apellido"));
+                txtEdad2.setText(rs.getString("edad"));
+                txtCorreo2.setText(rs.getString("correo"));
+                txtDomicilio2.setText(rs.getString("domicilio"));
+                txtTelefono2.setText(rs.getString("telefono"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
@@ -272,17 +271,15 @@ public class FXMLAdministradorController implements Initializable {
             if (rs.previous()) {
                 x = false;
                 cont = 0;
-                txtcontrasena.setText(rs.getString("contraseña"));
-                txtusuario.setText(rs.getString("usuario"));
-                txtperfil.setText(rs.getString("perfil"));
-                txtnombre.setText(rs.getString("nombre"));
-                txtapellido.setText(rs.getString("apellido"));
-                txtedad.setText(rs.getString("edad"));
-                txtcorreo.setText(rs.getString("correo"));
-                txtdomicilio.setText(rs.getString("domicilio"));
-                txttelefono.setText(rs.getString("telefono"));
-                txtestado.setText(rs.getString("estado"));
-                txtciudad.setText(rs.getString("ciudad"));
+                txtContrasena2.setText(rs.getString("contraseña"));
+                txtUsuario2.setText(rs.getString("usuario"));
+                txtPerfil2.setText(rs.getString("perfil"));
+                txtNombre2.setText(rs.getString("nombre"));
+                txtApellido2.setText(rs.getString("apellido"));
+                txtEdad2.setText(rs.getString("edad"));
+                txtCorreo2.setText(rs.getString("correo"));
+                txtDomicilio2.setText(rs.getString("domicilio"));
+                txtTelefono2.setText(rs.getString("telefono"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
@@ -299,13 +296,13 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/pfinal", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             st = conn.createStatement();
-            String usuario = txtusuario.getText();
+            String usuario = txtUsuario2.getText();
             Boolean resultado = false;
             resultado = st.execute("DELETE FROM usuarios WHERE usuario = ('" + usuario + "');");
             System.out.println("El resultado es: " + resultado);
@@ -332,25 +329,23 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/pfinal", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             st = conn.createStatement();
-            String usuario = txtusuario.getText();
-            String contrasena = txtcontrasena.getText();
-            String perfil = txtperfil.getText();
-            String nombre = txtnombre.getText();
-            String apellido = txtapellido.getText();
-            String edad = txtedad.getText();
-            String correo = txtcorreo.getText();
-            String domicilio = txtdomicilio.getText();
-            String telefono = txttelefono.getText();
-            String estado = txtestado.getText();
-            String ciudad = txtciudad.getText();
+            String usuario = txtUsuario2.getText();
+            String contrasena = txtContrasena2.getText();
+            String perfil = txtPerfil2.getText();
+            String nombre = txtNombre2.getText();
+            String apellido = txtApellido2.getText();
+            String edad = txtEdad2.getText();
+            String correo = txtCorreo2.getText();
+            String domicilio = txtDomicilio2.getText();
+            String telefono = txtTelefono2.getText();
             Boolean resultado = false;
-            resultado = st.execute("UPDATE usuarios SET contraseña=('" + contrasena + "'),ciudad=('" + ciudad + "'),estado=('" + estado + "'),telefono=('" + telefono + "'),domicilio=('" + domicilio + "'),correo=('" + correo + "'),nombre=('" + nombre + "'),apellido=('" + apellido + "'), edad=('" + edad + "') WHERE usuario = ('" + usuario + "');");
+            resultado = st.execute("UPDATE usuarios SET contraseña=('" + contrasena + "'),telefono=('" + telefono + "'),domicilio=('" + domicilio + "'),correo=('" + correo + "'),nombre=('" + nombre + "'),apellido=('" + apellido + "'), edad=('" + edad + "') WHERE usuario = ('" + usuario + "');");
             System.out.println("El resultado es: " + resultado);
             if (!resultado) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -375,7 +370,7 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/pfinal", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -390,10 +385,8 @@ public class FXMLAdministradorController implements Initializable {
             String correo = txtCorreoP.getText();
             String domicilio = txtDomicilioP.getText();
             String telefono = txtTelefonoP.getText();
-            String estado = txtEstadoP.getText();
-            String ciudad = txtCiudadP.getText();
             Boolean resultado = false;
-            resultado = st.execute("UPDATE usuarios SET contraseña=('" + contrasena + "'),ciudad=('" + ciudad + "'),estado=('" + estado + "'),telefono=('" + telefono + "'),domicilio=('" + domicilio + "'),correo=('" + correo + "'),nombre=('" + nombre + "'),apellido=('" + apellido + "'), edad=('" + edad + "') WHERE usuario = ('" + usuario + "');");
+            resultado = st.execute("UPDATE usuarios SET contraseña=('" + contrasena + "'),telefono=('" + telefono + "'),domicilio=('" + domicilio + "'),correo=('" + correo + "'),nombre=('" + nombre + "'),apellido=('" + apellido + "'), edad=('" + edad + "') WHERE usuario = ('" + usuario + "');");
             System.out.println("El resultado es: " + resultado);
             if (!resultado) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -409,17 +402,15 @@ public class FXMLAdministradorController implements Initializable {
     }
 
     private boolean erase() {
-        txtcontrasena.setText(null);
-        txtusuario.setText(null);
-        txtperfil.setText(null);
-        txtnombre.setText(null);
-        txtapellido.setText(null);
-        txtedad.setText(null);
-        txtcorreo.setText(null);
-        txtdomicilio.setText(null);
-        txttelefono.setText(null);
-        txtestado.setText(null);
-        txtciudad.setText(null);
+        txtContrasena2.setText(null);
+        txtUsuario2.setText(null);
+        txtPerfil2.setText(null);
+        txtNombre2.setText(null);
+        txtApellido2.setText(null);
+        txtEdad2.setText(null);
+        txtCorreo2.setText(null);
+        txtDomicilio2.setText(null);
+        txtTelefono2.setText(null);
         return true;
     }
 
@@ -461,32 +452,26 @@ public class FXMLAdministradorController implements Initializable {
         
         btnActualizar.setDisable(true);
         btnBorrar.setDisable(true);
-        txttelefono.textProperty().addListener((observable, oldValue, nextValue) -> {
+        txtTelefono2.textProperty().addListener((observable, oldValue, nextValue) -> {
             desaparecer();
         });
-        txtestado.textProperty().addListener((observable, oldValue, nextValue) -> {
+        txtDomicilio2.textProperty().addListener((observable, oldValue, nextValue) -> {
             desaparecer();
         });
-        txtciudad.textProperty().addListener((observable, oldValue, nextValue) -> {
+        txtCorreo2.textProperty().addListener((observable, oldValue, nextValue) -> {
             desaparecer();
         });
-        txtdomicilio.textProperty().addListener((observable, oldValue, nextValue) -> {
-            desaparecer();
-        });
-        txtcorreo.textProperty().addListener((observable, oldValue, nextValue) -> {
-            desaparecer();
-        });
-        txtcontrasena.textProperty().addListener((observable, oldValue, nextValue) -> {
+        txtContrasena2.textProperty().addListener((observable, oldValue, nextValue) -> {
             desaparecer();
         });
 
-        txtnombre.textProperty().addListener((observable, oldValue, nextValue) -> {
+        txtNombre2.textProperty().addListener((observable, oldValue, nextValue) -> {
             desaparecer();
         });
-        txtapellido.textProperty().addListener((observable, oldValue, nextValue) -> {
+        txtApellido2.textProperty().addListener((observable, oldValue, nextValue) -> {
             desaparecer();
         });
-        txtedad.textProperty().addListener((observable, oldValue, nextValue) -> {
+        txtEdad2.textProperty().addListener((observable, oldValue, nextValue) -> {
             desaparecer();
         });
     }

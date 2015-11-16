@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="358.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLUsuarioController">
+    <children>
+       <AnchorPane fx:id="principalUser" layoutY="6.0" prefHeight="380.0" prefWidth="369.0">
+               <children>
+                  <ImageView fitHeight="386.0" fitWidth="376.0" layoutX="-2.0" layoutY="-5.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@Fondoblanco.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="64.0" layoutY="25.0" text="Bienvenido Usuario" textFill="#263772">
+                     <font>
+                        <Font name="Tahoma" size="19.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="96.0" fitWidth="95.0" layoutX="124.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@usuario.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btnPerfil" layoutX="120.0" layoutY="171.0" mnemonicParsing="false" onAction="#Perfil" text="Perfil" />
+                  <Button fx:id="btnBlock" layoutX="120.0" layoutY="202.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" text="Bloc de Notas" />
+                  <Button fx:id="btnPaint" layoutX="120.0" layoutY="235.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" text="Paint" />
+                  <Button fx:id="btnCerrarS" layoutX="124.0" layoutY="318.0" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="25.0" prefWidth="103.0" text="Cerrar Sesion" />
+               </children>
+            </AnchorPane> 
+       <AnchorPane fx:id="perfilUser" prefHeight="502.0" prefWidth="374.0" visible="false">
+             <children>
+               <Label layoutX="58.0" layoutY="35.0" text="Usuario:" />
+               <Label layoutX="58.0" layoutY="71.0" text="Contraseña:" />
+               <Label layoutX="58.0" layoutY="108.0" text="Perfil:" />
+               <Label layoutX="58.0" layoutY="144.0" text="Nombre:" />
+               <Label layoutX="58.0" layoutY="180.0" text="Apellido:" />
+               <Label layoutX="58.0" layoutY="216.0" text="Edad:" />
+               <Label layoutX="58.0" layoutY="250.0" text="E-mail:" />
+               <Label layoutX="58.0" layoutY="285.0" text="Domicilio:" />
+               <Label layoutX="58.0" layoutY="317.0" text="Telefono:" />
+               <Label layoutX="58.0" layoutY="349.0" text="Estado:" />
+               <Label layoutX="58.0" layoutY="385.0" text="Ciudad:" />
+               <TextField fx:id="txtUsuario" layoutX="153.0" layoutY="31.0" />
+               <TextField fx:id="txtContrasena" layoutX="153.0" layoutY="67.0" />
+               <TextField fx:id="txtNombre" layoutX="153.0" layoutY="140.0" />
+               <TextField fx:id="txtApellido" layoutX="153.0" layoutY="176.0" />
+               <TextField fx:id="txtEdad" layoutX="153.0" layoutY="212.0" />
+               <TextField fx:id="txtCorreo" layoutX="153.0" layoutY="246.0" />
+               <TextField fx:id="txtDomicilio" layoutX="153.0" layoutY="281.0" />
+               <TextField fx:id="txtTelefono" layoutX="153.0" layoutY="313.0" />
+               <TextField fx:id="txtPerfil" layoutX="153.0" layoutY="104.0" />
+               <Button fx:id="btnActualizar" layoutX="149.0" layoutY="420.0"  onAction="#Actualizar" mnemonicParsing="false"  prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
+               <Button fx:id="btnReturn" layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#Cancel" text="Regresar" />
+            </children>
+         </AnchorPane>
+   </children>  
+</AnchorPane>
