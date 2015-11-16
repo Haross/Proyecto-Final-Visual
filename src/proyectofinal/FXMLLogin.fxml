@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.weathericons.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+<?import de.jensd.fx.glyphs.materialicons.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import de.jensd.fx.glyphs.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -7,38 +12,32 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLLoginController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@Estilos/LoginStyle.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLLoginController">
     <children>
-       <AnchorPane prefHeight="226.0" prefWidth="343.0">
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@Login/background.png" />
+         </image>
+      </ImageView>
+       <AnchorPane layoutX="128.0" layoutY="43.0" prefHeight="325.0" prefWidth="345.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cad9e8" height="228.0" layoutX="-2.0" layoutY="-2.0" stroke="TRANSPARENT" strokeType="INSIDE" width="345.0" />
-            <Label layoutX="43.0" layoutY="78.0" text="Usuario:">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="43.0" layoutY="126.0" text="Contraseña:">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtUsuario" layoutX="151.0" layoutY="75.0" />
-            <Text fill="#313132" layoutX="98.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
-               <font>
-                  <Font name="System Bold" size="28.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="72.0" fitWidth="70.0" layoutX="185.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true">
-               <image>
-                  <Image url="@llave.png" />
-               </image></ImageView>
-            <Button fx:id="btnLogin" layoutX="214.0" layoutY="180.0" mnemonicParsing="false" onAction="#Perfil" prefHeight="29.0" prefWidth="86.0" text="Ingresar">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fbfbfb" height="324.0" layoutX="21.0" layoutY="-30.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-width: 8; -fx-arc-height: 8;" width="306.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="0.0" />
+            <TextField fx:id="txtUsuario" layoutX="89.0" layoutY="125.0" prefHeight="25.0" prefWidth="164.0" />
+            <Button fx:id="btnLogin" layoutX="130.0" layoutY="230.0" mnemonicParsing="false" onAction="#Perfil" prefHeight="29.0" prefWidth="86.0" text="Ingresar">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <PasswordField fx:id="txtContrasena" layoutX="151.0" layoutY="124.0" />
+            <PasswordField fx:id="txtContrasena" layoutX="89.0" layoutY="163.0" prefHeight="25.0" prefWidth="164.0" />
+            <ImageView fitHeight="101.0" fitWidth="105.0" layoutX="126.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Login/user.png" />
+               </image>
+            </ImageView>
+            <MaterialIconView glyphName="ACCOUNT_CIRCLE" layoutX="253.0" layoutY="151.0" size="20" />
+            <MaterialIconView glyphName="LOCK" layoutX="253.0" layoutY="189.0" size="20" />
          </children>
       </AnchorPane>
+      <WeatherIconView />
     </children>
 </AnchorPane>
