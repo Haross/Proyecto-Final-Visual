@@ -48,12 +48,10 @@ public class FXMLAdministradorController implements Initializable {
     @FXML
     ChoiceBox choiceB;
     @FXML
-    Button btnBorrar, btnActualizar, btnNext, btnPrev, btnCerrarS;
+    Button btnBorrar, btnActualizar,btnActualizar1, btnNext, btnPrev, btnCerrarS;
     private ResultSet rs = null;
     private Connection conecc;
     private Statement st = null;
-    boolean x = false;
-    int cont = 0;
     public   String us;
    
     
@@ -165,18 +163,18 @@ public class FXMLAdministradorController implements Initializable {
             rs = st.executeQuery(instruccion); //Ejecuta el query de SQL
             try {
                 if (rs.next()) {
-                    x = false;
-                    cont = 0;
+                    
                     txtContrasenaP.setText(rs.getString("contraseña"));
                     txtUsuarioP.setText(rs.getString("usuario"));
                     txtPerfilP.setText(rs.getString("perfil"));
                     txtNombreP.setText(rs.getString("nombre"));
-                    txtApellidoP.setText(rs.getString("apellido"));
+                    txtApellidoP.setText(rs.getString("apellidos"));
                     txtEdadP.setText(rs.getString("edad"));
-                    txtCorreoP.setText(rs.getString("correo"));
+                    txtCorreoP.setText(rs.getString("email"));
                     txtDomicilioP.setText(rs.getString("domicilio"));
                     txtTelefonoP.setText(rs.getString("telefono"));
                 }
+                btnActualizar1.setDisable(true);
             } catch (SQLException ex) {
                 Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -222,7 +220,7 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conecc = DriverManager.getConnection("jdbc:mysql://localhost/pfinal", "root", "");
+            conecc = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -248,18 +246,26 @@ public class FXMLAdministradorController implements Initializable {
     private void nextData() {
         try {
             if (rs.next()) {
-                x = false;
-                cont = 0;
                 txtContrasena2.setText(rs.getString("contraseña"));
                 txtUsuario2.setText(rs.getString("usuario"));
                 txtPerfil2.setText(rs.getString("perfil"));
                 txtNombre2.setText(rs.getString("nombre"));
-                txtApellido2.setText(rs.getString("apellido"));
+                txtApellido2.setText(rs.getString("apellidos"));
                 txtEdad2.setText(rs.getString("edad"));
-                txtCorreo2.setText(rs.getString("correo"));
+                txtCorreo2.setText(rs.getString("email"));
                 txtDomicilio2.setText(rs.getString("domicilio"));
                 txtTelefono2.setText(rs.getString("telefono"));
             }
+            if(rs.isLast()){
+                btnNext.setDisable(true);
+            }else{
+                btnNext.setDisable(false);
+            }
+            if(rs.isFirst())
+                    btnPrev.setDisable(true);
+                else
+                    btnPrev.setDisable(false);
+           btnActualizar.setDisable(true);
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -269,18 +275,26 @@ public class FXMLAdministradorController implements Initializable {
     private void prevData() {
         try {
             if (rs.previous()) {
-                x = false;
-                cont = 0;
                 txtContrasena2.setText(rs.getString("contraseña"));
                 txtUsuario2.setText(rs.getString("usuario"));
                 txtPerfil2.setText(rs.getString("perfil"));
                 txtNombre2.setText(rs.getString("nombre"));
-                txtApellido2.setText(rs.getString("apellido"));
+                txtApellido2.setText(rs.getString("apellidos"));
                 txtEdad2.setText(rs.getString("edad"));
-                txtCorreo2.setText(rs.getString("correo"));
+                txtCorreo2.setText(rs.getString("email"));
                 txtDomicilio2.setText(rs.getString("domicilio"));
                 txtTelefono2.setText(rs.getString("telefono"));
             }
+           if(rs.isLast()){
+                btnNext.setDisable(true);
+            }else{
+                btnNext.setDisable(false);
+            }
+            if(rs.isFirst())
+                    btnPrev.setDisable(true);
+                else
+                    btnPrev.setDisable(false);
+             btnActualizar.setDisable(true);
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -414,19 +428,6 @@ public class FXMLAdministradorController implements Initializable {
         return true;
     }
 
-    private void desaparecer() {
-        if (x) {
-            btnActualizar.setDisable(false);
-        } else {
-            cont = cont + 1;
-            btnActualizar.setDisable(true);
-            if (cont == 4) {
-                x = true;
-                cont = 0;
-            }
-        }
-    }
-
     @FXML private void CerrarSesion(ActionEvent e){
         Stage s = (Stage) btnCerrarS.getScene().getWindow();
         s.close();
@@ -449,30 +450,53 @@ public class FXMLAdministradorController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        btnNext.setDisable(true);
+        btnPrev.setDisable(true);
         btnActualizar.setDisable(true);
         btnBorrar.setDisable(true);
         txtTelefono2.textProperty().addListener((observable, oldValue, nextValue) -> {
-            desaparecer();
+            btnActualizar.setDisable(false);
         });
         txtDomicilio2.textProperty().addListener((observable, oldValue, nextValue) -> {
-            desaparecer();
+            btnActualizar.setDisable(true);
         });
         txtCorreo2.textProperty().addListener((observable, oldValue, nextValue) -> {
-            desaparecer();
+            btnActualizar.setDisable(false);
         });
         txtContrasena2.textProperty().addListener((observable, oldValue, nextValue) -> {
-            desaparecer();
+            btnActualizar.setDisable(false);
         });
 
         txtNombre2.textProperty().addListener((observable, oldValue, nextValue) -> {
-            desaparecer();
+            btnActualizar.setDisable(false);
         });
         txtApellido2.textProperty().addListener((observable, oldValue, nextValue) -> {
-            desaparecer();
+            btnActualizar.setDisable(false);
         });
         txtEdad2.textProperty().addListener((observable, oldValue, nextValue) -> {
-            desaparecer();
+            btnActualizar.setDisable(false);
+        });
+        txtTelefonoP.textProperty().addListener((observable, oldValue, nextValue) -> {
+            btnActualizar1.setDisable(false);
+        });
+        txtDomicilioP.textProperty().addListener((observable, oldValue, nextValue) -> {
+            btnActualizar1.setDisable(true);
+        });
+        txtCorreoP.textProperty().addListener((observable, oldValue, nextValue) -> {
+            btnActualizar1.setDisable(false);
+        });
+        txtContrasenaP.textProperty().addListener((observable, oldValue, nextValue) -> {
+            btnActualizar1.setDisable(false);
+        });
+
+        txtNombreP.textProperty().addListener((observable, oldValue, nextValue) -> {
+            btnActualizar1.setDisable(false);
+        });
+        txtApellidoP.textProperty().addListener((observable, oldValue, nextValue) -> {
+            btnActualizar1.setDisable(false);
+        });
+        txtEdadP.textProperty().addListener((observable, oldValue, nextValue) -> {
+            btnActualizar1.setDisable(false);
         });
     }
 }

@@ -110,8 +110,8 @@
             <TextField fx:id="txtCorreoP" layoutX="153.0" layoutY="246.0" />
             <TextField fx:id="txtDomicilioP" layoutX="153.0" layoutY="281.0" />
             <TextField fx:id="txtTelefonoP" layoutX="153.0" layoutY="313.0" />
-            <TextField fx:id="txtEstadoP" layoutX="153.0" layoutY="345.0" />
-            <Button layoutX="153.0" layoutY="438.0" mnemonicParsing="false" onAction="#ActualizarP" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
+            <TextField fx:id="txtPerfilP" layoutX="153.0" layoutY="104.0" />
+            <Button fx:id="btnActualizar1" layoutX="153.0" layoutY="438.0" mnemonicParsing="false" onAction="#ActualizarP" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
             <Button layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#Cancel" text="Regresar" />
          </children>
       </AnchorPane>  
