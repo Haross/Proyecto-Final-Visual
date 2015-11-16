@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="546.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLExplorerController">
+<AnchorPane id="AnchorPane" prefHeight="546.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLExplorerController">
     <children>
       <AnchorPane fx:id="AnchoPaneExp" prefHeight="556.0" prefWidth="736.0" visible="false">
          <children>
@@ -81,7 +81,7 @@
       </AnchorPane>
       <AnchorPane fx:id="AnchoPaneGuardar" prefHeight="556.0" prefWidth="736.0">
          <children>
-            <SplitPane dividerPositions="0.2956403269754768" layoutY="24.0" prefHeight="484.0" prefWidth="736.0">
+            <SplitPane dividerPositions="0.2956403269754768" layoutY="24.0" prefHeight="439.0" prefWidth="736.0" AnchorPane.bottomAnchor="77.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                <items>
                   <TreeView fx:id="tvArbolGuardar" prefHeight="554.0" prefWidth="262.0">
                      <contextMenu>
@@ -96,14 +96,20 @@
                   <TilePane fx:id="controlGuardar" prefHeight="563.0" prefWidth="726.0" />
                </items>
             </SplitPane>
-            <Pane layoutY="510.0" prefHeight="46.0" prefWidth="736.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="510.0">
+            <Pane layoutY="478.0" prefHeight="78.0" prefWidth="736.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="478.0">
                <children>
-                  <Button fx:id="btnGuardar" layoutX="627.0" layoutY="11.0" mnemonicParsing="false" onAction="#guardar" prefHeight="30.0" prefWidth="76.0" text="Guardar">
+                  <Button fx:id="btnGuardar" layoutX="627.0" layoutY="5.0" mnemonicParsing="false" onAction="#guardar" prefHeight="30.0" prefWidth="76.0" text="Guardar">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="txtNombreBG" layoutX="221.0" layoutY="13.0" prefHeight="25.0" prefWidth="396.0" promptText="Escriba el nombre del archivo que quiera buscar con la extesion" />
+                  <TextField fx:id="txtNombreBG" layoutX="221.0" layoutY="8.0" prefHeight="25.0" prefWidth="396.0" promptText="Escriba el nombre del archivo sin extención" />
+                  <TextArea fx:id="rutaG" layoutX="222.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="485.0" />
+                  <Label layoutX="178.0" layoutY="45.0" text="Ruta:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <MenuBar prefHeight="25.0" prefWidth="736.0">
