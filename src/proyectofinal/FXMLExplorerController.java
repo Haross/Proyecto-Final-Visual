@@ -23,6 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
@@ -38,7 +39,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
-import static proyectofinal.ManejoImagenes.gimagen;
+import static proyectofinal.FXMLminipaintController.gimagen;
 /**
  *
  * @author Javier - Edgardo c:
@@ -52,6 +53,7 @@ public class FXMLExplorerController implements Initializable {
     @FXML private AnchorPane AnchoPaneAbrir,AnchoPaneGuardar,AnchoPaneExp;
     @FXML private TextField txtNombreBA,txtNombreBG;
     @FXML private TextArea rutaG;
+    @FXML private ComboBox cmbExtesiones;
     TreeItem<String> auxiliar;
     TreeItem<String> seleccionado;
     TreeItem<String> folder;
@@ -87,13 +89,14 @@ public class FXMLExplorerController implements Initializable {
         TreeItem<String> a = tvArbol.getRoot();
         return ruta = "\\"+a.getValue();
     }
-    
+    private void extesionescmb(){
+        cmbExtesiones.getItems().add("png");
+        cmbExtesiones.getItems().add("jpg");
+        cmbExtesiones.getItems().add("jpeg");
+    }
     @FXML private void guardar(ActionEvent e){
         File file;
-        String[] ext = new String[2];
         String nombreA = txtNombreBG.getText();//nombre del archivo
-        ext = nombreA.split("//.");
-        String formato = "png";
         buscar(tvArbol.getRoot().getChildren(),nombreA,Archivos.getDirectorio());
         String comparar = rutaArchivo;
         System.out.println("Comparar: "+ comparar);
@@ -105,17 +108,15 @@ public class FXMLExplorerController implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 try {
-                    
-                        
-                        
-                        
-                        //WritableImage temp = gimagen.getImagen();
                         System.out.println("imagen: "+gimagen);
-                        file = new File("\\datos"+rutaG.getText(), nombreA + ".jpg");
+                        //file = new File(ruta, nombreA + ".jpg");
+                        String extension = cmbExtesiones.getValue().toString();
+                        System.out.println("Esta es la extesion: "+extension);
+                        file = new File("..\\datos"+rutaG.getText(), nombreA + "."+ extension);
                         try {
-                            ImageIO.write(SwingFXUtils.fromFXImage(gimagen, null), ".jpg", file);
+                            ImageIO.write(SwingFXUtils.fromFXImage(gimagen, null),extension, file);
                         } catch (Exception exs) {
-                            exs.printStackTrace();
+                            //exs.printStackTrace();
                         }
                         //guardar archivo
                     
@@ -353,6 +354,7 @@ public class FXMLExplorerController implements Initializable {
     }
 ///////////////////////////////////////////////Abrir///////////////////////////////    
      private void exploradorA(){
+   
         Archivos = new GestorArchivos("1");
         folder = new TreeItem<>("1", icono("folder.png", 20, 20));
         tvArbolAbrir.setRoot(folder);
@@ -416,6 +418,7 @@ public class FXMLExplorerController implements Initializable {
      
     ///////////////////////////////////////////////Guardar///////////////////////////////    
      private void exploradorG(){
+        extesionescmb();
         Archivos = new GestorArchivos("1");
         folder = new TreeItem<>("1", icono("folder.png", 20, 20));
         tvArbolGuardar.setRoot(folder);

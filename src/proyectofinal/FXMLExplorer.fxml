@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="546.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLExplorerController">
+<AnchorPane id="AnchorPane" prefHeight="546.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLExplorerController">
     <children>
       <AnchorPane fx:id="AnchoPaneExp" prefHeight="556.0" prefWidth="736.0" visible="false">
          <children>
@@ -98,18 +98,19 @@
             </SplitPane>
             <Pane layoutY="478.0" prefHeight="78.0" prefWidth="736.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="478.0">
                <children>
-                  <Button fx:id="btnGuardar" layoutX="627.0" layoutY="5.0" mnemonicParsing="false" onAction="#guardar" prefHeight="30.0" prefWidth="76.0" text="Guardar">
+                  <Button fx:id="btnGuardar" layoutX="443.0" layoutY="6.0" mnemonicParsing="false" onAction="#guardar" prefHeight="30.0" prefWidth="76.0" text="Guardar">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="txtNombreBG" layoutX="221.0" layoutY="8.0" prefHeight="25.0" prefWidth="396.0" promptText="Escriba el nombre del archivo sin extención" />
-                  <TextArea fx:id="rutaG" layoutX="222.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="485.0" />
-                  <Label layoutX="178.0" layoutY="45.0" text="Ruta:">
+                  <TextField fx:id="txtNombreBG" layoutX="14.0" layoutY="8.0" prefHeight="25.0" prefWidth="396.0" promptText="Escriba el nombre del archivo sin extención" />
+                  <TextArea fx:id="rutaG" layoutX="62.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="485.0" />
+                  <Label layoutX="14.0" layoutY="45.0" text="Ruta:">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
+                  <ComboBox fx:id="cmbExtesiones" layoutX="572.0" layoutY="21.0" prefWidth="150.0" />
                </children>
             </Pane>
             <MenuBar prefHeight="25.0" prefWidth="736.0">

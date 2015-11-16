@@ -7,6 +7,7 @@ package proyectofinal;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
@@ -32,8 +34,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import static proyectofinal.ManejoImagenes.gimagen;
 
 /**
  *
@@ -62,7 +66,7 @@ public class FXMLminipaintController implements Initializable {
     ManejoImagenes imagenNueva = new ManejoImagenes();
     Image currentImage;
     Image originalImage;
-    
+    public static WritableImage gimagen;
     ControlDibujo controlDibujo = new ControlDibujo();
     //////////////////////////////////////////////////////////////////////////////
     
@@ -343,7 +347,7 @@ public class FXMLminipaintController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        this.imagenNueva.saveAsImage(this.TheCanvas.getGraphicsContext2D());
+        capturaCanvas();
     }
     @FXML 
     private void saveCurrentImage(ActionEvent e){
@@ -359,7 +363,16 @@ public class FXMLminipaintController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        this.imagenNueva.saveImage(this.TheCanvas.getGraphicsContext2D());
+        capturaCanvas();
+    }
+    
+    public void capturaCanvas() {
+        int wd = (int)TheCanvas.getWidth();
+        int hg = (int)TheCanvas.getHeight();
+ 
+        WritableImage image = new WritableImage(wd, hg);
+        gimagen = TheCanvas.snapshot(new SnapshotParameters(), image);
+        System.out.println("Imagen canvas: "+gimagen.toString());
     }
     
     //////////////////////////////////////////////////////////////////
