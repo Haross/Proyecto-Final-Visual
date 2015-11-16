@@ -8,7 +8,6 @@ package proyectofinal;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -17,17 +16,14 @@ import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.TreeItem;
@@ -55,6 +51,7 @@ public class FXMLExplorerController implements Initializable {
     private TilePane control,controlAbrir,controlGuardar;
     @FXML private AnchorPane AnchoPaneAbrir,AnchoPaneGuardar,AnchoPaneExp;
     @FXML private TextField txtNombreBA,txtNombreBG;
+    @FXML private TextArea rutaG;
     TreeItem<String> auxiliar;
     TreeItem<String> seleccionado;
     TreeItem<String> folder;
@@ -85,7 +82,12 @@ public class FXMLExplorerController implements Initializable {
             rutaArchivo=null;
         }
     }
-
+    
+    public String getRaiz(){
+        TreeItem<String> a = tvArbol.getRoot();
+        return ruta = "\\"+a.getValue();
+    }
+    
     @FXML private void guardar(ActionEvent e){
         File file;
         String[] ext = new String[2];
@@ -102,26 +104,21 @@ public class FXMLExplorerController implements Initializable {
             alert.setHeaderText("¿Desea guardarlo?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-                TextInputDialog dialog = new TextInputDialog();
-                dialog.setTitle("Nuevo archivo");
-                dialog.setContentText("Esriba el nombre la carpeta: ");
-                Optional<String> resultG = dialog.showAndWait();
-                 String ncarpeta = resultG.get();
-                 try {
-                    if (resultG.isPresent()){
-                        buscar(tvArbol.getRoot().getChildren(), ncarpeta, Archivos.getDirectorio());
-                        String nuevo = rutaArchivo;//ruta de la carpeta
+                try {
+                    
+                        
+                        
                         
                         //WritableImage temp = gimagen.getImagen();
                         System.out.println("imagen: "+gimagen);
-                        file = new File(nuevo, nombreA + ".jpg");
+                        file = new File("\\datos"+rutaG.getText(), nombreA + ".jpg");
                         try {
                             ImageIO.write(SwingFXUtils.fromFXImage(gimagen, null), ".jpg", file);
                         } catch (Exception exs) {
                             exs.printStackTrace();
                         }
                         //guardar archivo
-                    }
+                    
                 } catch (Exception ex) {
                     
                 }
@@ -427,6 +424,7 @@ public class FXMLExplorerController implements Initializable {
         controlGuardar.setPadding(new Insets(10, 10, 10, 10));
         controlGuardar.setVgap(5);
         controlGuardar.setHgap(5);
+        rutaG.setText(getRaiz());
         tvArbolGuardar.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
 
             @Override
@@ -441,6 +439,7 @@ public class FXMLExplorerController implements Initializable {
                     padre = padre.getParent();
 
                 }
+                rutaG.setText(ruta);
                 //setRuta(ruta);         
                 setIconFilesSave(selectedItem.getChildren());
 
