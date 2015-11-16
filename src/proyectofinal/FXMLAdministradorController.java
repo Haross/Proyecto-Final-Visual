@@ -36,7 +36,7 @@ import static proyectofinal.FXMLLoginController.resultUser;
 public class FXMLAdministradorController implements Initializable {
     @FXML //PaneAddUser
     TextField txtUsuario, txtContrasena, txtNombre, txtApellido, txtEdad, 
-            txtCorreo, txtDomicilio, txtTelefono, txtEstado, txtCiudad;
+            txtCorreo, txtDomicilio, txtTelefono;
     @FXML
     TextField txtUsuarioP, txtContrasenaP, txtPerfilP, txtNombreP, txtApellidoP,
               txtEdadP, txtCorreoP, txtDomicilioP, txtTelefonoP;
@@ -99,11 +99,9 @@ public class FXMLAdministradorController implements Initializable {
             String correo = txtCorreo.getText();
             String domicilio = txtDomicilio.getText();
             String telefono = txtTelefono.getText();
-            String estado = txtEstado.getText();
-            String ciudad = txtCiudad.getText();
             Boolean resultado = false;
-            resultado = st.execute("INSERT INTO usuarios(usuario, contraseña, perfil, nombre,apellido,edad,correo,domicilio,telefono,estado,ciudad) "
-                    + "VALUES" + "('" + usuario + "','" + contrasena + "','" + perfil + "','" + nombre + "','" + apellido + "','" + edad + "','" + correo + "','" + domicilio + "','" + telefono + "','" + estado + "','" + ciudad + "');");
+            resultado = st.execute("INSERT INTO usuarios(usuario, contraseña, perfil, nombre,apellidos,edad,email,domicilio,telefono) "
+                    + "VALUES" + "('" + usuario + "','" + contrasena + "','" + perfil + "','" + nombre + "','" + apellido + "','" + edad + "','" + correo + "','" + domicilio + "','" + telefono +  "');");
             if (!resultado) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Información");
@@ -238,7 +236,7 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         nextData();
-        prevData();
+        //prevData();
         btnActualizar.setDisable(true);
     }
 
@@ -262,9 +260,9 @@ public class FXMLAdministradorController implements Initializable {
                 btnNext.setDisable(false);
             }
             if(rs.isFirst())
-                    btnPrev.setDisable(true);
-                else
-                    btnPrev.setDisable(false);
+                btnPrev.setDisable(true);
+            else
+                btnPrev.setDisable(false);
            btnActualizar.setDisable(true);
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
