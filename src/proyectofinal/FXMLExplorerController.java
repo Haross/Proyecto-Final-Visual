@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,13 +34,15 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-
+import javax.imageio.ImageIO;
+import static proyectofinal.ManejoImagenes.gimagen;
 /**
  *
  * @author Javier - Edgardo c:
@@ -61,7 +64,7 @@ public class FXMLExplorerController implements Initializable {
     String[] extension = new String[2];
     String rutaArchivo = null;
     
-    
+    //ManejoImagenes gimagen = new ManejoImagenes ();
     @FXML private void abrir(ActionEvent e) {
         String nombreA = txtNombreBA.getText();
         buscar(tvArbol.getRoot().getChildren(),nombreA,Archivos.getDirectorio());
@@ -84,7 +87,11 @@ public class FXMLExplorerController implements Initializable {
     }
 
     @FXML private void guardar(ActionEvent e){
+        File file;
+        String[] ext = new String[2];
         String nombreA = txtNombreBG.getText();//nombre del archivo
+        ext = nombreA.split("//.");
+        String formato = "png";
         buscar(tvArbol.getRoot().getChildren(),nombreA,Archivos.getDirectorio());
         String comparar = rutaArchivo;
         System.out.println("Comparar: "+ comparar);
@@ -104,6 +111,15 @@ public class FXMLExplorerController implements Initializable {
                     if (resultG.isPresent()){
                         buscar(tvArbol.getRoot().getChildren(), ncarpeta, Archivos.getDirectorio());
                         String nuevo = rutaArchivo;//ruta de la carpeta
+                        
+                        //WritableImage temp = gimagen.getImagen();
+                        System.out.println("imagen: "+gimagen);
+                        file = new File(nuevo, nombreA + ".jpg");
+                        try {
+                            ImageIO.write(SwingFXUtils.fromFXImage(gimagen, null), ".jpg", file);
+                        } catch (Exception exs) {
+                            exs.printStackTrace();
+                        }
                         //guardar archivo
                     }
                 } catch (Exception ex) {

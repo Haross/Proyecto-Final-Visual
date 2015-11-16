@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLAdministradorController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="proyectofinal.FXMLAdministradorController">
     <children>
        <AnchorPane fx:id="principal" layoutY="6.0" prefHeight="380.0" prefWidth="369.0">
             <children>
@@ -113,6 +113,8 @@
             <TextField fx:id="txtPerfilP" layoutX="153.0" layoutY="104.0" />
             <Button fx:id="btnActualizar1" layoutX="153.0" layoutY="438.0" mnemonicParsing="false" onAction="#ActualizarP" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
             <Button layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#Cancel" text="Regresar" />
+            <Button fx:id="btnPaint" onAction="#abrirPaint"  layoutX="54.0" layoutY="380.0" mnemonicParsing="false" text="Paint" />
+            <Button fx:id="btnBlock" layoutX="255.0" layoutY="380.0" mnemonicParsing="false" text="Block de notas" />
          </children>
       </AnchorPane>  
    </children>
