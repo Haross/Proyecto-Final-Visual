@@ -39,7 +39,6 @@ import static proyectofinal.Block.FXMLDocumentController.guardar;
 import static proyectofinal.Paint.FXMLminipaintController.gimagen;
 import static proyectofinal.Paint.FXMLminipaintController.nombreArchivo;
 import static proyectofinal.Paint.FXMLminipaintController.rutaArchivoPaint;
-import proyectofinal.GestorArchivos;
 
 /**
  * FXML Controller class

@@ -37,7 +37,6 @@ import javafx.scene.text.TextAlignment;
 import javax.imageio.ImageIO;
 import static proyectofinal.Block.FXMLDocumentController.guardar;
 import static proyectofinal.Paint.FXMLminipaintController.gimagen;
-import proyectofinal.GestorArchivos;
 
 /**
  * FXML Controller class

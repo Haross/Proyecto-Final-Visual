@@ -1,5 +1,5 @@
 
-package proyectofinal;
+package proyectofinal.Explorador;
 
 import java.io.File;
 import java.io.IOException;
