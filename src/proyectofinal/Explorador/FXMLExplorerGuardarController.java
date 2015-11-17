@@ -35,7 +35,7 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
-import static proyectofinal.FXMLDocumentController.guardar;
+import static proyectofinal.Block.FXMLDocumentController.guardar;
 import static proyectofinal.Paint.FXMLminipaintController.gimagen;
 import static proyectofinal.Paint.FXMLminipaintController.nombreArchivo;
 import static proyectofinal.Paint.FXMLminipaintController.rutaArchivoPaint;

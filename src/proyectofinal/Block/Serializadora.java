@@ -1,4 +1,4 @@
-package proyectofinal;
+package proyectofinal.Block;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

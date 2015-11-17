@@ -1,4 +1,4 @@
-package proyectofinal;
+package proyectofinal.Block;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,6 +25,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import proyectofinal.Controla;
+import proyectofinal.FXMLLoginController;
+import proyectofinal.Version;
 
 /**
  *
