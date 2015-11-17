@@ -114,7 +114,7 @@
             <Button fx:id="btnActualizar1" layoutX="153.0" layoutY="438.0" mnemonicParsing="false" onAction="#ActualizarP" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
             <Button layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#Cancel" text="Regresar" />
             <Button fx:id="btnPaint" onAction="#abrirPaint"  layoutX="54.0" layoutY="380.0" mnemonicParsing="false" text="Paint" />
-            <Button fx:id="btnBlock" layoutX="255.0" layoutY="380.0" mnemonicParsing="false" text="Block de notas" />
+            <Button fx:id="btnBlock" onAction="#abrirBlock"  layoutX="255.0" layoutY="380.0" mnemonicParsing="false" text="Block de notas" />
          </children>
       </AnchorPane>  
    </children>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="475.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLDocumentController">
+    <children>
+        <TextArea fx:id="TextoArea" layoutX="0" layoutY="27" onKeyTyped="#TextAreaArray" prefHeight="453.0" prefWidth="276.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="159.0" AnchorPane.topAnchor="27.0">
+             <contextMenu>
+                <ContextMenu>
+                    <items>
+                        <MenuItem fx:id="menuDeshacer" onAction="#deshacer" text="Deshacer" /> 
+                        <MenuItem fx:id="menuRehacer" onAction="#rehacer" text="Rehacer" /> 
+                    </items>
+                </ContextMenu>
+            </contextMenu>    
+        </TextArea>
+        
+        <MenuBar prefHeight="20" prefWidth="300" style="fx-background-color: #819FF7;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu text="Archivo">
+                    <items>
+                  <MenuItem mnemonicParsing="false" onAction="#abrir" text="Abrir" />
+                        <MenuItem onAction="#creditos" text="Creditos" />
+                  <MenuItem mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+                        <MenuItem onAction="#salir" text="Salir" />
+                  <MenuItem mnemonicParsing="false" onAction="#guardarComo" text="Guardar Como" />
+                    </items>
+                    
+                </Menu>
+                <Menu text="Edición">
+                    
+                    <items>
+                        <MenuItem onAction="#deshacer" text="Deshacer" />
+                        <MenuItem onAction="#rehacer" text="Rehacer" />
+                    </items>
+                    
+                </Menu>
+            <Menu mnemonicParsing="false" text="Opciones">
+              <items>
+                  <Menu mnemonicParsing="false" text="Fuente">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#fontVerdana" text="Verdana" />
+                        <MenuItem mnemonicParsing="false" onAction="#fontComic" text="Comic Sans MS" />
+                        <MenuItem mnemonicParsing="false" onAction="#fontCalibri" text="Calibri" />
+                        <MenuItem mnemonicParsing="false" onAction="#fontArial" text="Arial" />
+                        <MenuItem mnemonicParsing="false" onAction="#fontBroadway" text="Broadway" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Tamaño">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#size11" text="11" />
+                        <MenuItem mnemonicParsing="false" onAction="#size15" text="15" />
+                        <MenuItem mnemonicParsing="false" onAction="#size18" text="18" />
+                        <MenuItem mnemonicParsing="false" onAction="#size22" text="22" />
+                        <MenuItem mnemonicParsing="false" onAction="#size30" text="30" />
+                     </items>
+                  </Menu>
+              </items>
+            </Menu>
+
+
+            </menus>
+        </MenuBar>
+      <ToolBar layoutX="275.0" layoutY="26.0" orientation="VERTICAL" prefHeight="454.0" prefWidth="62.0">
+         <items>
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarComo" text="Guardar" />
+            <ComboBox fx:id="cbFonts" prefWidth="150.0" />
+            <ComboBox fx:id="cbSize" prefWidth="150.0" />
+         </items>
+      </ToolBar>
+    </children>
+</AnchorPane>
