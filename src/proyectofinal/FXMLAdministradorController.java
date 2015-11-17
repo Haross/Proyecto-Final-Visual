@@ -1,3 +1,4 @@
+package proyectofinal;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -63,7 +64,7 @@ public class FXMLAdministradorController implements Initializable {
             stageAux.close();
             root = FXMLLoader.load(getClass().getResource("FXMLminipaint.fxml"));
         } catch (IOException ex) {
-            Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -78,7 +79,7 @@ public class FXMLAdministradorController implements Initializable {
             stageAux.close();
             root = FXMLLoader.load(getClass().getResource("/proyectofinal/FXMLDocument.fxml"));
         } catch (IOException ex) {
-            Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
