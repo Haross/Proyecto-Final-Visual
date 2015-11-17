@@ -5,6 +5,7 @@
  */
 package proyectofinal;
 
+import de.jensd.fx.glyphs.materialicons.MaterialIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -39,6 +40,8 @@ public class FXMLLoginController implements Initializable {
     private PasswordField txtContrasena;
     @FXML
     private Button btnLogin;
+    @FXML
+    private MaterialIconView icon, icon2;
     
     private ResultSet rs = null;
     private Connection conecc;
@@ -125,7 +128,12 @@ public class FXMLLoginController implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        txtUsuario.setOnKeyTyped((e)->{
+            icon.setStyle("-fx-fill:#69F0AE;"); 
+        });
+        txtContrasena.setOnKeyTyped((e)->{
+            icon2.setStyle("-fx-fill:#69F0AE;"); 
+        });
     }    
     
 }
