@@ -8,6 +8,7 @@ package proyectofinal;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -40,6 +41,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import static proyectofinal.FXMLminipaintController.gimagen;
+import static proyectofinal.FXMLDocumentController.guardar;
 /**
  *
  * @author Javier - Edgardo c:
@@ -47,13 +49,13 @@ import static proyectofinal.FXMLminipaintController.gimagen;
 public class FXMLExplorerController implements Initializable {
 
     @FXML
-    private TreeView tvArbol,tvArbolAbrir,tvArbolGuardar;
+    private TreeView tvArbol,tvArbolAbrir,tvArbolGuardar,tvArbolGuardarB;
     @FXML
-    private TilePane control,controlAbrir,controlGuardar;
-    @FXML private AnchorPane AnchoPaneAbrir,AnchoPaneGuardar,AnchoPaneExp;
-    @FXML private TextField txtNombreBA,txtNombreBG;
-    @FXML private TextArea rutaG;
-    @FXML private ComboBox cmbExtesiones;
+    private TilePane control,controlAbrir,controlGuardar,controlGuardarB;
+    @FXML private AnchorPane AnchoPaneAbrir,AnchoPaneGuardar,AnchoPaneExp,AnchoPaneGuardarB;
+    @FXML private TextField txtNombreBA,txtNombreBG,txtNombreB;
+    @FXML private TextArea rutaG,rutaGB;
+    @FXML private ComboBox cmbExtesiones,cmbExtesionesB;
     TreeItem<String> auxiliar;
     TreeItem<String> seleccionado;
     TreeItem<String> folder;
@@ -94,6 +96,12 @@ public class FXMLExplorerController implements Initializable {
         cmbExtesiones.getItems().add("jpg");
         cmbExtesiones.getItems().add("jpeg");
     }
+    private void extesionescmbB(){
+        cmbExtesionesB.getItems().add("java");
+        cmbExtesionesB.getItems().add("txt");
+        cmbExtesionesB.getItems().add("doc");
+    }
+    
     @FXML private void guardar(ActionEvent e){
         File file;
         String nombreA = txtNombreBG.getText();//nombre del archivo
@@ -118,6 +126,51 @@ public class FXMLExplorerController implements Initializable {
                         } catch (Exception exs) {
                             //exs.printStackTrace();
                         }
+                        //guardar archivo
+                    
+                } catch (Exception ex) {
+                    
+                }
+               
+            }
+            
+        }
+        if (comparar != null) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Archivo existente");
+            alert.setHeaderText("¿Desea sobrescribirlo?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                //Sobrescrbir
+            }
+            rutaArchivo=null;
+        }
+    }
+    
+    @FXML private void guardarB(ActionEvent e){
+        File file;
+        String nombreA = txtNombreB.getText();//nombre del archivo
+        buscar(tvArbol.getRoot().getChildren(),nombreA,Archivos.getDirectorio());
+        String comparar = rutaArchivo;
+        System.out.println("Comparar: "+ comparar);
+        System.out.println("Prueba de buscar guardar: "+rutaArchivo);
+        if (comparar == null) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("No existe el Archivo");
+            alert.setHeaderText("¿Desea guardarlo?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                try {
+                        
+                       //file = new File(ruta, nombreA + ".jpg");
+                    String extension = cmbExtesionesB.getValue().toString();
+                    System.out.println("Esta es la extesion: " + extension);
+                    file = new File("..\\datos" + rutaGB.getText(), nombreA + "." + extension);
+                    try {
+                        Files.write(file.toPath(), guardar.getBytes());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                         //guardar archivo
                     
                 } catch (Exception ex) {
@@ -208,18 +261,28 @@ public class FXMLExplorerController implements Initializable {
         AnchoPaneAbrir.setVisible(true);
         AnchoPaneExp.setVisible(false);
         AnchoPaneGuardar.setVisible(false);
+        AnchoPaneGuardarB.setVisible(false);
     }
     
     @FXML private void viewGuardar(ActionEvent e){
         AnchoPaneGuardar.setVisible(true);
         AnchoPaneAbrir.setVisible(false);
         AnchoPaneExp.setVisible(false);
+        AnchoPaneGuardarB.setVisible(false);        
     }
     
     @FXML private void viewExplorer(ActionEvent e){
         AnchoPaneExp.setVisible(true);
         AnchoPaneGuardar.setVisible(false);
         AnchoPaneAbrir.setVisible(false);
+        AnchoPaneGuardarB.setVisible(false);
+    }
+    
+    @FXML private void viewGuardarB(ActionEvent e){
+        AnchoPaneExp.setVisible(true);
+        AnchoPaneGuardar.setVisible(false);
+        AnchoPaneAbrir.setVisible(false);
+        AnchoPaneGuardarB.setVisible(true);
     }
     
     public String getRuta() {
@@ -281,7 +344,7 @@ public class FXMLExplorerController implements Initializable {
                 //System.out.println("Matches archivo");
                 //return "texto";
             }
-            if (extension[1].equals("jpg") || extension.equals("bmp")|| extension.equals("jpeg") || extension.equals("jpe") || extension.equals("jfif") || extension.equals("gif") || extension.equals("tif") || extension.equals("tiff") || extension.equals("png") ) {
+            if (extension[1].equals("jpg") || extension[1].equals("bmp")|| extension[1].equals("jpeg") || extension[1].equals("jpe") || extension[1].equals("jfif") || extension[1].equals("gif") || extension[1].equals("tif") || extension[1].equals("tiff") || extension[1].equals("png") ) {
                 TreeItem<String> txt = new TreeItem<>(subDirectorio, icono("mult.png", 20, 20));
                 folder.getChildren().add(txt);
                 //System.out.println("Matches archivo");
@@ -314,6 +377,7 @@ public class FXMLExplorerController implements Initializable {
         explorador();
         exploradorA();
         exploradorG();
+        exploradorGB();
     }
     
    
@@ -479,6 +543,71 @@ public class FXMLExplorerController implements Initializable {
             });
             controlGuardar.setOrientation(Orientation.HORIZONTAL);
             controlGuardar.getChildren().addAll(b);
+        }
+    }
+     ///////////////////////////////////////////////Guardar Block///////////////////////////////    
+     private void exploradorGB(){
+        extesionescmbB();
+        Archivos = new GestorArchivos("1");
+        folder = new TreeItem<>("1", icono("folder.png", 20, 20));
+        tvArbolGuardarB.setRoot(folder);
+        //System.out.println("Obtener root del arbol "+tvArbolGuardar.getRoot());
+        setDirectorio(folder, Archivos.getDirectorio(), "");
+        controlGuardarB.setPadding(new Insets(10, 10, 10, 10));
+        controlGuardarB.setVgap(5);
+        controlGuardarB.setHgap(5);
+        rutaGB.setText(getRaiz());
+        tvArbolGuardarB.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+
+                TreeItem<String> selectedItem = (TreeItem<String>) newValue;
+                TreeItem<String> padre = selectedItem.getParent();
+                seleccionado = selectedItem;
+                ruta = selectedItem.getValue();
+                while (padre != null) {
+                    ruta = "\\" + padre.getValue() + "\\" + ruta;
+                    padre = padre.getParent();
+
+                }
+                rutaGB.setText(ruta);
+                //setRuta(ruta);         
+                setIconFilesSave(selectedItem.getChildren());
+
+            }
+
+        });
+    }
+     
+     private void setIconFilesSaveB(ObservableList<TreeItem<String>> aux) {
+        
+        controlGuardarB.getChildren().clear();
+        controlGuardarB.setPrefColumns(3);
+        controlGuardarB.setPrefRows(3);
+        String[] nextension = new String[2];
+        for (int i = 0; i < aux.size(); i++) {
+            Button b = new Button();
+            b.setId(ruta);
+            nextension =  aux.get(i).getValue().split("\\.");
+            try {
+                b.setGraphic(icono("folder.png", 40, 40));
+                if (nextension[1].equals("txt")) {
+                    b.setGraphic(icono("txt.png", 40, 40));
+                }
+                if (nextension[1].equals("jpg") || nextension[1].equals("bmp") || nextension[1].equals("jpeg") || nextension[1].equals("jpe") || nextension[1].equals("jfif") || nextension[1].equals("gif") || nextension[1].equals("tif") || nextension[1].equals("tiff") || nextension[1].equals("png")) {
+                    b.setGraphic(icono("mult.png", 40, 40));
+                }
+            } catch (Exception ex) {
+            }
+            
+            b.setText(aux.get(i).getValue());
+            b.setTextAlignment(TextAlignment.CENTER);
+            b.setOnAction((e) -> {
+
+            });
+            controlGuardarB.setOrientation(Orientation.HORIZONTAL);
+            controlGuardarB.getChildren().addAll(b);
         }
     }
 }

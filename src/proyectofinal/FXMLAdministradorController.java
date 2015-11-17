@@ -48,7 +48,7 @@ public class FXMLAdministradorController implements Initializable {
     @FXML
     ChoiceBox choiceB;
     @FXML
-    Button btnBorrar, btnActualizar,btnActualizar1, btnNext, btnPrev, btnCerrarS,btnPaint;
+    Button btnBorrar, btnActualizar,btnActualizar1, btnNext, btnPrev, btnCerrarS,btnPaint,btnBlock;
     private ResultSet rs = null;
     private Connection conecc;
     private Statement st = null;
@@ -69,6 +69,21 @@ public class FXMLAdministradorController implements Initializable {
             Stage stageAux = (Stage) btnPaint.getScene().getWindow();
             stageAux.close();
             root = FXMLLoader.load(getClass().getResource("FXMLminipaint.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML private void abrirBlock(ActionEvent e){
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            Stage stageAux = (Stage) btnBlock.getScene().getWindow();
+            stageAux.close();
+            root = FXMLLoader.load(getClass().getResource("/proyectofinal/FXMLDocument.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
