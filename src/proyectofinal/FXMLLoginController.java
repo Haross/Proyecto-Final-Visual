@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,6 +26,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -40,6 +42,8 @@ public class FXMLLoginController implements Initializable {
     private PasswordField txtContrasena;
     @FXML
     private Button btnLogin;
+    @FXML
+    private AnchorPane PaneLogin;
     @FXML
     private MaterialIconView icon, icon2;
     
@@ -131,6 +135,11 @@ public class FXMLLoginController implements Initializable {
         txtUsuario.setOnKeyTyped((e)->{
             icon.setStyle("-fx-fill:#69F0AE;"); 
         });
+        /*ObservableList<String> aux = PaneLogin.getStylesheets();
+        String a = aux.get(aux.size()-1);
+        String[] aa = a.split("/");
+                System.out.println("hola:"+aa[aa.length-1]);
+*/
         txtContrasena.setOnKeyTyped((e)->{
             icon2.setStyle("-fx-fill:#69F0AE;"); 
         });

@@ -433,7 +433,7 @@ public class FXMLminipaintController implements Initializable {
     //////////////////////////////////////////////////////////////////
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
         gcB = TheCanvas.getGraphicsContext2D();
         gcF = canvasGo.getGraphicsContext2D();
         

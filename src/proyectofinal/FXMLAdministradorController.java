@@ -38,7 +38,7 @@ public class FXMLAdministradorController implements Initializable {
     TextField txtUsuario2, txtContrasena2, txtPerfil2, txtNombre2, txtApellido2,
               txtEdad2, txtCorreo2, txtDomicilio2, txtTelefono2;
     @FXML
-    AnchorPane paneAddUser, principal, paneConsultar, panePerfil;
+    AnchorPane paneAddUser,paneBorrar, principal, paneConsultar, panePerfil;
     @FXML
     ChoiceBox choiceB;
     @FXML
@@ -49,10 +49,11 @@ public class FXMLAdministradorController implements Initializable {
     public   String us;
    
     
-
+    @FXML
+    TextField txtUsuarioB, txtContrasenaB, txtPerfilB, txtNombreB, txtApellidoB, 
+             txtEdadB, txtCorreoB, txtDomicilioB, txtTelefonoB;
     
     public FXMLAdministradorController(){
-
         System.out.println("entra aqui");
     }
     
@@ -96,6 +97,7 @@ public class FXMLAdministradorController implements Initializable {
     private void ingresar() {
         principal.setVisible(false);
         paneAddUser.setVisible(true);
+        paneBorrar.setVisible(false);
     }
 
     private void insertarDatosPuro() {
@@ -146,11 +148,13 @@ public class FXMLAdministradorController implements Initializable {
         principal.setVisible(false);
         paneAddUser.setVisible(false);
         paneConsultar.setVisible(true);
+        paneBorrar.setVisible(false);
         consultarDatosPrimitive();
     }
 
     @FXML
     public void Perfil() {
+        paneBorrar.setVisible(false);
         principal.setVisible(false);
         paneAddUser.setVisible(false);
         paneConsultar.setVisible(false);
@@ -231,7 +235,11 @@ public class FXMLAdministradorController implements Initializable {
     }
     
     @FXML void Borrar(){
-        openWindowWithOption("FXMLBorrar.fxml");
+       principal.setVisible(false);
+       paneAddUser.setVisible(false);
+       paneConsultar.setVisible(false);
+       panePerfil.setVisible(false);
+       paneBorrar.setVisible(true);
         
     }
     private void consultarDatosPrimitive() {
@@ -469,7 +477,100 @@ public class FXMLAdministradorController implements Initializable {
         
         stage.show();
     }
-    
+    @FXML private void Buscar(){
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver"); //Comprobar el conector    org.gjt.mm.mysql.Driver
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            conecc = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root","");
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            st=conecc.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String usuario= txtUsuarioB.getText();
+        String instruccion=("SELECT *FROM usuarios WHERE usuario=('"+usuario+"');");
+        System.out.println("Buscando...");
+            try {
+            rs = st.executeQuery(instruccion); //Ejecuta el query de SQL
+            try {
+           
+            if (rs.next()){
+                    txtContrasenaB.setText(rs.getString("contraseña"));
+                    txtUsuarioB.setText(rs.getString("usuario"));
+                    txtPerfilB.setText(rs.getString("perfil"));
+                    txtNombreB.setText(rs.getString("nombre"));
+                    txtApellidoB.setText(rs.getString("apellido"));
+                    txtEdadB.setText(rs.getString("edad"));
+                    txtCorreoB.setText(rs.getString("correo"));
+                    txtDomicilioB.setText(rs.getString("domicilio"));
+                    txtTelefonoB.setText(rs.getString("telefono"));
+            }else{
+                Alert alert= new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Información");
+                alert.setHeaderText("Alerta");
+                alert.setContentText("¡No se han encontrado los datos!");
+                alert.showAndWait();
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+   }
+    @FXML private void DeleteB(ActionEvent event){
+         Connection conn=null;
+        Statement st;
+        try {
+                Class.forName("com.mysql.jdbc.Driver"); //Comprobar el conector    org.gjt.mm.mysql.Driver
+        } catch (ClassNotFoundException ex) {
+                Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+                conn = DriverManager.getConnection("jdbc:mysql://localhost/pfinal", "root","");
+        } catch (SQLException ex) {
+                Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            st=conn.createStatement();
+            String usuario= txtUsuarioB.getText();
+            Boolean resultado=false;
+            resultado = st.execute("DELETE FROM usuarios WHERE usuario = ('"+usuario+"');");
+            System.out.println("El resultado es: "+ resultado);    
+            if(!resultado){
+                Alert alert= new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Información");
+                alert.setHeaderText("Alerta");
+                alert.setContentText("¡Se han eliminado los datos!");
+                alert.showAndWait();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      eraseB();
+     }
+
+  private boolean eraseB(){
+          txtContrasenaB.setText(null);
+        txtUsuarioB.setText(null);
+        txtPerfilB.setText(null);
+        txtNombreB.setText(null);
+        txtApellidoB.setText(null);
+        txtEdadB.setText(null);
+        txtCorreoB.setText(null);
+        txtDomicilioB.setText(null);
+        txtTelefonoB.setText(null);
+          return true;
+      }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btnNext.setDisable(true);
