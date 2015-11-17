@@ -38,7 +38,7 @@ public class FXMLAdministradorController implements Initializable {
     TextField txtUsuario2, txtContrasena2, txtPerfil2, txtNombre2, txtApellido2,
               txtEdad2, txtCorreo2, txtDomicilio2, txtTelefono2;
     @FXML
-    AnchorPane paneAddUser,paneBorrar, principal, paneConsultar, panePerfil;
+    AnchorPane paneAdm,paneAddUser,paneBorrar, principal, paneConsultar, panePerfil;
     @FXML
     ChoiceBox choiceB;
     @FXML
@@ -574,6 +574,7 @@ public class FXMLAdministradorController implements Initializable {
       }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       paneAdm.getStylesheets().add(FXMLAdministradorController.class.getResource("Estilos/GreenStyle.css").toExternalForm());
         btnNext.setDisable(true);
         btnPrev.setDisable(true);
         btnActualizar.setDisable(true);
