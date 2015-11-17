@@ -38,8 +38,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import proyectofinal.FXMLLoginController;
-import proyectofinal.ManejoImagenes;
-import static proyectofinal.ManejoImagenes.gimagen;
+
+
 
 /**
  *
@@ -66,7 +66,6 @@ public class FXMLminipaintController implements Initializable {
     double startX, startY, lastX,lastY,oldX,oldY;
     double hg;
     
-    ManejoImagenes imagenNueva = new ManejoImagenes();
     Image currentImage;
     Image originalImage;
     public static WritableImage gimagen;
