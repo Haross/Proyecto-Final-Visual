@@ -5,7 +5,7 @@
  * @version 1.5
  */
 
-package proyectofinal;
+package proyectofinal.Block;
 
 public class Version {
 

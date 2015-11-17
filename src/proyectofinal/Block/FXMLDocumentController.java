@@ -27,7 +27,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import proyectofinal.Controla;
 import proyectofinal.FXMLLoginController;
-import proyectofinal.Version;
 
 /**
  *
