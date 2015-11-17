@@ -78,8 +78,9 @@ public class FXMLAdministradorController implements Initializable {
         try {
             Stage stageAux = (Stage) btnBlock.getScene().getWindow();
             stageAux.close();
-            root = FXMLLoader.load(getClass().getResource("/proyectofinal/FXMLDocument.fxml"));
+            root = FXMLLoader.load(getClass().getResource("Block/FXMLDocument.fxml"));
         } catch (IOException ex) {
+            System.out.println("error");
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Scene scene = new Scene(root);
