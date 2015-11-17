@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectofinal;
+package proyectofinal.Paint;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
@@ -37,6 +37,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import proyectofinal.FXMLLoginController;
+import proyectofinal.ManejoImagenes;
 import static proyectofinal.ManejoImagenes.gimagen;
 
 /**
@@ -44,7 +46,8 @@ import static proyectofinal.ManejoImagenes.gimagen;
  * @author sbpaco
  */
 public class FXMLminipaintController implements Initializable {
-    
+    public static String nombreArchivo = null;
+    public static String rutaArchivoPaint = null;
     //>>>>>>>>>>>>>>>>>>>>>>>FXML Variables<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @FXML
     private RadioButton strokeRB, fillRB, strokeFillRB;
@@ -337,10 +340,9 @@ public class FXMLminipaintController implements Initializable {
     private void saveAsNewImage(ActionEvent event){
         Stage stage = new Stage();
         Parent root = null;
-        try {
-            Stage stageAux = (Stage) btnGuardar.getScene().getWindow();
-            stageAux.close();
-            root = FXMLLoader.load(getClass().getResource("FXMLExplorer.fxml"));
+        try {            
+            //Investigar manera correcta root = FXMLLoader.load(getClass().getResource("FXMLExplorer.fxml"));
+            root = FXMLLoader.load(FXMLLoginController.class.getResource("Explorador/FXMLExplorerGuardar.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -353,17 +355,30 @@ public class FXMLminipaintController implements Initializable {
     private void saveCurrentImage(ActionEvent e){
         Stage stage = new Stage();
         Parent root = null;
-        try {
-            Stage stageAux = (Stage) btnGuardar.getScene().getWindow();
-            stageAux.close();
-            root = FXMLLoader.load(getClass().getResource("FXMLExplorer.fxml"));
+        capturaCanvas();
+            if(nombreArchivo != null){
+                System.out.println("nom"+nombreArchivo);
+                System.out.println("ru"+rutaArchivoPaint);
+                String[] extension = nombreArchivo.split("\\.");
+                File file = new File(rutaArchivoPaint,nombreArchivo);
+                try {
+                    ImageIO.write(SwingFXUtils.fromFXImage(gimagen, null),extension[1], file);
+                } catch (Exception exs) {
+                            //exs.printStackTrace();
+                }
+            }else{
+            try {            
+            //Investigar manera correcta root = FXMLLoader.load(getClass().getResource("FXMLExplorer.fxml"));
+            root = FXMLLoader.load(FXMLLoginController.class.getResource("Explorador/FXMLExplorerGuardar.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         capturaCanvas();
+        }
     }
     
     public void capturaCanvas() {

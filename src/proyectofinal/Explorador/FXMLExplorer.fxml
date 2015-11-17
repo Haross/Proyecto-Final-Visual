@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="736.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.Explorador.FXMLExplorerController">
+         <children>
+            <SplitPane dividerPositions="0.28337874659400547" layoutY="24.0" prefHeight="532.0" prefWidth="736.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
+              <items>
+                  <TreeView fx:id="tvArbol" prefHeight="554.0" prefWidth="256.0">
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#nuevaVentana" text="Nueva Carpeta" />
+                              <MenuItem mnemonicParsing="false" onAction="#eliminarVentana" text="Elimnar Carpeta" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TreeView>
+                  <TilePane fx:id="control" prefHeight="519.0" prefWidth="414.0" />
+              </items>
+            </SplitPane>
+            
+         </children>
+</AnchorPane>

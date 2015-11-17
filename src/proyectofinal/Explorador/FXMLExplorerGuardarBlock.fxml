@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="746.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.Explorador.FXMLExplorerGuardarBlockController">
+         <children>
+            <SplitPane dividerPositions="0.2956403269754768" layoutY="24.0" prefHeight="464.0" prefWidth="746.0" AnchorPane.bottomAnchor="77.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+               <items>
+                  <TreeView fx:id="tvArbol" prefHeight="447.0" prefWidth="222.0">
+                     <contextMenu>
+                        <ContextMenu>
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#nuevaVentana" text="Nueva Carpeta" />
+                              <MenuItem mnemonicParsing="false" onAction="#eliminarVentana" text="Elimnar Carpeta" />
+                           </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TreeView>
+                  <TilePane fx:id="control" prefHeight="563.0" prefWidth="726.0" />
+               </items>
+            </SplitPane>
+            <Pane layoutY="486.0" prefHeight="78.0" prefWidth="746.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="486.0">
+               <children>
+                  <Button fx:id="btnGuardarB" layoutX="447.0" layoutY="19.0" mnemonicParsing="false" onAction="#guardarB" prefHeight="30.0" prefWidth="76.0" text="Guardar">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="txtNombreB" layoutX="14.0" layoutY="21.0" prefHeight="25.0" prefWidth="396.0" promptText="Escriba el nombre del archivo sin extención" />
+                  <TextArea fx:id="rutaGB" layoutX="63.0" layoutY="54.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="485.0" />
+                  <Label layoutX="14.0" layoutY="56.0" text="Ruta:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cmbExtesionesB" layoutX="572.0" layoutY="21.0" prefWidth="150.0" />
+               </children>
+            </Pane>
+            <MenuBar prefHeight="25.0" prefWidth="746.0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Cambiar">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#viewExplorer" text="Explorer" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewAbrir" text="Abrir" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewGuardar" text="Guardar" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewGuardarB" text="Guardar Block" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+</AnchorPane>
