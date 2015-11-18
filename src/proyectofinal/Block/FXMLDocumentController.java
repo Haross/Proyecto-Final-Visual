@@ -29,7 +29,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import proyectofinal.Controla;
 import proyectofinal.FXMLLoginController;
-import static proyectofinal.Explorador.FXMLExplorerAbrirController.abriruta;
 /**
  *
  * @author none
@@ -38,6 +37,7 @@ import static proyectofinal.Explorador.FXMLExplorerAbrirController.abriruta;
 public class FXMLDocumentController implements Initializable {
     public static String nombreArchivo = null;
     public static String rutaArchivoBlock = null;
+    public static String textoArchivoBlock = null;
     //Declaraciones de Componentes
     @FXML private Label label;
     @FXML TextArea TextoArea;
@@ -209,8 +209,18 @@ public class FXMLDocumentController implements Initializable {
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
-
+        stage.showAndWait();
+        
+        
+        //////////////formato
+        String text2[] = textoArchivoBlock.split("@#1codigo4k781#@");
+        text = text2[1];
+        this.TextoArea.setText(text2[0]);
+        String text3[] = text.split(",");
+        cbFonts.setValue(text3[0]);
+        
+        cbSize.setValue(text3[1]);
+        selectFont(event);
         
     }
     

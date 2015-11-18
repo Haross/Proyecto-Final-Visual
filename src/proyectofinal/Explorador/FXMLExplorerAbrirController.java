@@ -43,7 +43,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import static proyectofinal.Paint.FXMLminipaintController.gimagen;
-import static proyectofinal.Block.FXMLDocumentController.guardar;
+import static proyectofinal.Block.FXMLDocumentController.textoArchivoBlock;
 /**
  *
  * @author Javier - Edgardo c:
@@ -64,7 +64,6 @@ public class FXMLExplorerAbrirController implements Initializable {
     String nombreC;
     String[] extension = new String[2];
     String rutaArchivo = null;
-    public static String abriruta;
     //ManejoImagenes gimagen = new ManejoImagenes ();
     @FXML private void abrir(ActionEvent e) {
         String nombreA = txtNombreBA.getText();
@@ -86,8 +85,9 @@ public class FXMLExplorerAbrirController implements Initializable {
             if (result.get() == ButtonType.OK){
                 //Abrir la aplicacion
                 if (extension[1].equals("txt")) {
-                   abriruta = rutaArchivo;
-                   abrirBlock();
+                   textoArchivoBlock  = openFile(rutaArchivo);
+                   Stage stageAux = (Stage) tvArbol.getScene().getWindow();
+                   stageAux.close();
                 }else{
                     
                 }
@@ -95,23 +95,8 @@ public class FXMLExplorerAbrirController implements Initializable {
             rutaArchivo=null;
         }
     }
-    public void abrirBlock(){
-        String text = openFile();
-        System.out.println("Este es el texto: "+text);
-        String text2[] = text.split("@#1codigo4k781#@");
-        text = text2[1];
-        //this.TextoArea.setText(text2[0]);
-        String text3[] = text.split(",");
-        //opcSize = text3[1];
-        //System.out.println("ENTEROOOOOOOO " + opcSize);
-       // int value = Integer.parseInt(opcSize);
-        //cbFonts.setValue(text3[0]);
-        //cbSize.setValue(text3[1]);
-        //selectFont(event);
-        //this.TextoArea.setFont(new Font(text3[0],value));
-        
-    }
-    public String openFile(){
+
+    public String openFile(String abriruta){
         File file = new File(abriruta);
         
         if(file == null)
@@ -131,6 +116,7 @@ public class FXMLExplorerAbrirController implements Initializable {
             }
         }
     }
+    
     public String getRaiz(){
         TreeItem<String> a = tvArbol.getRoot();
         return ruta = "\\"+a.getValue();
