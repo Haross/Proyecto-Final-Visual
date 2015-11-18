@@ -61,8 +61,8 @@ public class FXMLAdministradorController implements Initializable {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            Stage stageAux = (Stage) btnPaint.getScene().getWindow();
-            stageAux.close();
+            /*Stage stageAux = (Stage) btnPaint.getScene().getWindow();
+            stageAux.close();*/
             root = FXMLLoader.load(getClass().getResource("Paint/FXMLminipaint.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,8 +76,7 @@ public class FXMLAdministradorController implements Initializable {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            Stage stageAux = (Stage) btnBlock.getScene().getWindow();
-            stageAux.close();
+            
             root = FXMLLoader.load(getClass().getResource("Block/FXMLDocument.fxml"));
         } catch (IOException ex) {
             System.out.println("error");
@@ -111,7 +110,7 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "facil");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -169,7 +168,7 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conecc = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "facil");
+            conecc = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -253,7 +252,7 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conecc = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "facil");
+            conecc = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -343,7 +342,7 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "facil");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -376,7 +375,7 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "facil");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -417,7 +416,7 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "facil");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -469,7 +468,7 @@ public class FXMLAdministradorController implements Initializable {
         Parent root = null;
         try {
             
-            root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+            root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -488,7 +487,7 @@ public class FXMLAdministradorController implements Initializable {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conecc = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root","facil");
+            conecc = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root","");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -539,7 +538,7 @@ public class FXMLAdministradorController implements Initializable {
                 Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-                conn = DriverManager.getConnection("jdbc:mysql://localhost/pfinal", "root","facil");
+                conn = DriverManager.getConnection("jdbc:mysql://localhost/pfinal", "root","");
         } catch (SQLException ex) {
                 Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }

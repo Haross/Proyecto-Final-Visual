@@ -1,61 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import de.jensd.fx.glyphs.materialicons.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="358.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLUsuarioController">
+<AnchorPane  prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLUsuarioController">
     <children>
-       <AnchorPane fx:id="principalUser" layoutY="6.0" prefHeight="380.0" prefWidth="369.0">
+         <ImageView fitHeight="550.0" fitWidth="700.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+               <Image url="@Login/background.png" />
+            </image>
+         </ImageView>
+      <AnchorPane layoutX="37.0" layoutY="37.0" minHeight="-Infinity" prefHeight="494.0" prefWidth="620.0">
+         <children>
+            <Rectangle arcHeight="9.0" arcWidth="9.0" fill="WHITE" height="484.0" stroke="TRANSPARENT" strokeType="INSIDE" width="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="94.0">
                <children>
-                  <ImageView fitHeight="386.0" fitWidth="376.0" layoutX="-2.0" layoutY="-5.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@Fondoblanco.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="64.0" layoutY="25.0" text="Bienvenido Usuario" textFill="#263772">
-                     <font>
-                        <Font name="Tahoma" size="19.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="96.0" fitWidth="95.0" layoutX="124.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@usuario.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="btnPerfil" layoutX="120.0" layoutY="171.0" mnemonicParsing="false" onAction="#Perfil" text="Perfil" />
-                  <Button fx:id="btnBlock" layoutX="120.0" layoutY="202.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" text="Bloc de Notas" />
-                  <Button fx:id="btnPaint" layoutX="120.0" layoutY="235.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" text="Paint" />
-                  <Button fx:id="btnCerrarS" layoutX="124.0" layoutY="318.0" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="25.0" prefWidth="103.0" text="Cerrar Sesion" />
+                  <Rectangle arcHeight="9.0" arcWidth="9.0" fill="#235685" height="484.0" stroke="TRANSPARENT" strokeType="INSIDE" width="94.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="492.0" AnchorPane.topAnchor="0.0" />
+                  <Rectangle fill="#235685" height="484.0" layoutX="74.0" stroke="TRANSPARENT" strokeType="INSIDE" width="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TilePane fx:id="userPerfil" layoutY="63.0" orientation="VERTICAL" prefHeight="407.0" prefWidth="94.0" vgap="15.0">
+                     <children>
+                        <Button fx:id="btnPerfil1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Perfil" prefHeight="35.0" prefWidth="35.0">
+                           <font>
+                              <Font name="MaterialDesignIcons" size="12.0" />
+                           </font>
+                           <graphic>
+                              <MaterialDesignIconView fx:id="iconPerfil1" fill="WHITE" glyphName="ACCOUNT_BOX" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnPaint1" mnemonicParsing="false" onAction="#abrirPaint">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PAINT_BRUSH" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnBlock1" mnemonicParsing="false" onAction="#abrirBlock">
+                           <graphic>
+                              <MaterialIconView fill="WHITE" glyphName="NOTE_ADD" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnCerrarS1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="35.0" prefWidth="35.0">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="iconoCerrar1" fill="WHITE" glyphName="LOGOUT" size="25" />
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </TilePane>
                </children>
-            </AnchorPane> 
-       <AnchorPane fx:id="perfilUser" prefHeight="502.0" prefWidth="374.0" visible="false">
-             <children>
-               <Label layoutX="58.0" layoutY="35.0" text="Usuario:" />
-               <Label layoutX="58.0" layoutY="71.0" text="Contraseña:" />
-               <Label layoutX="58.0" layoutY="108.0" text="Perfil:" />
-               <Label layoutX="58.0" layoutY="144.0" text="Nombre:" />
-               <Label layoutX="58.0" layoutY="180.0" text="Apellido:" />
-               <Label layoutX="58.0" layoutY="216.0" text="Edad:" />
-               <Label layoutX="58.0" layoutY="250.0" text="E-mail:" />
-               <Label layoutX="58.0" layoutY="285.0" text="Domicilio:" />
-               <Label layoutX="58.0" layoutY="317.0" text="Telefono:" />
-               <Label layoutX="58.0" layoutY="349.0" text="Estado:" />
-               <Label layoutX="58.0" layoutY="385.0" text="Ciudad:" />
-               <TextField fx:id="txtUsuario" layoutX="153.0" layoutY="31.0" />
-               <TextField fx:id="txtContrasena" layoutX="153.0" layoutY="67.0" />
-               <TextField fx:id="txtNombre" layoutX="153.0" layoutY="140.0" />
-               <TextField fx:id="txtApellido" layoutX="153.0" layoutY="176.0" />
-               <TextField fx:id="txtEdad" layoutX="153.0" layoutY="212.0" />
-               <TextField fx:id="txtCorreo" layoutX="153.0" layoutY="246.0" />
-               <TextField fx:id="txtDomicilio" layoutX="153.0" layoutY="281.0" />
-               <TextField fx:id="txtTelefono" layoutX="153.0" layoutY="313.0" />
-               <TextField fx:id="txtPerfil" layoutX="153.0" layoutY="104.0" />
-               <Button fx:id="btnActualizar" layoutX="149.0" layoutY="420.0"  onAction="#Actualizar" mnemonicParsing="false"  prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
-               <Button fx:id="btnReturn" layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#Cancel" text="Regresar" />
-            </children>
-         </AnchorPane>
-   </children>  
+            </AnchorPane>
+            <AnchorPane fx:id="perfilUser" prefHeight="484.0" prefWidth="526.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="58.0" layoutY="35.0" text="Usuario:" />
+                  <Label layoutX="58.0" layoutY="71.0" text="Contraseña:" />
+                  <Label layoutX="58.0" layoutY="108.0" text="Perfil:" />
+                  <Label layoutX="58.0" layoutY="144.0" text="Nombre:" />
+                  <Label layoutX="58.0" layoutY="180.0" text="Apellido:" />
+                  <Label layoutX="58.0" layoutY="216.0" text="Edad:" />
+                  <Label layoutX="58.0" layoutY="250.0" text="E-mail:" />
+                  <Label layoutX="58.0" layoutY="285.0" text="Domicilio:" />
+                  <Label layoutX="58.0" layoutY="317.0" text="Telefono:" />
+                  <TextField fx:id="txtUsuario" layoutX="153.0" layoutY="31.0" />
+                  <TextField fx:id="txtContrasena" layoutX="153.0" layoutY="67.0" />
+                  <TextField fx:id="txtNombre" layoutX="153.0" layoutY="140.0" />
+                  <TextField fx:id="txtApellido" layoutX="153.0" layoutY="176.0" />
+                  <TextField fx:id="txtEdad" layoutX="153.0" layoutY="212.0" />
+                  <TextField fx:id="txtCorreo" layoutX="153.0" layoutY="246.0" />
+                  <TextField fx:id="txtDomicilio" layoutX="153.0" layoutY="281.0" />
+                  <TextField fx:id="txtTelefono" layoutX="153.0" layoutY="313.0" />
+                  <TextField fx:id="txtPerfil" layoutX="153.0" layoutY="104.0" />
+                  <Button fx:id="btnActualizar" layoutX="153.0" layoutY="438.0" mnemonicParsing="false" onAction="#Actualizar" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
+                  <Button layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#Cancel" text="Regresar" />
+               </children>
+            </AnchorPane>
+             <AnchorPane fx:id="principalUser" prefHeight="483.0" prefWidth="526.0" visible="false" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <children>
+                     <Label layoutX="64.0" layoutY="25.0" text="Bienvenido usuario" textFill="#263772">
+                        <font>
+                           <Font name="Tahoma" size="19.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </AnchorPane>
+         </children>
+      </AnchorPane>  
+   </children>
 </AnchorPane>

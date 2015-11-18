@@ -49,6 +49,36 @@ public class FXMLUsuarioController implements Initializable {
     int cont = 0;
     public   String us;
     
+    
+    @FXML private void abrirPaint(ActionEvent e){
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+       
+            root = FXMLLoader.load(getClass().getResource("Paint/FXMLminipaint.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML private void abrirBlock(ActionEvent e){
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            
+            root = FXMLLoader.load(getClass().getResource("Block/FXMLDocument.fxml"));
+        } catch (IOException ex) {
+            System.out.println("error");
+            Logger.getLogger(FXMLUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
      @FXML private void CerrarSesion(ActionEvent e){
         Stage s = (Stage) btnCerrarS.getScene().getWindow();
         s.close();
@@ -57,7 +87,7 @@ public class FXMLUsuarioController implements Initializable {
         Parent root = null;
         try {
             
-            root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+            root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -86,7 +116,7 @@ public class FXMLUsuarioController implements Initializable {
             Logger.getLogger(FXMLUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conecc = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "facil");
+            conecc = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -114,12 +144,12 @@ public class FXMLUsuarioController implements Initializable {
                     txtUsuario.setText(rs.getString("usuario"));
                     txtPerfil.setText(rs.getString("perfil"));
                     txtNombre.setText(rs.getString("nombre"));
-                    txtApellido.setText(rs.getString("apellido"));
+                    txtApellido.setText(rs.getString("apellidos"));
                     txtEdad.setText(rs.getString("edad"));
-                    txtCorreo.setText(rs.getString("correo"));
+                    txtCorreo.setText(rs.getString("email"));
                     txtDomicilio.setText(rs.getString("domicilio"));
                     txtTelefono.setText(rs.getString("telefono"));
-                }
+                    }
             } catch (SQLException ex) {
                 Logger.getLogger(FXMLUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -138,7 +168,7 @@ public class FXMLUsuarioController implements Initializable {
             Logger.getLogger(FXMLUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "facil");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
