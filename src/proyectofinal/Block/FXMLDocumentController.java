@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -28,7 +29,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import proyectofinal.Controla;
 import proyectofinal.FXMLLoginController;
-
+import static proyectofinal.Explorador.FXMLExplorerAbrirController.abriruta;
 /**
  *
  * @author none
@@ -150,26 +151,37 @@ public class FXMLDocumentController implements Initializable {
      }
   
      String opcSize;
+     
      @FXML
      private void selectFont(ActionEvent event){
-         try{
-         String opc;
-         int value;
-        opc = (String)cbFonts.getValue();
-        opcSize = (String) cbSize.getValue();
-        value = Integer.parseInt(opcSize);
-        switch(opc){
-            
-            case "Verdana": TextoArea.setFont(new Font("Verdana",value));break;
-            case "Comic Sans MS": TextoArea.setFont(new Font("Comic Sans MS",value));break;
-            case "Calibri": TextoArea.setFont(new Font("Calibri",value));break;
-            case "Arial": TextoArea.setFont(new Font("Arial",value));break;
-            case "Broadway": TextoArea.setFont(new Font("Broadway",value));break; 
-        }
-         }catch(Exception e){
-             
+         try {
+             String opc;
+             int value;
+             opc = (String) cbFonts.getValue();
+             opcSize = (String) cbSize.getValue();
+             value = Integer.parseInt(opcSize);
+             switch (opc) {
+
+                 case "Verdana":
+                     TextoArea.setFont(new Font("Verdana", value));
+                     break;
+                 case "Comic Sans MS":
+                     TextoArea.setFont(new Font("Comic Sans MS", value));
+                     break;
+                 case "Calibri":
+                     TextoArea.setFont(new Font("Calibri", value));
+                     break;
+                 case "Arial":
+                     TextoArea.setFont(new Font("Arial", value));
+                     break;
+                 case "Broadway":
+                     TextoArea.setFont(new Font("Broadway", value));
+                     break;
+             }
+         } catch (Exception e) {
+
          }
-         
+
      }
      
      ObservableList<String> list = FXCollections.observableArrayList(
@@ -187,21 +199,23 @@ public class FXMLDocumentController implements Initializable {
     }    
     
     @FXML private void abrir(ActionEvent event){
-        String text = this.Archivos.openFile();
-        String text2[] = text.split("@#1codigo4k781#@");
-        text = text2[1];
-        this.TextoArea.setText(text2[0]);
-        String text3[] = text.split(",");
-        //opcSize = text3[1];
-        //System.out.println("ENTEROOOOOOOO " + opcSize);
-       // int value = Integer.parseInt(opcSize);
-        cbFonts.setValue(text3[0]);
         
-        cbSize.setValue(text3[1]);
-        selectFont(event);
-        //this.TextoArea.setFont(new Font(text3[0],value));
+        Stage stage = new Stage();
+        Parent root = null;
+        try {            
+            root = FXMLLoader.load(FXMLLoginController.class.getResource("Explorador/FXMLExplorerAbrir.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
         
     }
+    
+    
+    
     
     @FXML private void guardarComo(ActionEvent event){
        Stage stage = new Stage();

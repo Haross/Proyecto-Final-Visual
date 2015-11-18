@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -63,10 +64,12 @@ public class FXMLExplorerAbrirController implements Initializable {
     String nombreC;
     String[] extension = new String[2];
     String rutaArchivo = null;
-    
+    public static String abriruta;
     //ManejoImagenes gimagen = new ManejoImagenes ();
     @FXML private void abrir(ActionEvent e) {
         String nombreA = txtNombreBA.getText();
+        String [] extension = new String[2];
+        extension = nombreA.split("\\.");
         buscar(tvArbol.getRoot().getChildren(),nombreA,Archivos.getDirectorio());
         Alert alert = new Alert(AlertType.CONFIRMATION);
         Alert alertN = new Alert(AlertType.ERROR);
@@ -79,13 +82,55 @@ public class FXMLExplorerAbrirController implements Initializable {
             alert.setTitle("Archivo Encotrado");
             alert.setHeaderText("¿Desea abrirlo?");
             Optional<ButtonType> result = alert.showAndWait();
+            System.out.println("Ruta archivo :"+ rutaArchivo);
             if (result.get() == ButtonType.OK){
                 //Abrir la aplicacion
+                if (extension[1].equals("txt")) {
+                   abriruta = rutaArchivo;
+                   abrirBlock();
+                }else{
+                    
+                }
             }
             rutaArchivo=null;
         }
     }
- 
+    public void abrirBlock(){
+        String text = openFile();
+        System.out.println("Este es el texto: "+text);
+        String text2[] = text.split("@#1codigo4k781#@");
+        text = text2[1];
+        //this.TextoArea.setText(text2[0]);
+        String text3[] = text.split(",");
+        //opcSize = text3[1];
+        //System.out.println("ENTEROOOOOOOO " + opcSize);
+       // int value = Integer.parseInt(opcSize);
+        //cbFonts.setValue(text3[0]);
+        //cbSize.setValue(text3[1]);
+        //selectFont(event);
+        //this.TextoArea.setFont(new Font(text3[0],value));
+        
+    }
+    public String openFile(){
+        File file = new File(abriruta);
+        
+        if(file == null)
+            return "";
+        else{
+            try{
+                String texto = "";
+                List<String> ls = Files.readAllLines(file.toPath());
+                for(int i = 0; i<ls.size();i++){
+                    texto+= ls.get(i)+ "\n";
+                }
+                System.out.println("Documento leido");
+                return texto;
+            }catch(IOException es){
+                es.printStackTrace();
+                return "";           
+            }
+        }
+    }
     public String getRaiz(){
         TreeItem<String> a = tvArbol.getRoot();
         return ruta = "\\"+a.getValue();
