@@ -48,6 +48,7 @@ import proyectofinal.FXMLLoginController;
 public class FXMLminipaintController implements Initializable {
     public static String nombreArchivo = null;
     public static String rutaArchivoPaint = null;
+    public static Image imagenNueva = null;
     //>>>>>>>>>>>>>>>>>>>>>>>FXML Variables<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @FXML
     private RadioButton strokeRB, fillRB, strokeFillRB;
@@ -316,23 +317,22 @@ public class FXMLminipaintController implements Initializable {
     //>>>>>>>>>>>>>>>>>>>>Save and open images<<<<<<<<<<<<<<<<<<<<<<<
     @FXML
     private void openImage(ActionEvent event){
-        /*Image imagenAbrir;
-        imagenAbrir = this.imagenNueva.openFile();
-        gcB.clearRect(0, 0, TheCanvas.getWidth(), TheCanvas.getHeight());
-        gcF.clearRect(0, 0, TheCanvas.getWidth(), TheCanvas.getHeight());
-        gcB.drawImage(imagenAbrir, 0, 0);*/
+        
         Stage stage = new Stage();
         Parent root = null;
-        try {
-            Stage stageAux = (Stage) btnAbrir.getScene().getWindow();
-            stageAux.close();
-            root = FXMLLoader.load(getClass().getResource("FXMLExplorer.fxml"));
+        try {            
+            root = FXMLLoader.load(FXMLLoginController.class.getResource("Explorador/FXMLExplorerAbrir.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
+        stage.showAndWait();
+        Image imagenAbrir;
+        imagenAbrir = imagenNueva;
+        gcB.clearRect(0, 0, TheCanvas.getWidth(), TheCanvas.getHeight());
+        gcF.clearRect(0, 0, TheCanvas.getWidth(), TheCanvas.getHeight());
+        gcB.drawImage(imagenAbrir, 0, 0);
     }
     
     @FXML

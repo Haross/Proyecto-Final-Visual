@@ -40,10 +40,12 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import static proyectofinal.Paint.FXMLminipaintController.gimagen;
 import static proyectofinal.Block.FXMLDocumentController.textoArchivoBlock;
+import static proyectofinal.Paint.FXMLminipaintController.imagenNueva;
 /**
  *
  * @author Javier - Edgardo c:
@@ -89,7 +91,9 @@ public class FXMLExplorerAbrirController implements Initializable {
                    Stage stageAux = (Stage) tvArbol.getScene().getWindow();
                    stageAux.close();
                 }else{
-                    
+                    imagenNueva = openImage(rutaArchivo);
+                    Stage stageAux = (Stage) tvArbol.getScene().getWindow();
+                    stageAux.close();
                 }
             }
             rutaArchivo=null;
@@ -115,6 +119,22 @@ public class FXMLExplorerAbrirController implements Initializable {
                 return "";           
             }
         }
+    }
+    
+    public Image openImage(String abriruta) {
+        File file = new File(abriruta);
+        
+        if (file == null) {
+            return imagenNueva;
+        } else {
+            try {
+                imagenNueva = new Image(file.toURI().toString());
+            } catch (Exception e) {
+                e.printStackTrace();    
+            }
+        }
+        
+        return imagenNueva;
     }
     
     public String getRaiz(){

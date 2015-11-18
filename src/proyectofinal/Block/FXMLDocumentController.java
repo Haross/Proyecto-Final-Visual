@@ -213,7 +213,8 @@ public class FXMLDocumentController implements Initializable {
         
         
         //////////////formato
-        String text2[] = textoArchivoBlock.split("@#1codigo4k781#@");
+        try {
+            String text2[] = textoArchivoBlock.split("@#1codigo4k781#@");
         text = text2[1];
         this.TextoArea.setText(text2[0]);
         String text3[] = text.split(",");
@@ -221,6 +222,9 @@ public class FXMLDocumentController implements Initializable {
         
         cbSize.setValue(text3[1]);
         selectFont(event);
+        
+        } catch (Exception e) {
+        }
         
     }
     
