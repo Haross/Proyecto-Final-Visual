@@ -25,7 +25,7 @@
                     <items>
                   <MenuItem mnemonicParsing="false" onAction="#abrir" text="Abrir" />
                         <MenuItem onAction="#creditos" text="Creditos" />
-                  <MenuItem mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+                  <MenuItem mnemonicParsing="false" onAction="#guardarComo" text="Guardar" />
                         <MenuItem onAction="#salir" text="Salir" />
                   <MenuItem mnemonicParsing="false" onAction="#guardarComo" text="Guardar Como" />
                     </items>

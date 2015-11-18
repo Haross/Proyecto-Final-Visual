@@ -299,8 +299,9 @@ public class FXMLExplorerGuardarBlockController implements Initializable {
                 TreeItem<String> padre = selectedItem.getParent();
                 seleccionado = selectedItem;
                 ruta = selectedItem.getValue();
+                ruta = "\\" + selectedItem.getValue();
                 while (padre != null) {
-                    ruta = "\\" + padre.getValue() + "\\" + ruta;
+                    ruta = "\\" + padre.getValue() + ruta;
                     padre = padre.getParent();
 
                 }
