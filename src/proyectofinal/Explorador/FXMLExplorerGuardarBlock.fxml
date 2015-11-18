@@ -45,10 +45,10 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Cambiar">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#viewExplorer" text="Explorer" />
-                        <MenuItem mnemonicParsing="false" onAction="#viewAbrir" text="Abrir" />
-                        <MenuItem mnemonicParsing="false" onAction="#viewGuardar" text="Guardar" />
-                        <MenuItem mnemonicParsing="false" onAction="#viewGuardarB" text="Guardar Block" />
+                        <MenuItem mnemonicParsing="false" text="Explorer" />
+                        <MenuItem mnemonicParsing="false" text="Abrir" />
+                        <MenuItem mnemonicParsing="false" text="Guardar" />
+                        <MenuItem mnemonicParsing="false" text="Guardar Block" />
                      </items>
                   </Menu>
                </menus>

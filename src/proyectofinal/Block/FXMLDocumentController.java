@@ -1,5 +1,6 @@
 package proyectofinal.Block;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -34,7 +35,8 @@ import proyectofinal.FXMLLoginController;
  */
 
 public class FXMLDocumentController implements Initializable {
-    
+    public static String nombreArchivo = null;
+    public static String rutaArchivoBlock = null;
     //Declaraciones de Componentes
     @FXML private Label label;
     @FXML TextArea TextoArea;
@@ -202,12 +204,11 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML private void guardarComo(ActionEvent event){
-        Stage stage = new Stage();
+       Stage stage = new Stage();
         Parent root = null;
-        try {
-            Stage stageAux = (Stage) btnGuardar.getScene().getWindow();
-            stageAux.close();
-            root = FXMLLoader.load(getClass().getResource("FXMLExplorer.fxml"));
+        try {            
+            //Investigar manera correcta root = FXMLLoader.load(getClass().getResource("FXMLExplorer.fxml"));
+            root = FXMLLoader.load(FXMLLoginController.class.getResource("Explorador/FXMLExplorerGuardarBlock.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -217,6 +218,37 @@ public class FXMLDocumentController implements Initializable {
         String save = this.TextoArea.getText() + "@#1codigo4k781#@" + (String)cbFonts.getValue() + "," + (String) cbSize.getValue() + ",";
         guardar = save;
         //this.Archivos.saveFileAs( save);
+        
+    }
+    
+    @FXML 
+    private void guardar(ActionEvent e){
+        Stage stage = new Stage();
+        Parent root = null;
+        String save = this.TextoArea.getText() + "@#1codigo4k781#@" + (String) cbFonts.getValue() + "," + (String) cbSize.getValue() + ",";
+        guardar = save;
+        if (nombreArchivo != null) {
+            System.out.println("nom" + nombreArchivo);
+            System.out.println("ru" + rutaArchivoBlock);
+            String[] extension = nombreArchivo.split("\\.");
+            File file = new File(rutaArchivoBlock, nombreArchivo);
+            try {
+                Files.write(file.toPath(), guardar.getBytes());
+            } catch (Exception exs) {
+                //exs.printStackTrace();
+            }
+        } else {
+            try {
+                //Investigar manera correcta root = FXMLLoader.load(getClass().getResource("FXMLExplorer.fxml"));
+                root = FXMLLoader.load(FXMLLoginController.class.getResource("Explorador/FXMLExplorerGuardar.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
         
     }
     /*
@@ -238,10 +270,7 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     */
-    @FXML private void guardar(ActionEvent event){
-        String save = this.TextoArea.getText() + "@#1codigo4k781#@" + (String)cbFonts.getValue() + "," + (String) cbSize.getValue()+ ",";
-        this.Archivos.saveFile( save);
-    }
+
 
     void setScene(Scene scene) {
         this.scene = scene;

@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
@@ -34,10 +35,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import static proyectofinal.Block.FXMLDocumentController.guardar;
-import static proyectofinal.Paint.FXMLminipaintController.gimagen;
-
+import static proyectofinal.Block.FXMLDocumentController.nombreArchivo;
+import static proyectofinal.Block.FXMLDocumentController.rutaArchivoBlock;
 /**
  * FXML Controller class
  *
@@ -70,13 +72,12 @@ public class FXMLExplorerGuardarBlockController implements Initializable {
         cmbExtesionesB.getItems().add("txt");
         cmbExtesionesB.getItems().add("doc");
     }
-    
-    
-    
+
     @FXML private void guardarB(ActionEvent e){
         File file;
+        String extension = cmbExtesionesB.getValue().toString();
         String nombreA = txtNombreB.getText();//nombre del archivo
-        buscar(tvArbol.getRoot().getChildren(),nombreA,Archivos.getDirectorio());
+        buscar(tvArbol.getRoot().getChildren(), nombreA + "." + extension, Archivos.getDirectorio());
         String comparar = rutaArchivo;
         System.out.println("Comparar: "+ comparar);
         System.out.println("Prueba de buscar guardar: "+rutaArchivo);
@@ -87,13 +88,18 @@ public class FXMLExplorerGuardarBlockController implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 try {
-                        
-                       //file = new File(ruta, nombreA + ".jpg");
-                    String extension = cmbExtesionesB.getValue().toString();
                     System.out.println("Esta es la extesion: " + extension);
                     file = new File("..\\datos" + rutaGB.getText(), nombreA + "." + extension);
+                    nombreArchivo = nombreA + "."+ extension;
+                    rutaArchivoBlock = "..\\datos"+rutaGB.getText();
                     try {
                         Files.write(file.toPath(), guardar.getBytes());
+                        alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Información");
+                        alert.setHeaderText("Archivo guardado con exito");
+                        alert.showAndWait();
+                        Stage stageAux = (Stage) txtNombreB.getScene().getWindow();
+                        stageAux.close();
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }

@@ -76,7 +76,7 @@ public class FXMLExplorerGuardarController implements Initializable {
 
     @FXML private void guardar(ActionEvent e){
         File file;
-         String extension = cmbExtesiones.getValue().toString();
+        String extension = cmbExtesiones.getValue().toString();
         String nombreA = txtNombreG.getText();//nombre del archivo
         buscar(tvArbol.getRoot().getChildren(),nombreA + "."+ extension,Archivos.getDirectorio());
         String comparar = rutaArchivo;
