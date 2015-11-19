@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import de.jensd.fx.glyphs.weathericons.*?>
 <?import de.jensd.fx.glyphs.materialdesignicons.*?>
 <?import de.jensd.fx.glyphs.materialicons.*?>
@@ -19,6 +20,7 @@
             <Image url="@Login/background.png" />
          </image>
       </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00cc99a6" height="400.0" stroke="#fafafa00" strokeType="INSIDE" width="600.0" />
        <AnchorPane layoutX="128.0" layoutY="43.0" prefHeight="325.0" prefWidth="345.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fbfbfb" height="324.0" layoutX="21.0" layoutY="-30.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-width: 8; -fx-arc-height: 8;" width="306.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="0.0" />
