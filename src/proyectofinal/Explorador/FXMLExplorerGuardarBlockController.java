@@ -40,6 +40,7 @@ import javax.imageio.ImageIO;
 import static proyectofinal.Block.FXMLDocumentController.guardar;
 import static proyectofinal.Block.FXMLDocumentController.nombreArchivo;
 import static proyectofinal.Block.FXMLDocumentController.rutaArchivoBlock;
+import proyectofinal.ProyectoFinal;
 /**
  * FXML Controller class
  *
@@ -281,8 +282,8 @@ public class FXMLExplorerGuardarBlockController implements Initializable {
      ///////////////////////////////////////////////Guardar Block///////////////////////////////    
      private void exploradorGB(){
         extesionescmbB();
-        Archivos = new GestorArchivos("1");
-        folder = new TreeItem<>("1", icono("folder.png", 20, 20));
+        Archivos = new GestorArchivos(ProyectoFinal.get().getUser());
+        folder = new TreeItem<>(ProyectoFinal.get().getUser(), icono("folder.png", 20, 20));
         tvArbol.setRoot(folder);
         //System.out.println("Obtener root del arbol "+tvArbolGuardar.getRoot());
         setDirectorio(folder, Archivos.getDirectorio(), "");

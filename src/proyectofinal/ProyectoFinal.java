@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * @author Javier
  */
 public class ProyectoFinal extends Application {
-    
+    public static User u = new User();
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
@@ -26,7 +26,9 @@ public class ProyectoFinal extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
+    public static User get(){
+        return u;
+    }
     /**
      * @param args the command line arguments
      */

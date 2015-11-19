@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import de.jensd.fx.glyphs.materialicons.*?>
 <?import de.jensd.fx.glyphs.materialdesignicons.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.shape.*?>
@@ -10,7 +12,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="paneAdm" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLAdministradorController">
+<AnchorPane fx:id="pane" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLAdministradorController">
     <children>
          <ImageView fitHeight="550.0" fitWidth="700.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
@@ -24,34 +26,81 @@
                <children>
                   <Rectangle arcHeight="9.0" arcWidth="9.0" fill="#235685" height="484.0" stroke="TRANSPARENT" strokeType="INSIDE" width="94.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="492.0" AnchorPane.topAnchor="0.0" />
                   <Rectangle fill="#235685" height="484.0" layoutX="74.0" stroke="TRANSPARENT" strokeType="INSIDE" width="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <Button fx:id="btnPerfil" layoutX="25.0" layoutY="94.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Perfil" prefHeight="35.0" prefWidth="35.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
-                     <font>
-                        <Font name="MaterialDesignIcons" size="12.0" />
-                     </font>
-                     <graphic>
-                        <MaterialDesignIconView fx:id="iconPerfil" fill="WHITE" glyphName="ACCOUNT_BOX" size="25" />
-                     </graphic>
-                  </Button>
-                     <Button fx:id="btnInsertar" layoutX="25.0" layoutY="149.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ingresar" prefHeight="35.0" prefWidth="35.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
-                     <graphic>
-                        <MaterialDesignIconView fx:id="iconInsertar" fill="WHITE" glyphName="ACCOUNT_PLUS" size="25" />
-                     </graphic>
-                  </Button>
-                     <Button fx:id="btnBorra" layoutX="25.0" layoutY="207.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Borrar" prefHeight="35.0" prefWidth="35.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
-                     <graphic>
-                        <MaterialDesignIconView fx:id="iconBorrar" fill="WHITE" glyphName="ACCOUNT_MINUS" size="25" />
-                     </graphic>
-                  </Button>
-                     <Button fx:id="btnConsultar" layoutX="25.0" layoutY="265.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#submitData2" prefHeight="35.0" prefWidth="35.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
-                     <graphic>
-                        <MaterialDesignIconView fx:id="iconConsultar" fill="WHITE" glyphName="MAGNIFY" size="25" />
-                     </graphic>
-                  </Button>
-                  <Button fx:id="btnCerrarS" layoutX="25.0" layoutY="327.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="35.0" prefWidth="35.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
-                     <graphic>
-                        <MaterialDesignIconView fx:id="iconoCerrar" fill="WHITE" glyphName="LOGOUT" size="25" />
-                     </graphic>
-                  </Button>
+                  <TilePane fx:id="admiPerfil" layoutY="59.0" orientation="VERTICAL" prefHeight="407.0" prefWidth="94.0" vgap="15.0" visible="false">
+                     <children>
+                        <Button fx:id="btnPerfil" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Perfil" prefHeight="35.0" prefWidth="35.0">
+                           <font>
+                              <Font name="MaterialDesignIcons" size="12.0" />
+                           </font>
+                           <graphic>
+                              <MaterialDesignIconView fx:id="iconPerfil" fill="WHITE" glyphName="ACCOUNT_BOX" size="25" />
+                           </graphic>
+                        </Button>
+                           <Button fx:id="btnInsertar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ingresar" prefHeight="35.0" prefWidth="35.0">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="iconInsertar" fill="WHITE" glyphName="ACCOUNT_PLUS" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnPaint" mnemonicParsing="false" onAction="#abrirPaint">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PAINT_BRUSH" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnBlock" mnemonicParsing="false" onAction="#abrirBlock">
+                           <graphic>
+                              <MaterialIconView fill="WHITE" glyphName="NOTE_ADD" size="25" />
+                           </graphic>
+                        </Button>
+                           <Button fx:id="btnBorra" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Borrar" prefHeight="35.0" prefWidth="35.0">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="iconBorrar" fill="WHITE" glyphName="ACCOUNT_MINUS" size="25" />
+                           </graphic>
+                        </Button>
+                           <Button fx:id="btnConsultar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#submitData2" prefHeight="35.0" prefWidth="35.0">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="iconConsultar" fill="WHITE" glyphName="MAGNIFY" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnCerrarS" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="35.0" prefWidth="35.0">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="iconoCerrar" fill="WHITE" glyphName="LOGOUT" size="25" />
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </TilePane>
+                  <TilePane fx:id="userPerfil" layoutY="63.0" orientation="VERTICAL" prefHeight="407.0" prefWidth="94.0" vgap="15.0">
+                     <children>
+                        <Button fx:id="btnPerfil1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Perfil" prefHeight="35.0" prefWidth="35.0">
+                           <font>
+                              <Font name="MaterialDesignIcons" size="12.0" />
+                           </font>
+                           <graphic>
+                              <MaterialDesignIconView fx:id="iconPerfil1" fill="WHITE" glyphName="ACCOUNT_BOX" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnPaint1" mnemonicParsing="false" onAction="#abrirPaint">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PAINT_BRUSH" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnBlock1" mnemonicParsing="false" onAction="#abrirBlock">
+                           <graphic>
+                              <MaterialIconView fill="WHITE" glyphName="NOTE_ADD" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnCerrarS1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="35.0" prefWidth="35.0">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="iconoCerrar1" fill="WHITE" glyphName="LOGOUT" size="25" />
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </TilePane>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="panePerfil" prefHeight="484.0" prefWidth="526.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -76,8 +125,6 @@
                   <TextField fx:id="txtPerfilP" layoutX="153.0" layoutY="104.0" />
                   <Button fx:id="btnActualizar1" layoutX="153.0" layoutY="438.0" mnemonicParsing="false" onAction="#ActualizarP" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
                   <Button layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#Cancel" text="Regresar" />
-                  <Button fx:id="btnPaint" layoutX="54.0" layoutY="380.0" mnemonicParsing="false" onAction="#abrirPaint" text="Paint" />
-                  <Button fx:id="btnBlock" layoutX="255.0" layoutY="380.0" mnemonicParsing="false" onAction="#abrirBlock" text="Block de notas" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="paneBorrar" layoutX="156.0" layoutY="18.0" prefHeight="449.0" prefWidth="374.0" visible="false">

@@ -37,6 +37,7 @@ import javafx.scene.text.TextAlignment;
 import javax.imageio.ImageIO;
 import static proyectofinal.Block.FXMLDocumentController.guardar;
 import static proyectofinal.Paint.FXMLminipaintController.gimagen;
+import proyectofinal.ProyectoFinal;
 
 /**
  * FXML Controller class
@@ -246,13 +247,16 @@ public class FXMLExplorerController implements Initializable {
         explorador();
     }
     
-   
+   public void checkCarpeta(String user){
+       Archivos = new GestorArchivos(ProyectoFinal.get().getUser());
+       
+   }
     
     private void explorador(){
         //Mandar el nombre de usuario en el 1
-        Archivos = new GestorArchivos("1");
+        Archivos = new GestorArchivos(ProyectoFinal.get().getUser());
         //Mandar nombre de usuario en el "1"
-        folder = new TreeItem<>("1", icono("folder.png", 20, 20));
+        folder = new TreeItem<>(ProyectoFinal.get().getUser(), icono("folder.png", 20, 20));
         tvArbol.setRoot(folder);
         //System.out.println("Obtener root del arbol "+tvArbol.getRoot());
         setDirectorio(folder, Archivos.getDirectorio(), "");

@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 import static proyectofinal.FXMLLoginController.resultUser;
 /**
@@ -38,16 +39,17 @@ public class FXMLAdministradorController implements Initializable {
     TextField txtUsuario2, txtContrasena2, txtPerfil2, txtNombre2, txtApellido2,
               txtEdad2, txtCorreo2, txtDomicilio2, txtTelefono2;
     @FXML
-    AnchorPane paneAdm,paneAddUser,paneBorrar, principal, paneConsultar, panePerfil;
+    AnchorPane pane,paneAddUser,paneBorrar, principal, paneConsultar, panePerfil;
     @FXML
     ChoiceBox choiceB;
     @FXML
     Button btnBorrar, btnActualizar,btnActualizar1, btnNext, btnPrev, btnCerrarS,btnPaint,btnBlock;
+    @FXML TilePane admiPerfil, userPerfil;
     private ResultSet rs = null;
     private Connection conecc;
     private Statement st = null;
     public   String us;
-   
+ 
     
     @FXML
     TextField txtUsuarioB, txtContrasenaB, txtPerfilB, txtNombreB, txtApellidoB, 
@@ -61,8 +63,8 @@ public class FXMLAdministradorController implements Initializable {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            /*Stage stageAux = (Stage) btnPaint.getScene().getWindow();
-            stageAux.close();*/
+            Stage stageAux = (Stage) btnPaint.getScene().getWindow();
+            stageAux.close();
             root = FXMLLoader.load(getClass().getResource("Paint/FXMLminipaint.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,7 +78,8 @@ public class FXMLAdministradorController implements Initializable {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            
+            Stage stageAux = (Stage) btnBlock.getScene().getWindow();
+            stageAux.close();
             root = FXMLLoader.load(getClass().getResource("Block/FXMLDocument.fxml"));
         } catch (IOException ex) {
             System.out.println("error");
@@ -187,6 +190,7 @@ public class FXMLAdministradorController implements Initializable {
         
         //System.out.println("HO: "+ usuario);
         String instruccion = " select * from usuarios where usuario=('" + this.us + "') ";
+        System.out.println("pp"+instruccion);
         try {
             rs = st.executeQuery(instruccion); //Ejecuta el query de SQL
             try {
@@ -468,7 +472,7 @@ public class FXMLAdministradorController implements Initializable {
         Parent root = null;
         try {
             
-            root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
+            root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -573,9 +577,18 @@ public class FXMLAdministradorController implements Initializable {
         txtTelefonoB.setText(null);
           return true;
       }
+      
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       paneAdm.getStylesheets().add(FXMLAdministradorController.class.getResource("Estilos/GreenStyle.css").toExternalForm());
+        if(ProyectoFinal.get().getPerfil().equals("administrador")){
+            admiPerfil.setVisible(true);
+            userPerfil.setVisible(false);
+        }else{
+            admiPerfil.setVisible(false);
+           userPerfil.setVisible(true);
+        }
+       pane.getStylesheets().add(FXMLAdministradorController.class.getResource("Estilos/GreenStyle.css").toExternalForm());
         btnNext.setDisable(true);
         btnPrev.setDisable(true);
         btnActualizar.setDisable(true);

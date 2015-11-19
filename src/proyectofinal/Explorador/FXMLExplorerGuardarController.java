@@ -39,6 +39,7 @@ import static proyectofinal.Block.FXMLDocumentController.guardar;
 import static proyectofinal.Paint.FXMLminipaintController.gimagen;
 import static proyectofinal.Paint.FXMLminipaintController.nombreArchivo;
 import static proyectofinal.Paint.FXMLminipaintController.rutaArchivoPaint;
+import proyectofinal.ProyectoFinal;
 
 /**
  * FXML Controller class
@@ -283,8 +284,8 @@ public class FXMLExplorerGuardarController implements Initializable {
         
     private void exploradorG(){
         extesionescmb();
-        Archivos = new GestorArchivos("1");
-        folder = new TreeItem<>("1", icono("folder.png", 20, 20));
+        Archivos = new GestorArchivos(ProyectoFinal.get().getUser());
+        folder = new TreeItem<>(ProyectoFinal.get().getUser(), icono("folder.png", 20, 20));
         tvArbol.setRoot(folder);
         //System.out.println("Obtener root del arbol "+tvArbol.getRoot());
         setDirectorio(folder, Archivos.getDirectorio(), "");

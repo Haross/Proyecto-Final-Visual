@@ -28,6 +28,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import proyectofinal.Explorador.FXMLExplorerController;
 
 /**
  * FXML Controller class
@@ -57,7 +58,7 @@ public class FXMLLoginController implements Initializable {
         Parent root = null;
         try {
             Stage stageAux = (Stage) btnLogin.getScene().getWindow();
-            stageAux.close();
+            stageAux.close(); 
             root = FXMLLoader.load(getClass().getResource(file));
         } catch (IOException ex) {
             Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
@@ -102,19 +103,14 @@ public class FXMLLoginController implements Initializable {
             txtContrasena.setText(null);
             try {
                 if (rs.next()) {
-                    switch(rs.getString("perfil")){
-                        case "administrador":
+                     User u = ProyectoFinal.get();
+                            u.setUser(rs.getString("usuario"));
+                            u.setPerfil(rs.getString("perfil"));
+                            //---------------------------------
+                            FXMLExplorerController a = new FXMLExplorerController();
+                            a.checkCarpeta(rs.getString("usuario"));
                             openWindowWithOption("FXMLAdministrador.fxml");
                             resultUser = rs;
-                            break;
-                        case "usuario":
-                            openWindowWithOption("FXMLUsuario.fxml");
-                            resultUser = rs;
-                            break;
-                        default:
-                            System.out.println("case default");
-                            break;     
-                    }
                 }else{
                     alert.setTitle("Error");
                     alert.setHeaderText("Error");

@@ -292,8 +292,8 @@ public class FXMLExplorerAbrirController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Archivos = new GestorArchivos("1");
-        folder = new TreeItem<>("1", icono("folder.png", 20, 20));
+        Archivos = new GestorArchivos(ProyectoFinal.get().getUser());
+        folder = new TreeItem<>(ProyectoFinal.get().getUser(), icono("folder.png", 20, 20));
         tvArbol.setRoot(folder);
   
         setDirectorio(folder, Archivos.getDirectorio(), "");
