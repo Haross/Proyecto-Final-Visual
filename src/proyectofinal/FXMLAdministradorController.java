@@ -63,8 +63,6 @@ public class FXMLAdministradorController implements Initializable {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            Stage stageAux = (Stage) btnPaint.getScene().getWindow();
-            stageAux.close();
             root = FXMLLoader.load(getClass().getResource("Paint/FXMLminipaint.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,8 +76,7 @@ public class FXMLAdministradorController implements Initializable {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            Stage stageAux = (Stage) btnBlock.getScene().getWindow();
-            stageAux.close();
+            
             root = FXMLLoader.load(getClass().getResource("Block/FXMLDocument.fxml"));
         } catch (IOException ex) {
             System.out.println("error");
