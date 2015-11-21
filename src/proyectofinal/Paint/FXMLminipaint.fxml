@@ -8,9 +8,9 @@
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="453.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.Paint.FXMLminipaintController">
+<AnchorPane id="AnchorPane" prefHeight="482.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.Paint.FXMLminipaintController">
     <children>
-      <MenuBar layoutX="240.0" AnchorPane.bottomAnchor="424.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar layoutX="240.0" prefHeight="25.0" prefWidth="715.0" AnchorPane.bottomAnchor="457.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
@@ -25,21 +25,16 @@
                 <MenuItem mnemonicParsing="false" onAction="#redoCanvas" text="Rehacer" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Ayuda">
-            <items>
-                <MenuItem mnemonicParsing="false" onAction="#creditosAlumno" text="Creditos" />
-            </items>
-          </Menu>
         </menus>
       </MenuBar>
-      <ToolBar nodeOrientation="RIGHT_TO_LEFT" orientation="VERTICAL" prefHeight="424.0" prefWidth="107.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+      <ToolBar layoutX="608.0" layoutY="25.0" nodeOrientation="RIGHT_TO_LEFT" orientation="VERTICAL" prefHeight="458.0" prefWidth="107.0" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <items>
-          <Button fx:id="rectButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setRectangleAsCurrentShape" prefHeight="20.0" prefWidth="20.0" text="Rectangulo" />
-            <Button fx:id="lineButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setLineAsCurrentShape" prefHeight="20.0" prefWidth="20.0" text="Linea" />
-            <Button fx:id="ovlButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setOvalAsCurrentShape" prefHeight="20.0" prefWidth="20.0" text="Ovalo" />
-            <Button fx:id="pencButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setFreeDesign" prefHeight="20.0" prefWidth="20.0" text="Lapiz" />
-            <Button fx:id="eraserButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setErase" prefHeight="20.0" prefWidth="20.0" text="Borrador" />
-            <Button fx:id="clearButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#clearCanvas" prefHeight="20.0" prefWidth="20.0" text="Limpiar" />
+          <Button fx:id="rectButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setRectangleAsCurrentShape" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: transparent;" text="Rectangulo" />
+            <Button fx:id="lineButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setLineAsCurrentShape" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: transparent;" text="Linea" />
+            <Button fx:id="ovlButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setOvalAsCurrentShape" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: transparent;" text="Ovalo" />
+            <Button fx:id="pencButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setFreeDesign" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: transparent;" text="Lapiz" />
+            <Button fx:id="eraserButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setErase" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="Borrador" />
+            <Button fx:id="clearButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#clearCanvas" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="Limpiar" />
             <Separator prefHeight="3.0" prefWidth="0.0" />
             <Label text="Stroke color" />
             <ColorPicker fx:id="colorPick" prefHeight="25.0" prefWidth="51.0" />
@@ -53,11 +48,10 @@
             </RadioButton>
             <RadioButton fx:id="fillRB" mnemonicParsing="false" text="Fill" toggleGroup="$shapes" />
             <RadioButton fx:id="strokeFillRB" mnemonicParsing="false" text="Stroke&amp;Fill" toggleGroup="$shapes" />
-            <Slider fx:id="sizeSlider" prefHeight="14.0" prefWidth="59.0" />
-            <Button fx:id="btnGuardar" onAction="#saveCurrentImage" mnemonicParsing="false" text="Guardar" />          
+            <Slider fx:id="sizeSlider" prefHeight="14.0" prefWidth="59.0" />          
         </items>
       </ToolBar>
-      <Canvas fx:id="TheCanvas" height="424.0" layoutX="107.0" width="546.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="29.0" />
-      <Canvas fx:id="canvasGo" height="424.0" layoutX="107.0" onMouseDragged="#onMouseDraggedListener" onMouseExited="#onMouseExitedListener" onMousePressed="#onMousePressedListener" onMouseReleased="#onMouseReleaseListener" width="546.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="29.0" />          
+      <Canvas fx:id="TheCanvas" height="458.0" layoutX="107.0" layoutY="23.0" width="608.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="23.0" />
+      <Canvas fx:id="canvasGo" height="458.0" layoutX="107.0" layoutY="24.0" onMouseDragged="#onMouseDraggedListener" onMouseExited="#onMouseExitedListener" onMousePressed="#onMousePressedListener" onMouseReleased="#onMouseReleaseListener" width="608.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="24.0" />          
    </children>
 </AnchorPane>

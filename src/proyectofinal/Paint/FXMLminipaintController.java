@@ -443,38 +443,38 @@ public class FXMLminipaintController implements Initializable {
         //////////////////////////////////
         Image imageRect = new Image(getClass().getResourceAsStream("Stop-32.png"));
         ImageView icR = new ImageView(imageRect);
-        icR.setFitWidth(20);
-        icR.setFitHeight(20);
+        icR.setFitWidth(30);
+        icR.setFitHeight(30);
         rectButton.setGraphic(icR);  
         
         Image imageLinea = new Image(getClass().getResourceAsStream("Ruler-32.png"));
         ImageView icLin = new ImageView(imageLinea);
-        icLin.setFitWidth(20);
-        icLin.setFitHeight(20);
+        icLin.setFitWidth(30);
+        icLin.setFitHeight(30);
         lineButton.setGraphic(icLin);
         
         Image imageOvalo = new Image(getClass().getResourceAsStream("Chart-32.png"));
         ImageView icOval = new ImageView(imageOvalo);
-        icOval.setFitWidth(20);
-        icOval.setFitHeight(20);
+        icOval.setFitWidth(30);
+        icOval.setFitHeight(30);
         ovlButton.setGraphic(icOval);
         
         Image imageLapiz = new Image(getClass().getResourceAsStream("Pencil-32.png"));
         ImageView icLapiz = new ImageView(imageLapiz);
-        icLapiz.setFitWidth(20);
-        icLapiz.setFitHeight(20);
+        icLapiz.setFitWidth(30);
+        icLapiz.setFitHeight(30);
         pencButton.setGraphic(icLapiz);
         
         Image imageBorrador = new Image(getClass().getResourceAsStream("Eraser-32.png"));
         ImageView icBorr = new ImageView(imageBorrador);
-        icBorr.setFitHeight(20);
-        icBorr.setFitWidth(20);
+        icBorr.setFitHeight(30);
+        icBorr.setFitWidth(30);
         eraserButton.setGraphic(icBorr);
         
         Image imageLimpiar = new Image(getClass().getResourceAsStream("Clear-32.png"));
         ImageView icLim = new ImageView(imageLimpiar);
-        icLim.setFitHeight(20);
-        icLim.setFitWidth(20);
+        icLim.setFitHeight(30);
+        icLim.setFitWidth(30);
         clearButton.setGraphic(icLim);
         
         if(controlDibujo.getSizeArrayImages() == 0){

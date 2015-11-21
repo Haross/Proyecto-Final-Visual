@@ -12,7 +12,7 @@ package proyectofinal;
 public class Controla {
     
     public static int cont=0;
-    String[ ] Contenedor = new String[100];
+    String[ ] Contenedor = new String[1000000];
     public Controla(){
         Contenedor[cont++] = " ";
     }

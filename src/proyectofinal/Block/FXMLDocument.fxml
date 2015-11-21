@@ -8,7 +8,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="475.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.Block.FXMLDocumentController">
     <children>
-        <TextArea fx:id="TextoArea" layoutX="0" layoutY="27" onKeyTyped="#TextAreaArray" prefHeight="453.0" prefWidth="276.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="159.0" AnchorPane.topAnchor="27.0">
+      <ToolBar layoutX="275.0" layoutY="26.0" orientation="VERTICAL" prefHeight="454.0" prefWidth="62.0" visible="false">
+         <items>
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarComo" text="Guardar" />
+            <ComboBox fx:id="cbFonts" prefWidth="150.0" />
+            <ComboBox fx:id="cbSize" prefWidth="150.0" />
+         </items>
+      </ToolBar>
+        <TextArea fx:id="TextoArea" layoutX="0" layoutY="27" onKeyTyped="#TextAreaArray" prefHeight="453.0" prefWidth="435.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
              <contextMenu>
                 <ContextMenu>
                     <items>
@@ -24,9 +31,7 @@
                 <Menu text="Archivo">
                     <items>
                   <MenuItem mnemonicParsing="false" onAction="#abrir" text="Abrir" />
-                        <MenuItem onAction="#creditos" text="Creditos" />
                   <MenuItem mnemonicParsing="false" onAction="#guardarComo" text="Guardar" />
-                        <MenuItem onAction="#salir" text="Salir" />
                   <MenuItem mnemonicParsing="false" onAction="#guardarComo" text="Guardar Como" />
                     </items>
                     
@@ -65,12 +70,5 @@
 
             </menus>
         </MenuBar>
-      <ToolBar layoutX="275.0" layoutY="26.0" orientation="VERTICAL" prefHeight="454.0" prefWidth="62.0">
-         <items>
-            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarComo" text="Guardar" />
-            <ComboBox fx:id="cbFonts" prefWidth="150.0" />
-            <ComboBox fx:id="cbSize" prefWidth="150.0" />
-         </items>
-      </ToolBar>
     </children>
 </AnchorPane>
