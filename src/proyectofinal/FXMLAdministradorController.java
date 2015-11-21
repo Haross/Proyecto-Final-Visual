@@ -99,6 +99,7 @@ public class FXMLAdministradorController implements Initializable {
         paneAddUser.setVisible(true);
         paneBorrar.setVisible(false);
         panePerfil.setVisible(false);
+        paneConsultar.setVisible(false);
     }
 
     private void insertarDatosPuro() {
@@ -121,14 +122,14 @@ public class FXMLAdministradorController implements Initializable {
             String perfil = choiceB.getValue().toString();
             System.out.println(perfil);
             String nombre = txtNombre.getText();
-            String apellido = txtApellido.getText();
+            String apellidos = txtApellido.getText();
             String edad = txtEdad.getText();
-            String correo = txtCorreo.getText();
+            String email = txtCorreo.getText();
             String domicilio = txtDomicilio.getText();
             String telefono = txtTelefono.getText();
             Boolean resultado = false;
             resultado = st.execute("INSERT INTO usuarios(usuario, contraseña, perfil, nombre,apellidos,edad,email,domicilio,telefono) "
-                    + "VALUES" + "('" + usuario + "','" + contrasena + "','" + perfil + "','" + nombre + "','" + apellido + "','" + edad + "','" + correo + "','" + domicilio + "','" + telefono +  "');");
+                    + "VALUES" + "('" + usuario + "','" + contrasena + "','" + perfil + "','" + nombre + "','" + apellidos + "','" + edad + "','" + email + "','" + domicilio + "','" + telefono +  "');");
             if (!resultado) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Información");
@@ -386,13 +387,13 @@ public class FXMLAdministradorController implements Initializable {
             String contrasena = txtContrasena2.getText();
             String perfil = txtPerfil2.getText();
             String nombre = txtNombre2.getText();
-            String apellido = txtApellido2.getText();
+            String apellidos = txtApellido2.getText();
             String edad = txtEdad2.getText();
-            String correo = txtCorreo2.getText();
+            String email = txtCorreo2.getText();
             String domicilio = txtDomicilio2.getText();
             String telefono = txtTelefono2.getText();
             Boolean resultado = false;
-            resultado = st.execute("UPDATE usuarios SET contraseña=('" + contrasena + "'),telefono=('" + telefono + "'),domicilio=('" + domicilio + "'),correo=('" + correo + "'),nombre=('" + nombre + "'),apellido=('" + apellido + "'), edad=('" + edad + "') WHERE usuario = ('" + usuario + "');");
+            resultado = st.execute("UPDATE usuarios SET contraseña=('" + contrasena + "'),telefono=('" + telefono + "'),domicilio=('" + domicilio + "'),email=('" + email + "'),nombre=('" + nombre + "'),apellidos=('" + apellidos + "'), edad=('" + edad + "') WHERE usuario = ('" + usuario + "');");
             System.out.println("El resultado es: " + resultado);
             if (!resultado) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -427,13 +428,13 @@ public class FXMLAdministradorController implements Initializable {
             String contrasena = txtContrasenaP.getText();
             String perfil = txtPerfilP.getText();
             String nombre = txtNombreP.getText();
-            String apellido = txtApellidoP.getText();
+            String apellidos = txtApellidoP.getText();
             String edad = txtEdadP.getText();
-            String correo = txtCorreoP.getText();
+            String email = txtCorreoP.getText();
             String domicilio = txtDomicilioP.getText();
             String telefono = txtTelefonoP.getText();
             Boolean resultado = false;
-            resultado = st.execute("UPDATE usuarios SET contraseña=('" + contrasena + "'),telefono=('" + telefono + "'),domicilio=('" + domicilio + "'),correo=('" + correo + "'),nombre=('" + nombre + "'),apellido=('" + apellido + "'), edad=('" + edad + "') WHERE usuario = ('" + usuario + "');");
+            resultado = st.execute("UPDATE usuarios SET contraseña=('" + contrasena + "'),telefono=('" + telefono + "'),domicilio=('" + domicilio + "'),email=('" + email + "'),nombre=('" + nombre + "'),apellidos=('" + apellidos + "'), edad=('" + edad + "') WHERE usuario = ('" + usuario + "');");
             System.out.println("El resultado es: " + resultado);
             if (!resultado) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -469,7 +470,7 @@ public class FXMLAdministradorController implements Initializable {
         Parent root = null;
         try {
             
-            root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+            root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -509,9 +510,9 @@ public class FXMLAdministradorController implements Initializable {
                     txtUsuarioB.setText(rs.getString("usuario"));
                     txtPerfilB.setText(rs.getString("perfil"));
                     txtNombreB.setText(rs.getString("nombre"));
-                    txtApellidoB.setText(rs.getString("apellido"));
+                    txtApellidoB.setText(rs.getString("apellidos"));
                     txtEdadB.setText(rs.getString("edad"));
-                    txtCorreoB.setText(rs.getString("correo"));
+                    txtCorreoB.setText(rs.getString("email"));
                     txtDomicilioB.setText(rs.getString("domicilio"));
                     txtTelefonoB.setText(rs.getString("telefono"));
             }else{
