@@ -124,7 +124,7 @@
                   <TextField fx:id="txtTelefonoP" layoutX="153.0" layoutY="313.0" />
                   <TextField fx:id="txtPerfilP" layoutX="153.0" layoutY="104.0" />
                   <Button fx:id="btnActualizar1" layoutX="153.0" layoutY="438.0" mnemonicParsing="false" onAction="#ActualizarP" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
-                  <Button layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#Cancel" text="Regresar" />
+                  <Button layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#welcome" text="Regresar" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="paneBorrar" layoutX="156.0" layoutY="18.0" prefHeight="449.0" prefWidth="374.0" visible="false">
@@ -147,7 +147,7 @@
                <TextField fx:id="txtDomicilioB" layoutX="153.0" layoutY="281.0" />
                <TextField fx:id="txtTelefonoB" layoutX="153.0" layoutY="313.0" />
                <TextField fx:id="txtPerfilB" layoutX="153.0" layoutY="104.0" />
-               <Button layoutX="140.0" layoutY="374.0" mnemonicParsing="false" onAction="#DeleteB" prefHeight="17.0" prefWidth="95.0" text="Borrar" />
+               <Button fx:id="btnB" layoutX="140.0" layoutY="374.0" mnemonicParsing="false" onAction="#DeleteB" prefHeight="17.0" prefWidth="95.0" text="Borrar" />
                
             <Button layoutX="308.0" layoutY="31.0" mnemonicParsing="false" onAction="#Buscar" text="Buscar" />
             </children>
@@ -176,7 +176,7 @@
                   <Button fx:id="btnActualizar" layoutX="153.0" layoutY="372.0" mnemonicParsing="false" onAction="#Actualizar" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
                   <Button fx:id="btnNext" layoutX="279.0" layoutY="388.0" mnemonicParsing="false" onAction="#nextData" prefHeight="45.0" prefWidth="47.0" text="&gt;&gt;" />
                   <Button fx:id="btnPrev" layoutX="82.0" layoutY="381.0" mnemonicParsing="false" onAction="#prevData" prefHeight="45.0" prefWidth="47.0" text="&lt;&lt;" />
-                  <Button fx:id="btnReturn" layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#Cancel" text="Regresar" />
+                  <Button fx:id="btnReturn" layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#welcome" text="Regresar" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="paneAddUser" prefHeight="484.0" prefWidth="526.0" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -207,7 +207,7 @@
                           </FXCollections>
                       </items>
                   </ChoiceBox>
-                  <Button fx:id="btnReturnI" layoutX="135.0" layoutY="427.0" mnemonicParsing="false" onAction="#Cancel" text="Regresar" />
+                  <Button fx:id="btnReturnI" layoutX="135.0" layoutY="427.0" mnemonicParsing="false" onAction="#welcome" text="Regresar" />
                </children>
             </AnchorPane>
              <AnchorPane fx:id="principal" prefHeight="483.0" prefWidth="526.0" visible="false" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

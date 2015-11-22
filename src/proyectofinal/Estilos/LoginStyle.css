@@ -7,7 +7,12 @@ and open the template in the editor.
     Created on : 16/11/2015, 05:11:04 PM
     Author     : Javier
 */
-
+.decoration-background{
+    -fx-fill: rgba(255,255,255,0.9);
+    -fx-stroke-width: 0;
+    -fx-arc-width:20px;
+    -fx-arc-height:20px;
+}
 .text-field{
     -fx-background-color: transparent;
     -fx-background-radius: 2.0;

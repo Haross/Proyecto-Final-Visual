@@ -106,7 +106,7 @@ public class FXMLDocumentController implements Initializable {
      }
      @FXML
      private void fontComic(ActionEvent e){
-         cbFonts.setValue("Comic");
+         cbFonts.setValue("Comic Sans MS");
          selectFont(e);
      }
      @FXML
