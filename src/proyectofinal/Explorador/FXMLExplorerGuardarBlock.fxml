@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="746.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="proyectofinal.Explorador.FXMLExplorerGuardarBlockController">
+<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.Explorador.FXMLExplorerGuardarBlockController">
          <children>
             <SplitPane dividerPositions="0.2956403269754768" layoutY="1.0" prefHeight="488.0" prefWidth="746.0" AnchorPane.bottomAnchor="77.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
                <items>
@@ -21,12 +21,12 @@
                         </ContextMenu>
                      </contextMenu>
                   </TreeView>
-                  <TilePane fx:id="control" prefHeight="563.0" prefWidth="726.0" />
+                  <TilePane fx:id="control" prefHeight="563.0" prefWidth="726.0" style="-fx-background-color: WHITE;" />
                </items>
             </SplitPane>
-            <Pane layoutY="486.0" prefHeight="78.0" prefWidth="746.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="486.0">
+            <Pane layoutY="486.0" prefHeight="78.0" prefWidth="746.0" style="-fx-background-color: #E0E0E0;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="486.0">
                <children>
-                  <Button fx:id="btnGuardarB" layoutX="447.0" layoutY="19.0" mnemonicParsing="false" onAction="#guardarB" prefHeight="30.0" prefWidth="76.0" text="Guardar">
+                  <Button fx:id="btnGuardarB" layoutX="447.0" layoutY="19.0" mnemonicParsing="false" onAction="#guardarB" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: WHITE;" text="Guardar">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -38,7 +38,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cmbExtesionesB" layoutX="572.0" layoutY="21.0" prefWidth="150.0" />
+                  <ComboBox fx:id="cmbExtesionesB" layoutX="572.0" layoutY="21.0" prefWidth="150.0" style="-fx-background-color: WHITE;" />
                </children>
             </Pane>
          </children>

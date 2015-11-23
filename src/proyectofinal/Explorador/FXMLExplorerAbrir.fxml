@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="736.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="proyectofinal.Explorador.FXMLExplorerAbrirController">
+<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="736.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.Explorador.FXMLExplorerAbrirController">
          <children>
             <SplitPane dividerPositions="0.273841961852861" layoutX="2.0" prefHeight="512.0" prefWidth="736.0" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="-2.0">
                <items>
@@ -21,17 +21,17 @@
                         </ContextMenu>
                      </contextMenu>
                   </TreeView>
-                  <TilePane fx:id="control" prefHeight="554.0" prefWidth="401.0" tileAlignment="TOP_LEFT" />
+                  <TilePane fx:id="control" prefHeight="554.0" prefWidth="401.0" style="-fx-background-color: WHITE;" tileAlignment="TOP_LEFT" />
                </items>
             </SplitPane>
-            <Pane layoutY="510.0" prefHeight="46.0" prefWidth="736.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="510.0">
+            <Pane layoutY="510.0" prefHeight="46.0" prefWidth="736.0" style="-fx-background-color: #E0E0E0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="510.0">
                <children>
-                  <Button fx:id="btnAbrir" layoutX="638.0" layoutY="9.0" mnemonicParsing="false" onAction="#abrir" prefHeight="30.0" prefWidth="76.0" text="Buscar">
+                  <Button fx:id="btnAbrir" layoutX="638.0" layoutY="9.0" mnemonicParsing="false" onAction="#abrir" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: WHITE;" text="Buscar">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="txtNombreBA" layoutX="215.0" layoutY="11.0" prefHeight="25.0" prefWidth="406.0" promptText="Escriba el nombre del archivo que quiera buscar con la extesion" />
+                  <TextField fx:id="txtNombreBA" layoutX="113.0" layoutY="11.0" prefHeight="25.0" prefWidth="508.0" promptText="Escriba el nombre del archivo que quiera buscar con la extesion" />
                </children>
             </Pane>
          </children>
