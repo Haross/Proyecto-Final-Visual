@@ -12,23 +12,32 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="pane" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLAdministradorController">
+<AnchorPane fx:id="pane" prefHeight="606.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.FXMLAdministradorController">
     <children>
-         <ImageView fitHeight="550.0" fitWidth="700.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <ImageView fitHeight="611.0" fitWidth="749.0" pickOnBounds="true" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
             <image>
                <Image url="@Login/background.png" />
             </image>
          </ImageView>
-      <AnchorPane layoutX="37.0" layoutY="37.0" minHeight="-Infinity" prefHeight="494.0" prefWidth="620.0">
+      <Rectangle id="fondoB" fill="#1f96ffa6" height="611.0" stroke="TRANSPARENT" strokeType="INSIDE" width="749.0" />
+      <AnchorPane layoutX="70.0" layoutY="73.0" minHeight="-Infinity" prefHeight="494.0" prefWidth="620.0">
          <children>
             <Rectangle arcHeight="9.0" arcWidth="9.0" fill="WHITE" height="484.0" stroke="TRANSPARENT" strokeType="INSIDE" width="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="94.0">
                <children>
-                  <Rectangle arcHeight="9.0" arcWidth="9.0" fill="#235685" height="484.0" stroke="TRANSPARENT" strokeType="INSIDE" width="94.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="492.0" AnchorPane.topAnchor="0.0" />
-                  <Rectangle fill="#235685" height="484.0" layoutX="74.0" stroke="TRANSPARENT" strokeType="INSIDE" width="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <TilePane fx:id="admiPerfil" layoutY="59.0" orientation="VERTICAL" prefHeight="407.0" prefWidth="94.0" vgap="15.0" visible="false">
+                  <Rectangle id="barB" arcHeight="9.0" arcWidth="9.0" fill="#235685" height="484.0" stroke="TRANSPARENT" strokeType="INSIDE" width="94.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="492.0" AnchorPane.topAnchor="0.0" />
+                  <Rectangle id="barB" fill="#235685" height="484.0" layoutX="74.0" stroke="TRANSPARENT" strokeType="INSIDE" width="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TilePane fx:id="admiPerfil" layoutY="59.0" orientation="VERTICAL" prefHeight="407.0" prefWidth="94.0" tileAlignment="TOP_LEFT" visible="false">
                      <children>
-                        <Button fx:id="btnPerfil" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Perfil" prefHeight="35.0" prefWidth="35.0">
+                        <Button id="btnBar" fx:id="btnHome" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#welcome" prefHeight="35.0" prefWidth="94.0" style="-fx-background-radius: 0;">
+                           <font>
+                              <Font name="MaterialDesignIcons" size="12.0" />
+                           </font>
+                           <graphic>
+                              <MaterialDesignIconView fx:id="iconPerfil2" fill="WHITE" glyphName="HOME" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button id="btnBar" fx:id="btnPerfil" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Perfil" prefHeight="35.0" prefWidth="94.0" style="-fx-background-radius: 0;">
                            <font>
                               <Font name="MaterialDesignIcons" size="12.0" />
                            </font>
@@ -36,44 +45,46 @@
                               <MaterialDesignIconView fx:id="iconPerfil" fill="WHITE" glyphName="ACCOUNT_BOX" size="25" />
                            </graphic>
                         </Button>
-                           <Button fx:id="btnInsertar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ingresar" prefHeight="35.0" prefWidth="35.0">
+                           <Button id="btnBar" fx:id="btnInsertar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ingresar" prefHeight="35.0" prefWidth="94.0" style="-fx-background-radius: 0;">
                            <graphic>
                               <MaterialDesignIconView fx:id="iconInsertar" fill="WHITE" glyphName="ACCOUNT_PLUS" size="25" />
                            </graphic>
                         </Button>
-                        <Button fx:id="btnPaint" mnemonicParsing="false" onAction="#abrirPaint">
-                           <graphic>
-                              <FontAwesomeIconView fill="WHITE" glyphName="PAINT_BRUSH" size="25" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="btnBlock" mnemonicParsing="false" onAction="#abrirBlock">
-                           <graphic>
-                              <MaterialIconView fill="WHITE" glyphName="NOTE_ADD" size="25" />
-                           </graphic>
-                        </Button>
-                           <Button fx:id="btnBorra" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Borrar" prefHeight="35.0" prefWidth="35.0">
+                           <Button id="btnBar" fx:id="btnBorra" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Borrar" prefHeight="35.0" prefWidth="94.0" style="-fx-background-radius: 0;">
                            <graphic>
                               <MaterialDesignIconView fx:id="iconBorrar" fill="WHITE" glyphName="ACCOUNT_MINUS" size="25" />
                            </graphic>
                         </Button>
-                           <Button fx:id="btnConsultar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#submitData2" prefHeight="35.0" prefWidth="35.0">
+                           <Button id="btnBar" fx:id="btnConsultar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#submitData2" prefHeight="35.0" prefWidth="94.0" style="-fx-background-radius: 0;">
                            <graphic>
                               <MaterialDesignIconView fx:id="iconConsultar" fill="WHITE" glyphName="MAGNIFY" size="25" />
                            </graphic>
                         </Button>
-                        <Button fx:id="btnCerrarS" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="35.0" prefWidth="35.0">
+                        <Button id="btnBar" fx:id="btnPaint" mnemonicParsing="false" onAction="#abrirPaint" prefHeight="35.0" prefWidth="94.0" style="-fx-background-radius: 0;">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PAINT_BRUSH" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button id="btnBar" fx:id="btnBlock" mnemonicParsing="false" onAction="#abrirBlock" prefHeight="35.0" prefWidth="94.0" style="-fx-background-radius: 0;">
+                           <graphic>
+                              <MaterialIconView fill="WHITE" glyphName="NOTE_ADD" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button id="btnBar" fx:id="btnExplorer" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirExplorer" prefHeight="35.0" prefWidth="94.0" style="-fx-background-radius: 0;">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="iconoCerrar2" fill="WHITE" glyphName="FOLDER" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button id="btnBar" fx:id="btnCerrarS" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="35.0" prefWidth="94.0" style="-fx-background-radius: 0;">
                            <graphic>
                               <MaterialDesignIconView fx:id="iconoCerrar" fill="WHITE" glyphName="LOGOUT" size="25" />
                            </graphic>
                         </Button>
                      </children>
-                     <padding>
-                        <Insets left="25.0" />
-                     </padding>
                   </TilePane>
-                  <TilePane fx:id="userPerfil" layoutY="63.0" orientation="VERTICAL" prefHeight="407.0" prefWidth="94.0" vgap="15.0">
+                  <TilePane fx:id="userPerfil" layoutY="63.0" orientation="VERTICAL" prefHeight="407.0" prefWidth="94.0">
                      <children>
-                        <Button fx:id="btnPerfil1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Perfil" prefHeight="35.0" prefWidth="35.0">
+                        <Button id="btnBar" fx:id="btnPerfil1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Perfil" prefHeight="35.0" prefWidth="94.0">
                            <font>
                               <Font name="MaterialDesignIcons" size="12.0" />
                            </font>
@@ -81,25 +92,27 @@
                               <MaterialDesignIconView fx:id="iconPerfil1" fill="WHITE" glyphName="ACCOUNT_BOX" size="25" />
                            </graphic>
                         </Button>
-                        <Button fx:id="btnPaint1" mnemonicParsing="false" onAction="#abrirPaint">
+                        <Button id="btnBar" fx:id="btnPaint1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirPaint" prefHeight="35.0" prefWidth="94.0">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="PAINT_BRUSH" size="25" />
                            </graphic>
                         </Button>
-                        <Button fx:id="btnBlock1" mnemonicParsing="false" onAction="#abrirBlock">
+                        <Button id="btnBar" fx:id="btnBlock1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirBlock" prefHeight="35.0" prefWidth="94.0">
                            <graphic>
                               <MaterialIconView fill="WHITE" glyphName="NOTE_ADD" size="25" />
                            </graphic>
                         </Button>
-                        <Button fx:id="btnCerrarS1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="35.0" prefWidth="35.0">
+                        <Button id="btnBar" fx:id="btnExplorer1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirExplorer" prefHeight="35.0" prefWidth="94.0" style="-fx-background-radius: 0;">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="iconoCerrar21" fill="WHITE" glyphName="FOLDER" size="25" />
+                           </graphic>
+                        </Button>
+                        <Button id="btnBar" fx:id="btnCerrarS1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="35.0" prefWidth="94.0">
                            <graphic>
                               <MaterialDesignIconView fx:id="iconoCerrar1" fill="WHITE" glyphName="LOGOUT" size="25" />
                            </graphic>
                         </Button>
                      </children>
-                     <padding>
-                        <Insets left="25.0" />
-                     </padding>
                   </TilePane>
                </children>
             </AnchorPane>
@@ -123,8 +136,8 @@
                   <TextField fx:id="txtDomicilioP" layoutX="153.0" layoutY="281.0" />
                   <TextField fx:id="txtTelefonoP" layoutX="153.0" layoutY="313.0" />
                   <TextField fx:id="txtPerfilP" layoutX="153.0" layoutY="104.0" />
-                  <Button fx:id="btnActualizar1" layoutX="153.0" layoutY="438.0" mnemonicParsing="false" onAction="#ActualizarP" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
-                  <Button layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#welcome" text="Regresar" />
+                  <Button id="btnS" fx:id="btnActualizar1" layoutX="153.0" layoutY="438.0" mnemonicParsing="false" onAction="#ActualizarP" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
+                  <Button id="btnS" layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#welcome" text="Regresar" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="paneBorrar" layoutX="156.0" layoutY="18.0" prefHeight="449.0" prefWidth="374.0" visible="false">
@@ -147,9 +160,9 @@
                <TextField fx:id="txtDomicilioB" layoutX="153.0" layoutY="281.0" />
                <TextField fx:id="txtTelefonoB" layoutX="153.0" layoutY="313.0" />
                <TextField fx:id="txtPerfilB" layoutX="153.0" layoutY="104.0" />
-               <Button fx:id="btnB" layoutX="140.0" layoutY="374.0" mnemonicParsing="false" onAction="#DeleteB" prefHeight="17.0" prefWidth="95.0" text="Borrar" />
+               <Button id="btnS" fx:id="btnB" layoutX="140.0" layoutY="374.0" mnemonicParsing="false" onAction="#DeleteB" prefHeight="17.0" prefWidth="95.0" text="Borrar" />
                
-            <Button layoutX="308.0" layoutY="31.0" mnemonicParsing="false" onAction="#Buscar" text="Buscar" />
+            <Button id="btnS" layoutX="308.0" layoutY="31.0" mnemonicParsing="false" onAction="#Buscar" text="Buscar" />
             </children>
          </AnchorPane>
             <AnchorPane fx:id="paneConsultar" layoutX="94.0" layoutY="14.0" prefHeight="466.0" prefWidth="526.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="0.0">
@@ -171,12 +184,19 @@
                   <TextField fx:id="txtCorreo2" layoutX="153.0" layoutY="246.0" />
                   <TextField fx:id="txtDomicilio2" layoutX="153.0" layoutY="281.0" />
                   <TextField fx:id="txtTelefono2" layoutX="153.0" layoutY="313.0" />
-                  <TextField fx:id="txtPerfil2" layoutX="153.0" layoutY="104.0" />
-                  <Button fx:id="btnBorrar" layoutX="153.0" layoutY="426.0" mnemonicParsing="false" onAction="#Delete" prefHeight="31.0" prefWidth="113.0" text="Borrar" />
-                  <Button fx:id="btnActualizar" layoutX="153.0" layoutY="372.0" mnemonicParsing="false" onAction="#Actualizar" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
-                  <Button fx:id="btnNext" layoutX="279.0" layoutY="388.0" mnemonicParsing="false" onAction="#nextData" prefHeight="45.0" prefWidth="47.0" text="&gt;&gt;" />
-                  <Button fx:id="btnPrev" layoutX="82.0" layoutY="381.0" mnemonicParsing="false" onAction="#prevData" prefHeight="45.0" prefWidth="47.0" text="&lt;&lt;" />
-                  <Button fx:id="btnReturn" layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#welcome" text="Regresar" />
+                  <ChoiceBox fx:id="Perfil2" layoutX="153.0" layoutY="104.0" prefWidth="150.0">
+                      <items>
+                          <FXCollections fx:factory="observableArrayList">
+                               <String fx:value="administrador" />
+                               <String fx:value="usuario" />
+                          </FXCollections>
+                      </items>
+                  </ChoiceBox>
+                  <Button id="btnS" fx:id="btnBorrar" layoutX="153.0" layoutY="426.0" mnemonicParsing="false" onAction="#Delete" prefHeight="31.0" prefWidth="113.0" text="Borrar" />
+                  <Button id="btnS" fx:id="btnActualizar" layoutX="153.0" layoutY="372.0" mnemonicParsing="false" onAction="#Actualizar" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
+                  <Button id="btnS" fx:id="btnNext" layoutX="279.0" layoutY="388.0" mnemonicParsing="false" onAction="#nextData" prefHeight="45.0" prefWidth="47.0" text="&gt;&gt;" />
+                  <Button id="btnS" fx:id="btnPrev" layoutX="82.0" layoutY="381.0" mnemonicParsing="false" onAction="#prevData" prefHeight="45.0" prefWidth="47.0" text="&lt;&lt;" />
+                  <Button id="btnS" fx:id="btnReturn" layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#welcome" text="Regresar" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="paneAddUser" prefHeight="484.0" prefWidth="526.0" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -198,7 +218,7 @@
                   <TextField fx:id="txtCorreo" layoutX="153.0" layoutY="246.0" />
                   <TextField fx:id="txtDomicilio" layoutX="153.0" layoutY="281.0" />
                   <TextField fx:id="txtTelefono" layoutX="153.0" layoutY="313.0" />
-                  <Button fx:id="btnIngresar" layoutX="221.0" layoutY="427.0" mnemonicParsing="false" onAction="#submitData" prefHeight="25.0" prefWidth="81.0" text="Ingresar" />
+                  <Button id="btnS" fx:id="btnIngresar" layoutX="221.0" layoutY="427.0" mnemonicParsing="false" onAction="#submitData" prefHeight="25.0" prefWidth="81.0" text="Ingresar" />
                   <ChoiceBox fx:id="choiceB" layoutX="153.0" layoutY="104.0" prefWidth="150.0">
                       <items>
                           <FXCollections fx:factory="observableArrayList">
@@ -207,12 +227,12 @@
                           </FXCollections>
                       </items>
                   </ChoiceBox>
-                  <Button fx:id="btnReturnI" layoutX="135.0" layoutY="427.0" mnemonicParsing="false" onAction="#welcome" text="Regresar" />
+                  <Button id="btnS" fx:id="btnReturnI" layoutX="135.0" layoutY="427.0" mnemonicParsing="false" onAction="#welcome" text="Regresar" />
                </children>
             </AnchorPane>
-             <AnchorPane fx:id="principal" prefHeight="483.0" prefWidth="526.0" visible="false" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+             <AnchorPane fx:id="principal" prefHeight="483.0" prefWidth="526.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
-                     <Label layoutX="64.0" layoutY="25.0" text="Bienvenido Administrador" textFill="#263772">
+                     <Label fx:id="lblWelcome" layoutX="156.0" layoutY="35.0" text="Bienvenido Administrador" textFill="#263772">
                         <font>
                            <Font name="Tahoma" size="19.0" />
                         </font>

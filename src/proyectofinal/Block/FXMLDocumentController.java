@@ -214,7 +214,7 @@ public class FXMLDocumentController implements Initializable {
         
         //////////////formato
         try {
-            String text2[] = textoArchivoBlock.split("@#1codigo4k781#@");
+            String text2[] = textoArchivoBlock.split("@#1saving1#@");
         text = text2[1];
         this.TextoArea.setText(text2[0]);
         String text3[] = text.split(",");
@@ -222,6 +222,7 @@ public class FXMLDocumentController implements Initializable {
         
         cbSize.setValue(text3[1]);
         selectFont(event);
+        textoArchivoBlock = null;
         
         } catch (Exception e) {
         }
@@ -243,7 +244,7 @@ public class FXMLDocumentController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        String save = this.TextoArea.getText() + "@#1codigo4k781#@" + (String)cbFonts.getValue() + "," + (String) cbSize.getValue() + ",";
+        String save = this.TextoArea.getText() + "@#1saving1#@" + (String)cbFonts.getValue() + "," + (String) cbSize.getValue() + ",";
         guardar = save;
         //this.Archivos.saveFileAs( save);
         
@@ -253,8 +254,9 @@ public class FXMLDocumentController implements Initializable {
     private void guardar(ActionEvent e){
         Stage stage = new Stage();
         Parent root = null;
-        String save = this.TextoArea.getText() + "@#1codigo4k781#@" + (String) cbFonts.getValue() + "," + (String) cbSize.getValue() + ",";
+        String save = this.TextoArea.getText() + "@#1saving1#@" + (String)cbFonts.getValue() + "," + (String) cbSize.getValue() + ",";
         guardar = save;
+        System.out.println("block"+nombreArchivo);
         if (nombreArchivo != null) {
             System.out.println("nom" + nombreArchivo);
             System.out.println("ru" + rutaArchivoBlock);
@@ -265,10 +267,11 @@ public class FXMLDocumentController implements Initializable {
             } catch (Exception exs) {
                 //exs.printStackTrace();
             }
+            nombreArchivo = null;
         } else {
             try {
                 //Investigar manera correcta root = FXMLLoader.load(getClass().getResource("FXMLExplorer.fxml"));
-                root = FXMLLoader.load(FXMLLoginController.class.getResource("Explorador/FXMLExplorerGuardar.fxml"));
+                root = FXMLLoader.load(FXMLLoginController.class.getResource("Explorador/FXMLExplorerGuardarBlock.fxml"));
             } catch (IOException ex) {
                 Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -279,26 +282,6 @@ public class FXMLDocumentController implements Initializable {
         }
         
     }
-    /*
-    public void saveFile(String texto){
-       fileDialog.setTitle("Guardar");
-        fileDialog.setInitialDirectory(this.myPath);
-        
-        
-        
-        if(file == null){
-            file = fileDialog.showSaveDialog(new Stage());
-            if(file == null)
-                return;
-        }try{
-            
-            Files.write(file.toPath(), texto.getBytes());
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-    */
-
 
     void setScene(Scene scene) {
         this.scene = scene;

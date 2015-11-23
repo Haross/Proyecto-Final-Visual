@@ -13,10 +13,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,8 +26,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import proyectofinal.Explorador.FXMLExplorerController;
@@ -125,14 +130,39 @@ public class FXMLLoginController implements Initializable {
         }
         System.out.println("user: " + usuario);
     } 
+    @FXML
+     private void creditos(ActionEvent e){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Universidad Politécnica de Chiapas \n\n\t");
+        alert.setTitle("Créditos");
+        ImageView a = icono("Estilos/logoUPCH.png",50,50);
+        alert.setContentText(" \n\n\tNombre de la investigacion: Proyecto final\n\n\tJavier de Jesus Flores Herrerra \n\n\t Matricula: 143372 \n\n\t Edgardo Rito Deheza \n\n\t Matricula: 143370 \n\n\t Nombre del profesor: Juan Carlos Lopez pimentel \n\n\t Asignatura: Programacion Visual \n\n\t Fecha: 23/Nov/2015");
+       
+       
+        alert.setGraphic(a);
+        alert.showAndWait();
+        
+ 
+     }
+      public ImageView icono(String imagen, double width, double height) {
+        Image imageFolder = new Image(getClass().getResourceAsStream(imagen));
+        ImageView iF = new ImageView(imageFolder);
+        iF.setFitWidth(width);
+        iF.setFitHeight(height);
+        return iF;
+    }
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         txtUsuario.textProperty().addListener((observable, oldValue, nextValue) -> {
-            if (nextValue.equals("")) {
+            try{if (nextValue.equals("")) {
                  icon.setStyle("-fx-fill:#a89d9d;"); 
             } else {
                 icon.setStyle("-fx-fill:#69F0AE;"); 
+            }
+            }catch(Exception e){
+                
             }
         });
         /*ObservableList<String> aux = PaneLogin.getStylesheets();
@@ -141,11 +171,11 @@ public class FXMLLoginController implements Initializable {
                 System.out.println("hola:"+aa[aa.length-1]);
 */
         txtContrasena.textProperty().addListener((observable, oldValue, nextValue) -> {
-            if (nextValue.equals("")) {
+            try{if (nextValue.equals("")) {
                  icon2.setStyle("-fx-fill:#a89d9d;"); 
             } else {
                 icon2.setStyle("-fx-fill:#69F0AE;"); 
-            }
+            }}catch(Exception e){}
         });
        
     }    

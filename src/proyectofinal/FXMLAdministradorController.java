@@ -20,6 +20,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
@@ -40,7 +42,7 @@ public class FXMLAdministradorController implements Initializable {
     TextField txtUsuarioP, txtContrasenaP, txtPerfilP, txtNombreP, txtApellidoP,
             txtEdadP, txtCorreoP, txtDomicilioP, txtTelefonoP;
     @FXML //pane consultar
-    TextField txtUsuario2, txtContrasena2, txtPerfil2, txtNombre2, txtApellido2,
+    TextField txtUsuario2, txtContrasena2,  txtNombre2, txtApellido2,
             txtEdad2, txtCorreo2, txtDomicilio2, txtTelefono2;
     @FXML //Pane borrar
     TextField txtUsuarioB, txtContrasenaB, txtPerfilB, txtNombreB, txtApellidoB,
@@ -48,11 +50,16 @@ public class FXMLAdministradorController implements Initializable {
     @FXML
     AnchorPane pane, paneAddUser, paneBorrar, principal, paneConsultar, panePerfil;
     @FXML
-    ChoiceBox choiceB;
+    ChoiceBox choiceB,Perfil2;
+    @FXML 
+    Label lblWelcome;
     @FXML
     Button btnBorrar,btnB, btnActualizar, btnActualizar1, btnNext, btnPrev, btnCerrarS, btnPaint, btnBlock;
     @FXML
     TilePane admiPerfil, userPerfil;
+ //---------------------Diseño-----------------------
+    @FXML ColorPicker colorP,colorB;
+//---------------------------------------------------
     private ResultSet rs = null;
     private Connection conecc;
     private Statement st = null;
@@ -67,6 +74,19 @@ public class FXMLAdministradorController implements Initializable {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("Paint/FXMLminipaint.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    private void abrirExplorer(ActionEvent e) {
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("Explorador/FXMLExplorer.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -115,12 +135,14 @@ public class FXMLAdministradorController implements Initializable {
         paneBorrar.setVisible(false);
         panePerfil.setVisible(false);
         paneConsultar.setVisible(false);
+        eraseB();
     }
 
     @FXML
     private void submitData(ActionEvent event) {;
         insertarDatosPuro();
         clean();
+        
     }
 private void clean() {
         txtContrasena.setText(null);
@@ -131,6 +153,7 @@ private void clean() {
         txtCorreo.setText(null);
         txtDomicilio.setText(null);
         txtTelefono.setText(null);
+        choiceB.valueProperty().set(null);
     }
     private void insertarDatosPuro() {
         Connection conn = null;
@@ -185,6 +208,7 @@ private void clean() {
         paneBorrar.setVisible(false);
         panePerfil.setVisible(false);
         consultarDatosPrimitive();
+        eraseB();
     }
 
     private void consultarDatosPrimitive() {
@@ -227,7 +251,7 @@ private void clean() {
                 usuarioH = rs.getString("usuario");
                 txtUsuario2.setText(usuarioH);
                 perfilH = rs.getString("perfil");
-                txtPerfil2.setText(perfilH);
+                Perfil2.valueProperty().set(perfilH);
                 apellidoH = rs.getString("apellidos");
                 txtApellido2.setText(apellidoH);
                 edadH = rs.getString("edad");
@@ -272,7 +296,7 @@ private void clean() {
                 usuarioH = rs.getString("usuario");
                 txtUsuario2.setText(usuarioH);
                 perfilH = rs.getString("perfil");
-                txtPerfil2.setText(perfilH);
+                Perfil2.valueProperty().set(perfilH);
                 apellidoH = rs.getString("apellidos");
                 txtApellido2.setText(apellidoH);
                 edadH = rs.getString("edad");
@@ -357,7 +381,7 @@ private void clean() {
             st = conn.createStatement();
             String usuario = txtUsuario2.getText();
             String contrasena = txtContrasena2.getText();
-            String perfil = txtPerfil2.getText();
+            String perfil = Perfil2.getValue().toString();
             String nombre = txtNombre2.getText();
             String apellidos = txtApellido2.getText();
             String edad = txtEdad2.getText();
@@ -388,6 +412,7 @@ private void clean() {
         paneAddUser.setVisible(false);
         paneConsultar.setVisible(false);
         panePerfil.setVisible(true);
+        eraseB();
     }
 
     @FXML
@@ -502,7 +527,7 @@ private void clean() {
         paneConsultar.setVisible(false);
         panePerfil.setVisible(false);
         paneAddUser.setVisible(false);
-
+        eraseB();
     }
 
     @FXML
@@ -570,7 +595,10 @@ private void clean() {
                     txtCorreoB.setText(rs.getString("email"));
                     txtDomicilioB.setText(rs.getString("domicilio"));
                     txtTelefonoB.setText(rs.getString("telefono"));
-                    btnB.setDisable(false);
+                    if(user.equals(rs.getString("usuario"))&& typeOfUser.equals("administrador"))
+                    btnB.setDisable(true);
+                    else
+                       btnB.setDisable(false); 
                 } else {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Información");
@@ -598,7 +626,7 @@ private void clean() {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/pfinal", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/pvisual", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(FXMLAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -647,6 +675,8 @@ private void clean() {
             admiPerfil.setVisible(false);
             userPerfil.setVisible(true);
         }
+        principal.setVisible(true);
+        lblWelcome.setText("Bienvenido "+user);
         pane.getStylesheets().add(FXMLAdministradorController.class.getResource("Estilos/GreenStyle.css").toExternalForm());
         btnNext.setDisable(true);
         btnPrev.setDisable(true);
