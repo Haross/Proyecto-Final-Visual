@@ -5,6 +5,10 @@
  */
 package proyectofinal.Explorador;
 
+import static de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon.FILE_DOCUMENT;
+import static de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon.FILE_IMAGE;
+import static de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon.FOLDER;
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -31,7 +35,10 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
@@ -123,6 +130,29 @@ public class FXMLExplorerGuardarController implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
                 //Sobrescrbir
+                try {
+                        System.out.println("imagen: "+gimagen);
+                        //file = new File(ruta, nombreA + ".jpg");
+                        System.out.println("Esta es la extesion: "+extension);
+                        file = new File("..\\datos"+rutaG.getText(), nombreA + "."+ extension);
+                        nombreArchivo = nombreA + "."+ extension;
+                        rutaArchivoPaint = "..\\datos"+rutaG.getText();
+                        try {
+                            ImageIO.write(SwingFXUtils.fromFXImage(gimagen, null),extension, file);
+                            alert = new Alert(AlertType.INFORMATION);
+                            alert.setTitle("Información");
+                            alert.setHeaderText("Archivo guardado con exito");
+                            alert.showAndWait();
+                            Stage stageAux = (Stage) txtNombreG.getScene().getWindow();
+                            stageAux.close();
+                        } catch (Exception exs) {
+                            //exs.printStackTrace();
+                        }
+                        //guardar archivo
+                    
+                } catch (Exception ex) {
+                    
+                }
             }
             rutaArchivo=null;
         }
@@ -194,37 +224,83 @@ public class FXMLExplorerGuardarController implements Initializable {
         return ruta;
     }
     
+    private void setIconFiles(String aux) {
+        String[] nextension = new String[2];
+        AnchorPane pane = new AnchorPane();
+        pane.setPrefSize(150, 100);
+
+        Button b = new Button();
+        b.setLayoutX(0);
+        b.setLayoutY(100);
+        b.setPrefSize(150, 25);
+        b.setId(ruta);
+        nextension = aux.split("\\.");
+        try {
+            pane.getChildren().add(setFolderIcon(70, 40, 75));
+            pane.setStyle("-fx-background-color:  #FFE082");
+            pane.getChildren().add(b);
+            b.setStyle("-fx-background-color:  #FFD54F");
+            if (nextension[1].equals("txt")) {
+                pane.getChildren().remove(0);
+                pane.getChildren().add(setFileIcon(70, 40, 75));
+                pane.setStyle("-fx-background-color:  #40C4FF");
+                b.setStyle("-fx-background-color:  #00B0FF");
+
+            }
+            if (nextension[1].equals("jpg") || nextension[1].equals("bmp") || nextension[1].equals("jpeg") || nextension[1].equals("jpe") || nextension[1].equals("jfif") || nextension[1].equals("gif") || nextension[1].equals("tif") || nextension[1].equals("tiff") || nextension[1].equals("png")) {
+                pane.getChildren().remove(0);
+                pane.getChildren().add(setImageIcon(70, 40, 75));
+                pane.setStyle("-fx-background-color:  #69F0AE;");
+                b.setStyle("-fx-background-color:  #00E676;");
+            }
+
+        } catch (Exception e) {
+        }
+
+        b.setText(aux);
+        b.setTextAlignment(TextAlignment.CENTER);
+        b.setOnAction((e) -> {
+
+        });
+        control.setOrientation(Orientation.HORIZONTAL);
+        control.getChildren().addAll(pane);
+
+    }
     /*
      * método que pone los iconos en el controler
      */
+
     private void setIconFiles(ObservableList<TreeItem<String>> aux) {
-        control.getChildren().clear();
-        control.setPrefColumns(3);
-        control.setPrefRows(3);
-        String[] nextension = new String[2];
         for (int i = 0; i < aux.size(); i++) {
-            Button b = new Button();
-            b.setId(ruta);
-            nextension = aux.get(i).getValue().split("\\.");
-            try {
-                b.setGraphic(icono("folder.png", 40, 40));
-                if (nextension[1].equals("txt")) {
-                    b.setGraphic(icono("txt.png", 40, 40));
-                }
-                if (nextension[1].equals("jpg") || nextension[1].equals("bmp") || nextension[1].equals("jpeg") || nextension[1].equals("jpe") || nextension[1].equals("jfif") || nextension[1].equals("gif") || nextension[1].equals("tif") || nextension[1].equals("tiff") || nextension[1].equals("png")) {
-                    b.setGraphic(icono("mult.png", 40, 40));
-                }
-            } catch (Exception ex) {
-            }
-
-            b.setText(aux.get(i).getValue());
-            b.setTextAlignment(TextAlignment.CENTER);
-            b.setOnAction((e) -> {
-
-            });
-            control.setOrientation(Orientation.HORIZONTAL);
-            control.getChildren().addAll(b);
+            setIconFiles(aux.get(i).getValue());
         }
+    }
+
+    private MaterialDesignIconView setImageIcon(int tam, int x, int y) {
+        MaterialDesignIconView folder = new MaterialDesignIconView(FILE_IMAGE);
+        folder.setFont(new Font("MaterialDesignIcons", tam));
+        folder.setFill(Color.WHITE);
+        folder.setLayoutX(x);
+        folder.setLayoutY(y);
+        return folder;
+    }
+
+    private MaterialDesignIconView setFileIcon(int tam, int x, int y) {
+        MaterialDesignIconView folder = new MaterialDesignIconView(FILE_DOCUMENT);
+        folder.setFont(new Font("MaterialDesignIcons", tam));
+        folder.setFill(Color.WHITE);
+        folder.setLayoutX(x);
+        folder.setLayoutY(y);
+        return folder;
+    }
+
+    private MaterialDesignIconView setFolderIcon(int tam, int x, int y) {
+        MaterialDesignIconView folder = new MaterialDesignIconView(FOLDER);
+        folder.setFont(new Font("MaterialDesignIcons", tam));
+        folder.setFill(Color.WHITE);
+        folder.setLayoutX(x);
+        folder.setLayoutY(y);
+        return folder;
     }
     //
     private void setDirectorio(TreeItem<String> folder, String raiz, String subRaiz) {
@@ -309,8 +385,15 @@ public class FXMLExplorerGuardarController implements Initializable {
 
                 }
                 rutaG.setText(ruta);
-                //setRuta(ruta);         
-                setIconFilesSave(selectedItem.getChildren());
+                control.getChildren().clear();
+                control.setPrefColumns(3);
+                control.setPrefRows(3);
+                //Método que pone los iconos en el control     
+                if (selectedItem.getChildren().isEmpty()) {
+                    setIconFiles(selectedItem.getValue());
+                } else {
+                    setIconFiles(selectedItem.getChildren());
+                }
 
             }
 

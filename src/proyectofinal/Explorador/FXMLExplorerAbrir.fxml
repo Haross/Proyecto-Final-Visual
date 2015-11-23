@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="736.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.Explorador.FXMLExplorerAbrirController">
+<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="736.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="proyectofinal.Explorador.FXMLExplorerAbrirController">
          <children>
-            <SplitPane dividerPositions="0.273841961852861" layoutX="2.0" prefHeight="486.0" prefWidth="736.0" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="-2.0">
+            <SplitPane dividerPositions="0.273841961852861" layoutX="2.0" prefHeight="512.0" prefWidth="736.0" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="-2.0">
                <items>
                   <TreeView fx:id="tvArbol" prefHeight="554.0" prefWidth="256.0">
                      <contextMenu>

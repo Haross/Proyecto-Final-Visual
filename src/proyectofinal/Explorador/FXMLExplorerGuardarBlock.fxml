@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="746.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectofinal.Explorador.FXMLExplorerGuardarBlockController">
+<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="746.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="proyectofinal.Explorador.FXMLExplorerGuardarBlockController">
          <children>
-            <SplitPane dividerPositions="0.2956403269754768" layoutY="24.0" prefHeight="464.0" prefWidth="746.0" AnchorPane.bottomAnchor="77.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+            <SplitPane dividerPositions="0.2956403269754768" layoutY="1.0" prefHeight="488.0" prefWidth="746.0" AnchorPane.bottomAnchor="77.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
                <items>
                   <TreeView fx:id="tvArbol" prefHeight="447.0" prefWidth="222.0">
                      <contextMenu>
@@ -41,17 +41,5 @@
                   <ComboBox fx:id="cmbExtesionesB" layoutX="572.0" layoutY="21.0" prefWidth="150.0" />
                </children>
             </Pane>
-            <MenuBar prefHeight="25.0" prefWidth="746.0">
-               <menus>
-                  <Menu mnemonicParsing="false" text="Cambiar">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Explorer" />
-                        <MenuItem mnemonicParsing="false" text="Abrir" />
-                        <MenuItem mnemonicParsing="false" text="Guardar" />
-                        <MenuItem mnemonicParsing="false" text="Guardar Block" />
-                     </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
          </children>
 </AnchorPane>
