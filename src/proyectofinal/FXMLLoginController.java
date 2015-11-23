@@ -128,17 +128,26 @@ public class FXMLLoginController implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        txtUsuario.setOnKeyTyped((e)->{
-            icon.setStyle("-fx-fill:#69F0AE;"); 
+        txtUsuario.textProperty().addListener((observable, oldValue, nextValue) -> {
+            if (nextValue.equals("")) {
+                 icon.setStyle("-fx-fill:#a89d9d;"); 
+            } else {
+                icon.setStyle("-fx-fill:#69F0AE;"); 
+            }
         });
         /*ObservableList<String> aux = PaneLogin.getStylesheets();
         String a = aux.get(aux.size()-1);
         String[] aa = a.split("/");
                 System.out.println("hola:"+aa[aa.length-1]);
 */
-        txtContrasena.setOnKeyTyped((e)->{
-            icon2.setStyle("-fx-fill:#69F0AE;"); 
+        txtContrasena.textProperty().addListener((observable, oldValue, nextValue) -> {
+            if (nextValue.equals("")) {
+                 icon2.setStyle("-fx-fill:#a89d9d;"); 
+            } else {
+                icon2.setStyle("-fx-fill:#69F0AE;"); 
+            }
         });
+       
     }    
     
 }
