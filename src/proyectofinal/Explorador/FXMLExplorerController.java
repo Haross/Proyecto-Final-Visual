@@ -19,6 +19,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -295,8 +296,9 @@ public class FXMLExplorerController implements Initializable {
         //System.out.println("Obtener root del arbol "+tvArbol.getRoot());
         setDirectorio(folder, Archivos.getDirectorio(), "");
         control.setPadding(new Insets(10, 10, 10, 10));
-        control.setVgap(5);
-        control.setHgap(5);
+        control.setVgap(10);
+        control.setHgap(10);
+        
         tvArbol.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
 
             @Override
@@ -331,8 +333,7 @@ public class FXMLExplorerController implements Initializable {
 
                 }
                 control.getChildren().clear();
-                control.setPrefColumns(3);
-                control.setPrefRows(3);
+ 
                 //Método que pone los iconos en el control     
                 if (selectedItem.getChildren().isEmpty()) {
                     setIconFiles(selectedItem.getValue());

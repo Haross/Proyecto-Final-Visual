@@ -99,6 +99,7 @@ public class FXMLExplorerGuardarBlockController implements Initializable {
                     System.out.println("Esta es la extesion: " + extension);
                     file = new File("..\\datos" + rutaGB.getText(), nombreA + "." + extension);
                     nombreArchivo = nombreA + "."+ extension;
+                    System.out.println(nombreArchivo);
                     rutaArchivoBlock = "..\\datos"+rutaGB.getText();
                     try {
                         Files.write(file.toPath(), guardar.getBytes());

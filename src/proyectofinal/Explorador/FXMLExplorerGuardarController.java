@@ -137,6 +137,7 @@ public class FXMLExplorerGuardarController implements Initializable {
                         System.out.println("Esta es la extesion: "+extension);
                         file = new File("..\\datos"+rutaG.getText(), nombreA + "."+ extension);
                         nombreArchivo = nombreA + "."+ extension;
+                        
                         rutaArchivoPaint = "..\\datos"+rutaG.getText();
                         try {
                             ImageIO.write(SwingFXUtils.fromFXImage(gimagen, null),extension, file);

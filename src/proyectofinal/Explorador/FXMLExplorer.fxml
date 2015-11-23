@@ -21,7 +21,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </TreeView>
-                  <TilePane fx:id="control" prefHeight="519.0" prefWidth="414.0" style="-fx-background-color: WHITE;" />
+                  <TilePane fx:id="control" style="-fx-background-color: WHITE;" />
               </items>
             </SplitPane>
             
