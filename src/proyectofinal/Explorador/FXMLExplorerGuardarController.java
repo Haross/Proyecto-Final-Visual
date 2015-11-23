@@ -112,13 +112,19 @@ public class FXMLExplorerGuardarController implements Initializable {
                             alert.showAndWait();
                             Stage stageAux = (Stage) txtNombreG.getScene().getWindow();
                             stageAux.close();
-                        } catch (Exception exs) {
-                            //exs.printStackTrace();
+                        } catch (Exception event) {
+                            alert = new Alert(AlertType.INFORMATION);
+                            alert.setTitle("Información");
+                            alert.setHeaderText("Archivo no pudo ser guardado");
+                            alert.showAndWait();
                         }
                         //guardar archivo
                     
                 } catch (Exception ex) {
-                    
+                    alert = new Alert(AlertType.INFORMATION);
+                            alert.setTitle("Información");
+                            alert.setHeaderText("Archivo no pudo ser guardado");
+                            alert.showAndWait();
                 }
                
             }
@@ -450,6 +456,7 @@ public class FXMLExplorerGuardarController implements Initializable {
                     b.setGraphic(icono("mult.png", 40, 40));
                 }
             } catch (Exception ex) {
+
             }
             
             b.setText(aux.get(i).getValue());

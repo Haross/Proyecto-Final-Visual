@@ -323,16 +323,19 @@ public class FXMLminipaintController implements Initializable {
         try {            
             root = FXMLLoader.load(FXMLLoginController.class.getResource("Explorador/FXMLExplorerAbrir.fxml"));
         } catch (IOException ex) {
-            Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.showAndWait();
         Image imagenAbrir;
+        if(imagenNueva != null){
         imagenAbrir = imagenNueva;
         gcB.clearRect(0, 0, TheCanvas.getWidth(), TheCanvas.getHeight());
         gcF.clearRect(0, 0, TheCanvas.getWidth(), TheCanvas.getHeight());
         gcB.drawImage(imagenAbrir, 0, 0);
+        imagenNueva = null;
+        }
     }
     
     @FXML
@@ -343,7 +346,7 @@ public class FXMLminipaintController implements Initializable {
             //Investigar manera correcta root = FXMLLoader.load(getClass().getResource("FXMLExplorer.fxml"));
             root = FXMLLoader.load(FXMLLoginController.class.getResource("Explorador/FXMLExplorerGuardar.fxml"));
         } catch (IOException ex) {
-            Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -370,7 +373,7 @@ public class FXMLminipaintController implements Initializable {
             //Investigar manera correcta root = FXMLLoader.load(getClass().getResource("FXMLExplorer.fxml"));
             root = FXMLLoader.load(FXMLLoginController.class.getResource("Explorador/FXMLExplorerGuardar.fxml"));
         } catch (IOException ex) {
-            Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
        
         Scene scene = new Scene(root);

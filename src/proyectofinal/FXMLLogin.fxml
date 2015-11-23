@@ -41,5 +41,6 @@
          </children>
       </AnchorPane>
       <WeatherIconView />
+      <Button layoutX="6.0" layoutY="43.0" mnemonicParsing="false" onAction="#creditos" opacity="0.63" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: WHITE; -fx-background-radius: 0px;" text="Créditos" textFill="#030101" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
     </children>
 </AnchorPane>
